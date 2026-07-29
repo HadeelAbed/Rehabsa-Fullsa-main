@@ -79,8 +79,8 @@ const RedeemIcon = Gift;
 const BellIcon = Bell;
 
 const cardClass =
-  "border border-[#d4d9ef] rounded-2xl bg-white shadow-[0_4px_24px_rgba(124,136,196,.12)]" +
-  " transition-all duration-200 hover:shadow-[0_12px_48px_rgba(124,136,196,.26)]";
+  "border border-[#e5e7eb] rounded-2xl bg-white shadow-sm" +
+  " transition-all duration-200 hover:shadow-md";
 
 function readPointsMap(): Record<string, Record<string, number>> {
   try {
@@ -114,8 +114,18 @@ export function ViewCustomerPage() {
   const allCards = useMemo(() => {
     try {
       const raw = localStorage.getItem("dashboard_cards");
-      const list: DashboardCard[] = raw ? JSON.parse(raw) : [];
-      return list.length > 0 ? list : [fallbackCard];
+      const saved: DashboardCard[] = raw ? JSON.parse(raw) : [];
+      const defaultCards: DashboardCard[] = [
+        { id: 1, name: "نادي اللياقة النخبة", title: "تدرب وادخر", description: "استمتع بمرافقنا الفاخرة واحصل على مكافآت حصرية!", cardId: "477-398-475-609", issueDate: new Date("2025-07-08").toISOString(), expiryDate: new Date("2027-08-30").toISOString(), bgColor: "#3498DB", bgOpacity: 0.87, bgImage: "", textColor: "#ffffff", status: "نشط", currentStage: 2, totalStages: 5 },
+
+      ];
+      const merged = [...defaultCards];
+      for (const s of saved) {
+        if (!merged.find(m => m.cardId === s.cardId)) {
+          merged.push(s);
+        }
+      }
+      return merged;
     } catch { return [fallbackCard]; }
   }, []);
 
@@ -291,43 +301,43 @@ export function ViewCustomerPage() {
   }, [customer.fullName, isArabic]);
 
   return (
-    <div className="px-4 md:px-10 py-6 bg-[#f2f3f8] min-h-screen" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="px-4 md:px-10 py-6 bg-[#fafbff] min-h-screen" dir={isRTL ? "rtl" : "ltr"}>
 
       {/* ===== Card 1: Customer Profile Header ===== */}
       <Card className={`${cardClass} mb-6`}>
         <CardContent className="p-6">
           <div className="flex items-center justify-between">
-            <Button variant="ghost" onClick={() => navigate("/dashboard/customers")} className="text-gray-500 rounded-xl p-0 h-9 w-9">
+            <Button variant="ghost" onClick={() => navigate("/dashboard/customers")} className="text-[#5f6678] rounded-2xl p-0 h-9 w-9">
               {isRTL ? <ChevronRight className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}
             </Button>
             <div className="flex flex-col items-center gap-2">
-              <Avatar className="h-20 w-20 ring-2 ring-[#d4d9ef] ring-offset-2 ring-offset-[#f2f3f8]">
+              <Avatar className="h-20 w-20 ring-2 ring-[#e5e7eb] ring-offset-2 ring-offset-[#fafbff]">
                 <AvatarFallback className="bg-[#7c88c4] text-white font-bold text-xl">
                   {customer.fullName.split(" ").map(s => s[0]).join("").slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="text-center">
-                <h1 className="text-xl font-bold text-gray-800">{customer.fullName}</h1>
-                <p className="text-sm text-gray-500" dir="ltr">{customer.phone}</p>
+                <h1 className="text-xl font-bold text-[#111111]">{customer.fullName}</h1>
+                <p className="text-sm text-[#5f6678]" dir="ltr">{customer.phone}</p>
               </div>
               <div className="flex items-center justify-center gap-2 mt-2">
-                <div className="border border-[#7c88c4]/20 bg-[#f0f1fa] text-[#7c88c4] text-[10px] font-semibold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
+                <div className="border border-[#7c88c4]/20 bg-[#f7f9ff] text-[#7c88c4] text-[10px] font-bold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
                   {selectedCard.name}
                 </div>
-                <div className="border border-[#7c88c4]/20 bg-[#f0f1fa] text-[#7c88c4] text-[10px] font-semibold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
+                <div className="border border-[#7c88c4]/20 bg-[#f7f9ff] text-[#7c88c4] text-[10px] font-bold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
                   {currentPoints} {isArabic ? "نقاط" : "Points"}
                 </div>
-                <div className="border border-gray-200 bg-gray-50 text-gray-700 text-[10px] font-semibold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
+                <div className="border border-[#e5e7eb] bg-[#f7f9ff] text-[#5f6678] text-[10px] font-bold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
                   0 {isArabic ? "مكافآت" : "Rewards"}
                 </div>
-                <Badge variant="outline" className="border-red-200 text-red-500 bg-red-50 text-[10px] font-semibold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
+                <Badge variant="outline" className="border-red-200 text-red-500 bg-red-50 text-[10px] font-bold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
                   {isArabic ? "غير فعال" : "Inactive"}
                 </Badge>
               </div>
             </div>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-xl text-gray-400 hover:text-red-500 hover:bg-red-50">
+                  <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-2xl text-[#5f6678] hover:text-red-500 hover:bg-red-50">
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </AlertDialogTrigger>
@@ -383,10 +393,10 @@ export function ViewCustomerPage() {
               {/* Progress & Metrics Bar */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold text-gray-800">{currentPoints} / {totalPoints}</span>
-                  <span className="text-xs text-gray-500">{isArabic ? "النقاط" : "Points"}</span>
+                  <span className="text-sm font-bold text-[#111111]">{currentPoints} / {totalPoints}</span>
+                  <span className="text-xs text-[#5f6678]">{isArabic ? "النقاط" : "Points"}</span>
                 </div>
-                <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-[#f7f9ff] rounded-full overflow-hidden">
                   <div
                     className="h-full bg-[#7c88c4] rounded-full transition-all duration-300"
                     style={{ width: `${(currentPoints / Math.max(totalPoints, 1)) * 100}%` }}
@@ -408,7 +418,7 @@ export function ViewCustomerPage() {
                   onChange={(e) => setPointInput(Math.max(1, Math.min(totalPoints, Number(e.target.value) || 1)))}
                   min={1}
                   max={totalPoints}
-                  className="w-16 h-12 border border-[#d4d9ef] rounded-2xl text-center text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#7c88c4]/30"
+                  className="w-16 h-12 border border-[#e5e7eb] rounded-2xl text-center text-sm font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#7c88c4]/30"
                 />
                 <Button
                   onClick={() => deductPoints(pointInput)}
@@ -425,20 +435,20 @@ export function ViewCustomerPage() {
 
               {/* Digital Wallet Buttons */}
               <div className="space-y-3 pt-1">
-                <button className="w-full bg-black hover:bg-gray-900 text-white rounded-xl h-11 text-xs font-semibold flex items-center justify-center gap-2.5 transition-all duration-200 shadow-sm">
+                <button className="w-full bg-black hover:bg-gray-900 text-white rounded-2xl h-11 text-xs font-extrabold flex items-center justify-center gap-2.5 transition-all duration-200 shadow-sm">
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
                     <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
                   <span className="tracking-tight">{isArabic ? "Apple Wallet" : "Add to Apple Wallet"}</span>
                 </button>
-                <button className="w-full bg-white border border-[#d4d9ef] text-gray-700 rounded-xl h-11 text-xs font-semibold flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all duration-200">
+                <button className="w-full bg-white border border-[#e5e7eb] text-[#111111] rounded-2xl h-11 text-xs font-extrabold flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all duration-200">
                   <svg className="h-4 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
                     <path d="M8 12h8M12 8v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                   <span>G Pay</span>
-                  <span className="text-gray-400 mx-0.5">|</span>
+                  <span className="text-[#5f6678] mx-0.5">|</span>
                   <span>{isArabic ? "حفظ في الهاتف" : "Save to phone"}</span>
                 </button>
               </div>
@@ -447,7 +457,7 @@ export function ViewCustomerPage() {
             {/* ============ Right Column: Phone same as CardsPage ============ */}
             <div className="flex justify-center items-center" dir="ltr">
               <div className="relative flex flex-col items-center w-full max-w-[170px]">
-                <div className="flex items-center gap-1.5 mb-1 text-[10px] font-semibold text-[#7c88c4] bg-[#f0f1fa] px-2 py-0.5 rounded-full">
+                <div className="flex items-center gap-1.5 mb-1 text-[10px] font-bold text-[#7c88c4] bg-[#f7f9ff] px-2 py-0.5 rounded-full">
                   <span className="w-1 h-1 rounded-full bg-emerald-500" />
                   {selectedCard.status}
                 </div>
@@ -523,7 +533,7 @@ export function ViewCustomerPage() {
       {/* ===== Card 3: Send Notification ===== */}
       <Card className={`${cardClass} mb-6`}>
         <CardContent className="p-6">
-          <h2 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <h2 className="text-base font-bold text-[#111111] mb-4 flex items-center gap-2">
             <Smartphone className="h-5 w-5 text-[#7c88c4]" />
             {isArabic ? "إرسال إشعار" : "Send Notification"}
           </h2>
@@ -532,7 +542,7 @@ export function ViewCustomerPage() {
               placeholder={isArabic ? "رسالتك..." : "Your message..."}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="border-[#d4d9ef] rounded-2xl bg-white text-sm min-h-[120px] resize-none"
+              className="border-[#e5e7eb] rounded-2xl bg-white text-sm text-[#111111] min-h-[120px] resize-none"
             />
             <Button
               onClick={() => {
@@ -543,7 +553,7 @@ export function ViewCustomerPage() {
                 toast.success(isArabic ? "تم إرسال الإشعار" : "Notification sent");
                 setMessage("");
               }}
-              className="w-full bg-[#b0b8da] hover:bg-[#7c88c4] text-white rounded-2xl h-12 text-sm font-bold flex items-center justify-center gap-2"
+              className="w-full bg-[#b0b8da] hover:bg-[#7c88c4] text-white rounded-2xl h-12 text-sm font-extrabold flex items-center justify-center gap-2"
             >
               <Send className="h-5 w-5" /> {isArabic ? "إرسال الرسالة" : "Send Message"}
             </Button>
@@ -554,41 +564,41 @@ export function ViewCustomerPage() {
       {/* ===== Card 4: Last Transactions ===== */}
       <Card className={`${cardClass} mb-6`}>
         <CardContent className="p-6">
-          <h2 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <h2 className="text-base font-bold text-[#111111] mb-4 flex items-center gap-2">
             {isArabic ? "آخر المعاملات" : "Last Transactions"}
           </h2>
           <Table>
             <TableHeader>
-              <TableRow className="border-b border-[#d4d9ef]/60">
-                <TableHead className="text-[11px] text-gray-500 font-medium py-3 px-4">{isArabic ? "التاريخ" : "Date"}</TableHead>
-                <TableHead className="text-[11px] text-gray-500 font-medium py-3 px-4">{isArabic ? "العميل" : "Customer"}</TableHead>
-                <TableHead className="text-[11px] text-gray-500 font-medium py-3 px-4">{isArabic ? "الوصف" : "Description"}</TableHead>
-                <TableHead className="text-[11px] text-gray-500 font-medium py-3 px-4">{isArabic ? "النوع" : "Type"}</TableHead>
-                <TableHead className="text-[11px] text-gray-500 font-medium py-3 px-4 text-center">{isArabic ? "النقاط" : "Points"}</TableHead>
+              <TableRow className="border-b border-[#e5e7eb]">
+                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4">{isArabic ? "التاريخ" : "Date"}</TableHead>
+                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4">{isArabic ? "العميل" : "Customer"}</TableHead>
+                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4">{isArabic ? "الوصف" : "Description"}</TableHead>
+                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4">{isArabic ? "النوع" : "Type"}</TableHead>
+                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4 text-center">{isArabic ? "النقاط" : "Points"}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {transactions.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center text-gray-400 text-xs py-8">{isArabic ? "لا توجد معاملات" : "No transactions"}</TableCell>
+                  <TableCell colSpan={5} className="text-center text-[#5f6678] text-xs py-8">{isArabic ? "لا توجد معاملات" : "No transactions"}</TableCell>
                 </TableRow>
               ) : transactions.map((tx, i) => {
                 const Icon = tx.icon;
                 return (
-                  <TableRow key={i} className="border-b border-[#d4d9ef]/30 last:border-0">
-                    <TableCell className="text-xs py-4 px-4 text-gray-600 whitespace-nowrap">{tx.date}</TableCell>
+                  <TableRow key={i} className="border-b border-[#e5e7eb] last:border-0">
+                    <TableCell className="text-xs py-4 px-4 text-[#5f6678] whitespace-nowrap">{tx.date}</TableCell>
                     <TableCell className="text-xs py-4 px-4">
-                      <button className="text-[#7c88c4] hover:underline font-medium">{isArabic ? "تفاصيل العميل" : "Details"}</button>
+                      <button className="text-[#7c88c4] hover:underline font-bold">{isArabic ? "تفاصيل العميل" : "Details"}</button>
                     </TableCell>
-                    <TableCell className="text-xs py-4 px-4 text-gray-600">{tx.desc}</TableCell>
+                    <TableCell className="text-xs py-4 px-4 text-[#5f6678]">{tx.desc}</TableCell>
                     <TableCell className="text-xs py-4 px-4">
                       <div className="flex items-center gap-2">
-                        <Icon className="h-4 w-4 text-gray-400" />
-                        <span className="text-gray-700 text-xs">{tx.type}</span>
+                        <Icon className="h-4 w-4 text-[#5f6678]" />
+                        <span className="text-[#111111] text-xs">{tx.type}</span>
                       </div>
                     </TableCell>
                     <TableCell className="text-xs py-4 px-4 text-center">
-                      <span className={`font-bold ${tx.points > 0 ? "text-green-500" : "text-gray-800"}`}>
+                      <span className={`font-black ${tx.points > 0 ? "text-green-500" : "text-[#111111]"}`}>
                         {tx.points > 0 ? `+${tx.points}` : tx.points}
                       </span>
                     </TableCell>

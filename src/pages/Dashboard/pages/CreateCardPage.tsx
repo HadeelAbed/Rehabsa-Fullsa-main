@@ -5,9 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const defaultCards = [
-  { id: 1, name: "نادي اللياقة النخبة", title: "تدرب وادخر", description: "استمتع بمرافقنا الفاخرة واحصل على مكافآت حصرية!", totalStages: 5 },
-  { id: 2, name: "مغاسل وتلميع تذكار", title: "غسيل احترافي", description: "احصل على خدمات الغسيل والتلميع بجودة عالية ومكافآت مميزة", totalStages: 4 },
-];
+  { id: 1, name: "نادي اللياقة النخبة", title: "تدرب وادخر", description: "استمتع بمرافقنا الفاخرة واحصل على مكافآت حصرية!", totalStages: 5 },];
 
 export function CreateCardPage() {
   const { t, i18n } = useTranslation();
@@ -120,19 +118,20 @@ export function CreateCardPage() {
   };
 
   return (
-    <div className="px-4 md:px-10 py-6 max-w-2xl mx-auto">
-      <button onClick={() => navigate('/dashboard/cards')} className="flex items-center gap-1.5 text-gray-500 hover:text-gray-700 mb-6 transition-colors text-sm">
-        {isRTL ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
+    <div className="min-h-full bg-[#fafbff]">
+      <div className="px-4 md:px-10 pt-10 pb-4 max-w-2xl mx-auto">
+      <button onClick={() => navigate('/dashboard/cards')} className="flex items-center gap-1.5 text-[#5f6678] hover:text-[#111111] mb-2 transition-colors text-xs font-medium">
+        {isRTL ? <ArrowRight className="w-3.5 h-3.5" /> : <ArrowLeft className="w-3.5 h-3.5" />}
         {t("common.back") || "رجوع"}
       </button>
 
-      <h1 className="text-2xl font-bold text-gray-800 mb-8">
+      <h1 className="text-lg font-bold text-[#111111] mb-3">
         {editId ? (t("common.edit") || "تعديل") : (t("dashboardPages.cards.createProgram") || "إنشاء برنامج")}
       </h1>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-2.5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-xs font-medium text-[#111111] mb-1">
             {t("dashboardPages.cards.name") || "الاسم"}
           </label>
           <input
@@ -140,32 +139,31 @@ export function CreateCardPage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder={t("dashboardPages.cards.namePlaceholder") || "مثل مقهى فيت"}
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm"
+            className="w-full px-3 py-1.5 rounded-2xl border border-[#dde1ee] focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm text-[#111111]"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-xs font-medium text-[#111111] mb-1">
             {t("dashboardPages.cards.description") || "الوصف"}
           </label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder={t("dashboardPages.cards.descriptionPlaceholder") || "مثل قهوة مجانية أو غسيل سيارة مجاني أو خصم 15% أو قسيمة بقيمة 10$"}
-            rows={3}
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm resize-none"
+            rows={2}
+            className="w-full px-3 py-1.5 rounded-2xl border border-[#dde1ee] focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm resize-none text-[#111111]"
           />
         </div>
 
         <div>
-          <p className="text-sm text-gray-500 mb-1.5">{t("dashboardPages.cards.descriptionPlaceholder") || "مثل قهوة مجانية أو غسيل سيارة مجاني أو خصم 15% أو قسيمة بقيمة 10$"}</p>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-xs font-medium text-[#111111] mb-1">
             {t("dashboardPages.cards.rewardType") || "نوع المكافأة"}
           </label>
           <select
             value={rewardType}
             onChange={(e) => setRewardType(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm bg-white"
+            className="w-full px-3 py-1.5 rounded-2xl border border-[#dde1ee] focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm bg-white text-[#111111]"
           >
             {rewardTypes.map((type) => (
               <option key={type.value} value={type.value}>{type.label}</option>
@@ -174,7 +172,7 @@ export function CreateCardPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-xs font-medium text-[#111111] mb-1">
             {t("dashboardPages.cards.pointsRequired") || "النقاط التي يجب جمعها للحصول على المكافأة"}
           </label>
           <input
@@ -182,12 +180,12 @@ export function CreateCardPage() {
             value={pointsRequired}
             onChange={(e) => setPointsRequired(Number(e.target.value))}
             min={1}
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm"
+            className="w-full px-3 py-1.5 rounded-2xl border border-[#dde1ee] focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm text-[#111111]"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-xs font-medium text-[#111111] mb-1">
             {t("dashboardPages.cards.rewardName") || "اسم المكافأة"}
           </label>
           <input
@@ -195,17 +193,18 @@ export function CreateCardPage() {
             value={rewardName}
             onChange={(e) => setRewardName(e.target.value)}
             placeholder={t("dashboardPages.cards.descriptionPlaceholder") || "مثل قهوة مجانية أو غسيل سيارة مجاني أو خصم 15% أو قسيمة بقيمة 10$"}
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm"
+            className="w-full px-3 py-1.5 rounded-2xl border border-[#dde1ee] focus:border-[#7c88c4] focus:ring-2 focus:ring-[#7c88c4]/20 outline-none transition-all text-sm text-[#111111]"
           />
         </div>
 
         <button
           type="submit"
-          className="w-full py-3 rounded-lg bg-[#7c88c4] text-white font-medium text-sm hover:bg-[#5a68b0] transition-colors"
+          className="w-full py-2 rounded-2xl bg-[#7c88c4] text-white font-semibold text-sm hover:bg-[#5a68b0] transition-colors"
         >
           {editId ? (t("common.save") || "حفظ") : (t("common.next") || "التالي")}
         </button>
       </form>
+      </div>
     </div>
   );
 }

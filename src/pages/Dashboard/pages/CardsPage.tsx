@@ -5,7 +5,7 @@ import { Dot, Star, Plus } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useDirection } from "@/hooks/useDirection";
 import { useNavigate } from "react-router-dom";
-import { TEMPLATES_COUNT } from "./TemplatesPage";
+
 
 const defaultCards = [
   {
@@ -24,22 +24,7 @@ const defaultCards = [
     currentStage: 2,
     totalStages: 5,
   },
-  {
-    id: 2,
-    name: "مغاسل وتلميع تذكار",
-    title: "غسيل احترافي",
-    description: "احصل على خدمات الغسيل والتلميع بجودة عالية ومكافآت مميزة",
-    cardId: "123-456-789-012",
-    issueDate: new Date("2025-01-15").toISOString(),
-    expiryDate: new Date("2026-01-15").toISOString(),
-    bgColor: "#5a68b0",
-    bgOpacity: 0.9,
-    bgImage: "",
-    textColor: "#ffffff",
-    status: "نشط",
-    currentStage: 1,
-    totalStages: 4,
-  },
+
 ];
 
 const defaultCardsIds = new Set(defaultCards.map(c => c.id));
@@ -50,7 +35,7 @@ export function CardsPage() {
   const navigate = useNavigate();
   const [cards, setCards] = useState<any[]>([]);
   const [stats, setStats] = useState<Record<string, { customers: number; points: number; redeemed: number }>>({});
-  const customDesignsCount = cards.filter(c => !defaultCardsIds.has(c.id)).length;
+
 
   const computeStats = (cardList: any[]) => {
     const raw = localStorage.getItem("customer_points");
@@ -113,20 +98,20 @@ export function CardsPage() {
   };
 
   const loadCards = () => {
-    const savedCards = JSON.parse(localStorage.getItem("dashboard_cards") || "[]");
-    const uniqueSavedCards = savedCards.filter((card: any) => !defaultCardsIds.has(card.id));
-    const allCards = [
-      ...defaultCards.map(card => ({
-        ...card,
-        issueDate: new Date(card.issueDate),
-        expiryDate: new Date(card.expiryDate),
-      })),
-      ...uniqueSavedCards.map((card: any) => ({
-        ...card,
-        issueDate: new Date(card.issueDate),
-        expiryDate: card.expiryDate ? new Date(card.expiryDate) : null,
-      })),
-    ];
+    let savedCards = JSON.parse(localStorage.getItem("dashboard_cards") || "[]") as any[];
+    savedCards = savedCards.filter((c: any) => c.id !== 2 && c.name !== "مغاسل وتلميع تذكار");
+    const savedIds = new Set(savedCards.map((c: any) => c.id));
+    for (const dc of defaultCards) {
+      if (!savedIds.has(dc.id)) {
+        savedCards.push({ ...dc });
+      }
+    }
+    localStorage.setItem("dashboard_cards", JSON.stringify(savedCards));
+    const allCards = savedCards.map((card: any) => ({
+      ...card,
+      issueDate: card.issueDate ? new Date(card.issueDate) : new Date(),
+      expiryDate: card.expiryDate ? new Date(card.expiryDate) : null,
+    }));
     setCards(allCards);
     computeStats(allCards);
   };
@@ -147,20 +132,20 @@ export function CardsPage() {
   }, []);
 
   return (
-    <div className="px-4 md:px-10 py-6">
+    <div className="px-4 md:px-10 py-3 bg-[#fafbff] min-h-screen">
       {/* Welcome */}
-      <div className="flex items-start justify-between mb-6">
+      <div className="flex items-start justify-between mb-3">
         <div>
-          <h1 className="text-xl font-bold text-gray-800 mb-1">
+          <h1 className="text-xl font-medium text-[#111111] mb-1">
             {t("dashboardPages.cards.welcome") || "مرحباً"}
           </h1>
-          <p className="text-gray-500 text-sm">
+          <p className="text-[#5f6678] text-sm">
             {t("dashboardPages.cards.welcomeDescription") || "إليك نظرة عامة على أداء برامج الولاء"}
           </p>
         </div>
         <button
           onClick={() => navigate('/dashboard/cards/create')}
-          className="flex items-center gap-1.5 bg-[#7c88c4] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#5a68b0] transition-colors shrink-0"
+          className="flex items-center gap-1.5 bg-[#7c88c4] text-white px-4 py-2 rounded-2xl text-sm font-semibold hover:bg-[#5a68b0] transition-colors shrink-0"
         >
           <Plus className="w-4 h-4" />
           {t("dashboardPages.cards.createCard") || "إنشاء بطاقة"}
@@ -168,35 +153,18 @@ export function CardsPage() {
       </div>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {/* Templates Card */}
-        <div className="bg-white rounded-xl shadow-[0_4px_24px_rgba(124,136,196,.12)] p-3 flex flex-col items-center">
-          <div dir="ltr" className="relative flex flex-col items-center w-full cursor-pointer" onClick={() => navigate('/dashboard/cards/templates')}>
-            <div className="flex items-center gap-1.5 mb-1 text-[10px] font-semibold text-[#7c88c4] bg-[#f0f1fa] px-2 py-0.5 rounded-full">
-              <Plus className="w-3 h-3" />
-              {t("dashboardPages.cards.readyTemplates") || "قوالب جاهزة"}
-            </div>
-            <div className="overflow-hidden relative w-[150px] sm:w-[170px] my-2">
-              <img alt={t("dashboardPages.cards.readyTemplates")} src="/dashboard/ios.svg" className="w-full h-full object-contain" />
-              <div className="absolute top-[40%] right-[50%] translate-x-[50%] translate-y-[-50%] flex items-center justify-center">
-                <Plus className="w-10 h-10 text-[#7c88c4]" strokeWidth={3} />
-              </div>
-            </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+        {/* Create Program Card */}
+        <div
+          onClick={() => navigate('/dashboard/cards/create')}
+          className="bg-white rounded-2xl border border-[#e5e7eb] shadow-sm p-2 flex flex-col items-center justify-center cursor-pointer hover:shadow-md hover:-translate-y-[2px] transition-all duration-200 min-h-[100px]"
+        >
+          <div className="w-8 h-8 rounded-full bg-[#f7f9ff] flex items-center justify-center mb-1">
+            <Plus className="w-4 h-4 text-[#7c88c4]" strokeWidth={2} />
           </div>
-          <h2 className="text-sm font-semibold text-gray-800 mb-2 truncate max-w-full">{t("dashboardPages.cards.readyTemplates") || "قوالب جاهزة"}</h2>
-          <div className="flex items-center justify-center gap-3 mb-2 text-center text-gray-500">
-              <div>
-                <div className="text-[9px]">{t("dashboardPages.cards.templatesCount")}</div>
-                <div className="text-[11px] font-semibold text-gray-700">{TEMPLATES_COUNT}</div>
-              </div>
-              <div>
-                <div className="text-[9px]">{t("dashboardPages.cards.customDesigns")}</div>
-                <div className="text-[11px] font-semibold text-gray-700">{customDesignsCount}</div>
-              </div>
-          </div>
-          <button onClick={() => navigate('/dashboard/cards/templates')} className="w-full py-1.5 rounded-lg bg-[#7c88c4] text-white text-xs font-medium hover:bg-[#5a68b0] transition-colors">
-            {t("dashboardPages.cards.readyTemplates") || "قوالب جاهزة"}
-          </button>
+          <h2 className="text-sm font-medium text-[#111111] text-center">
+            {t("dashboardPages.cards.createCard") || "إنشاء برنامج"}
+          </h2>
         </div>
 
         {cards.map((card) => {
@@ -214,13 +182,13 @@ export function CardsPage() {
             : { backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${card.bgOpacity})` };
 
           return (
-            <div key={card.id} className="bg-white rounded-xl shadow-[0_4px_24px_rgba(124,136,196,.12)] p-3 flex flex-col items-center cursor-pointer hover:shadow-[0_12px_48px_rgba(124,136,196,.26)] hover:-translate-y-1 transition-all duration-200" onClick={() => navigate(`/dashboard/cards/${card.id}`)}>
+            <div key={card.id} className="bg-white rounded-2xl border border-[#e5e7eb] shadow-sm p-2 flex flex-col items-center cursor-pointer hover:shadow-md hover:-translate-y-[2px] transition-all duration-200" onClick={() => navigate(`/dashboard/cards/${card.id}`)}>
               <div dir="ltr" className="relative flex flex-col items-center w-full">
-                <div className="flex items-center gap-1.5 mb-1 text-[10px] font-semibold text-[#7c88c4] bg-[#f0f1fa] px-2 py-0.5 rounded-full">
+                <div className="flex items-center gap-1 text-[9px] font-medium text-[#7c88c4] bg-[#f7f9ff] px-1.5 py-0.5 rounded-full">
                   <span className="w-1 h-1 rounded-full bg-emerald-500" />
                   {card.status}
                 </div>
-                <div className="overflow-hidden relative w-[150px] sm:w-[170px] my-2">
+                <div className="overflow-hidden relative w-[150px] sm:w-[170px] my-0">
                   <img alt={t("dashboardPages.cards.title")} src="/dashboard/ios.svg" className="w-full h-full object-contain" />
                   <div
                     className="w-[82%] h-[65%] absolute top-[18%] right-[50%] translate-x-[50%] rounded-lg shadow-[0px_2px_8px_rgba(0,0,0,0.15)] overflow-hidden bg-fixed bg-center bg-cover bg-no-repeat"
@@ -286,22 +254,22 @@ export function CardsPage() {
                   </div>
                 </div>
               </div>
-              <h2 className="text-sm font-semibold text-gray-800 mb-2 truncate max-w-full">{card.name}</h2>
-              <div className="flex items-center justify-center gap-3 mb-2 text-center text-gray-500">
+              <h2 className="text-xs font-medium text-[#111111] truncate max-w-full">{card.name}</h2>
+              <div className="flex items-center justify-center gap-3 text-center text-[#5f6678] w-full">
                 <div>
-                  <div className="text-[9px]">{t("dashboardPages.cards.viewCard.customers")}</div>
-                  <div className="text-[11px] font-semibold text-gray-700">{stats[card.cardId]?.customers ?? 0}</div>
+                  <div className="text-[8px]">{t("dashboardPages.cards.viewCard.customers")}</div>
+                  <div className="text-[10px] font-medium text-[#111111]">{stats[card.cardId]?.customers ?? 0}</div>
                 </div>
                 <div>
-                  <div className="text-[9px]">{t("dashboardPages.cards.points")}</div>
-                  <div className="text-[11px] font-semibold text-gray-700">{stats[card.cardId]?.points ?? 0}</div>
+                  <div className="text-[8px]">{t("dashboardPages.cards.points") || "النقاط"}</div>
+                  <div className="text-[10px] font-medium text-[#111111]">{card.totalStages || stats[card.cardId]?.points || 0}</div>
                 </div>
                 <div>
-                  <div className="text-[9px]">{t("dashboardPages.cards.viewCard.redeemedPoints") || "النقاط المستبدلة"}</div>
-                  <div className="text-[11px] font-semibold text-gray-700">{stats[card.cardId]?.redeemed ?? 0}</div>
+                  <div className="text-[8px]">{t("dashboardPages.cards.viewCard.redeemedPoints") || "النقاط المستبدلة"}</div>
+                  <div className="text-[10px] font-medium text-[#111111]">{stats[card.cardId]?.redeemed ?? 0}</div>
                 </div>
               </div>
-              <div className="w-full py-1.5 rounded-lg bg-[#7c88c4] text-white text-xs font-medium text-center">
+              <div className="px-4 py-1.5 rounded-2xl bg-[#7c88c4] text-white text-xs font-semibold">
                 {t("dashboardPages.cards.manage") || "إدارة"}
               </div>
             </div>

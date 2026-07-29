@@ -9,7 +9,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Users, Coins, Gift, RefreshCw, TrendingUp, UserX, Award, BarChart3, Star, Clock, Scan, Copy } from "lucide-react";
 import type { PeriodId } from "@/types/dashboard";
 
-const cardClass = "border border-[#d4d9ef] rounded-2xl bg-white shadow-[0_4px_24px_rgba(124,136,196,.12)] transition-all duration-200 hover:shadow-[0_12px_48px_rgba(124,136,196,.26)] hover:-translate-y-1";
+const cardClass = "border border-[#e5e7eb] rounded-2xl bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-[2px]";
 
 export function DashboardContent() {
   const { t } = useTranslation();
@@ -152,40 +152,40 @@ export function DashboardContent() {
   ];
 
   return (
-    <div className="px-6 py-4 w-full min-h-screen bg-[#f2f3f8]" dir={isRTL ? "rtl" : "rtl"}>
+    <div className="px-6 py-4 w-full min-h-screen bg-[#fafbff]" dir={isRTL ? "rtl" : "rtl"}>
       <div className="w-full flex flex-wrap items-center justify-between mb-5 gap-3">
-        <h1 className="text-xl font-semibold text-gray-800">{t("dashboard.content.title")}</h1>
+        <h1 className="text-xl font-medium text-[#111111]">{t("dashboard.content.title")}</h1>
         <div className="flex items-center gap-2 flex-wrap">
           {periods.map((period) => (
             <button
               key={period.id}
               type="button"
               onClick={() => setActivePeriod(period.id)}
-              className={`text-xs px-3 py-1.5 rounded-lg border transition-all ${
+              className={`text-xs px-3 py-1.5 rounded-2xl border transition-all ${
                 activePeriod === period.id
                   ? "bg-[#7c88c4] text-white border-[#7c88c4] shadow-sm"
-                  : "bg-white text-gray-600 border-gray-200 hover:border-[#A6AFD8] hover:shadow-sm"
+                  : "bg-white text-[#5f6678] border-[#dde1ee] hover:border-[#A6AFD8] hover:shadow-sm"
               }`}
             >
               <span>{period.label}</span>
             </button>
           ))}
           <div className="w-[220px]">
-            <div className="flex items-center justify-between gap-1 border border-gray-200 rounded-lg px-3 py-1.5 bg-white shadow-sm">
-              <input
-                type="date"
-                value={startDate}
-                onChange={(event) => setStartDate(event.target.value)}
-                className="w-1/2 border-none focus:outline-none text-xs text-gray-700 bg-transparent"
-              />
-              <span className="text-gray-400 text-xs">إلى</span>
-              <input
-                type="date"
-                value={endDate}
-                onChange={(event) => setEndDate(event.target.value)}
-                className="w-1/2 border-none focus:outline-none text-xs text-gray-700 bg-transparent"
-              />
-            </div>
+              <div className="flex items-center justify-between gap-1 border border-[#dde1ee] rounded-2xl px-3 py-1.5 bg-white shadow-sm">
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(event) => setStartDate(event.target.value)}
+                  className="w-1/2 border-none focus:outline-none text-xs text-[#111111] bg-transparent"
+                />
+                <span className="text-[#5f6678] text-xs">إلى</span>
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(event) => setEndDate(event.target.value)}
+                  className="w-1/2 border-none focus:outline-none text-xs text-[#111111] bg-transparent"
+                />
+              </div>
           </div>
         </div>
       </div>
@@ -200,47 +200,47 @@ export function DashboardContent() {
           <Card className={cardClass}>
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-lg bg-[#eef0f8]">
+                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
                   <Users className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">{t("dashboard.content.charts.totalCustomers")}</span>
+                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.totalCustomers")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#3d4257]">{stats?.totalCustomers ?? "—"}</span>
+              <span className="text-lg font-bold text-[#111111]">{stats?.totalCustomers ?? "—"}</span>
             </CardContent>
           </Card>
           <Card className={cardClass}>
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-lg bg-[#eef0f8]">
+                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
                   <Coins className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">{t("dashboard.content.charts.totalPoints")}</span>
+                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.totalPoints")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#3d4257]">{stats?.totalPoints.toLocaleString() ?? "—"}</span>
-              <p className="text-xs text-gray-400 mt-1.5">{stats?.pointsSpent.toLocaleString() ?? "—"} {t("dashboard.content.charts.pointsSpent")}</p>
+              <span className="text-lg font-bold text-[#111111]">{stats?.totalPoints.toLocaleString() ?? "—"}</span>
+              <p className="text-xs text-[#5f6678] mt-1.5">{stats?.pointsSpent.toLocaleString() ?? "—"} {t("dashboard.content.charts.pointsSpent")}</p>
             </CardContent>
           </Card>
           <Card className={cardClass}>
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-lg bg-[#eef0f8]">
+                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
                   <Gift className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">{t("dashboard.content.charts.rewardsRedeemed")}</span>
+                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.rewardsRedeemed")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#3d4257]">{stats?.rewardsRedeemed ?? "—"}</span>
-              <p className="text-xs text-gray-400 mt-1.5">{stats?.redeemedThisMonth ?? "—"} {t("dashboard.content.charts.redeemedThisMonth")}</p>
+              <span className="text-lg font-bold text-[#111111]">{stats?.rewardsRedeemed ?? "—"}</span>
+              <p className="text-xs text-[#5f6678] mt-1.5">{stats?.redeemedThisMonth ?? "—"} {t("dashboard.content.charts.redeemedThisMonth")}</p>
             </CardContent>
           </Card>
           <Card className={cardClass}>
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-lg bg-[#eef0f8]">
+                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
                   <RefreshCw className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">{t("dashboard.content.charts.redemptionRate")}</span>
+                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.redemptionRate")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#3d4257]">{stats?.redemptionRate ?? "—"}%</span>
+              <span className="text-lg font-bold text-[#111111]">{stats?.redemptionRate ?? "—"}%</span>
               <p className="text-xs text-emerald-600 mt-1.5">{stats?.upFromLastMonth ? t("dashboard.content.charts.upFromLastMonth") : t("dashboard.content.charts.downFromLastMonth")}</p>
             </CardContent>
           </Card>
@@ -251,25 +251,25 @@ export function DashboardContent() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-lg bg-[#eef0f8]">
+                  <div className="p-2 rounded-2xl bg-[#f7f9ff]">
                     <Users className="w-5 h-5 text-[#7c88c4]" />
                   </div>
-                  <span className="text-base font-semibold text-gray-800">{t("dashboard.content.charts.newCustomers")}</span>
+                  <span className="text-base font-medium text-[#111111]">{t("dashboard.content.charts.newCustomers")}</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="text-center">
-                    <div className="font-bold text-gray-900 text-lg">{stats?.totalCount ?? "—"}</div>
-                    <div className="text-[11px] text-gray-500">{t("dashboard.content.charts.totalCountShort")}</div>
+                    <div className="font-bold text-[#111111] text-lg">{stats?.totalCount ?? "—"}</div>
+                    <div className="text-[11px] text-[#5f6678]">{t("dashboard.content.charts.totalCountShort")}</div>
                   </div>
                   <div className="w-px h-8 bg-gray-100" />
                   <div className="text-center">
                     <div className="font-bold text-emerald-600 text-lg">{stats?.newCustomers ?? "—"}</div>
-                    <div className="text-[11px] text-gray-500">{t("dashboard.content.charts.newCustomersShort")}</div>
+                    <div className="text-[11px] text-[#5f6678]">{t("dashboard.content.charts.newCustomersShort")}</div>
                   </div>
                   <div className="w-px h-8 bg-gray-100" />
                   <div className="text-center">
-                    <div className="font-bold text-gray-900 text-lg">{stats?.activeCustomers ?? "—"}</div>
-                    <div className="text-[11px] text-gray-500">{t("dashboard.content.charts.activeCustomersShort")}</div>
+                    <div className="font-bold text-[#111111] text-lg">{stats?.activeCustomers ?? "—"}</div>
+                    <div className="text-[11px] text-[#5f6678]">{t("dashboard.content.charts.activeCustomersShort")}</div>
                   </div>
                 </div>
               </div>
@@ -292,12 +292,12 @@ export function DashboardContent() {
           <Card className={cardClass}>
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-lg bg-[#eef0f8]">
+                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
                   <TrendingUp className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">{t("dashboard.content.charts.activationRate")}</span>
+                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.activationRate")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#3d4257]">{stats?.activationRate ?? "—"}%</span>
+              <span className="text-lg font-bold text-[#111111]">{stats?.activationRate ?? "—"}%</span>
               <p className="text-xs text-red-500 mt-1.5">{stats?.upFromLastMonth ? t("dashboard.content.charts.upFromLastMonth") : t("dashboard.content.charts.downFromLastMonth")}</p>
             </CardContent>
           </Card>
@@ -307,12 +307,12 @@ export function DashboardContent() {
           >
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-lg bg-[#eef0f8]">
+                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
                   <UserX className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">{t("dashboard.content.charts.inactiveCustomers")}</span>
+                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.inactiveCustomers")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#3d4257]">{stats?.inactiveCustomers ?? "—"}</span>
+              <span className="text-lg font-bold text-[#111111]">{stats?.inactiveCustomers ?? "—"}</span>
               <p className="text-xs text-red-500 mt-1.5">{stats?.inactivePercentage ?? "—"}% {t("dashboard.content.charts.ofTotalCustomers")}</p>
             </CardContent>
           </Card>
@@ -322,37 +322,37 @@ export function DashboardContent() {
           >
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-lg bg-[#eef0f8]">
+                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
                   <Award className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">{t("dashboard.content.charts.closeToReward")}</span>
+                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.closeToReward")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#3d4257]">{stats?.closeToReward ?? "—"}</span>
+              <span className="text-lg font-bold text-[#111111]">{stats?.closeToReward ?? "—"}</span>
               <p className="text-xs text-orange-500 mt-1.5">{stats?.needsPointsOrLess ?? "—"} {t("dashboard.content.charts.needsPointsOrLess")}</p>
             </CardContent>
           </Card>
           <Card className={cardClass}>
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-lg bg-[#eef0f8]">
+                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
                   <BarChart3 className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">{t("dashboard.content.charts.genderDistribution")}</span>
+                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.genderDistribution")}</span>
               </div>
               <div className="space-y-3 mt-3">
                 <div>
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-gray-600">{t("dashboard.content.charts.male")}<span className="text-gray-400 mr-2">0%</span></span>
+                    <span className="text-[#5f6678]">{t("dashboard.content.charts.male")}<span className="text-[#5f6678] mr-2">0%</span></span>
                   </div>
-                  <div className="w-full rounded-full h-2.5 bg-[#f2f3f8]">
+                  <div className="w-full rounded-full h-2.5 bg-[#f7f9ff]">
                     <div className="h-full rounded-full bg-[#7c88c4]" style={{ width: "0%" }} />
                   </div>
                 </div>
                 <div>
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-gray-600">{t("dashboard.content.charts.female")}<span className="text-gray-400 mr-2">0%</span></span>
+                    <span className="text-[#5f6678]">{t("dashboard.content.charts.female")}<span className="text-[#5f6678] mr-2">0%</span></span>
                   </div>
-                  <div className="w-full rounded-full h-2.5 bg-[#f2f3f8]">
+                  <div className="w-full rounded-full h-2.5 bg-[#f7f9ff]">
                     <div className="h-full rounded-full bg-[#5a68b0]" style={{ width: "0%" }} />
                   </div>
                 </div>
@@ -366,16 +366,16 @@ export function DashboardContent() {
             <CardContent className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Scan className="w-5 h-5 text-[#7c88c4]" />
-                <span className="text-base font-semibold text-gray-800">{t("dashboard.content.charts.qrCode")}</span>
+                <span className="text-base font-medium text-[#111111]">{t("dashboard.content.charts.qrCode")}</span>
               </div>
               <div className="flex flex-col items-center gap-3">
-                <div className="p-4 rounded-xl bg-[#eef0f8]">
+                <div className="p-4 rounded-2xl bg-[#f7f9ff]">
                   <QRCodeCanvas value={registrationUrl} size={130} bgColor="#ffffff" fgColor="#000000" level="M" />
                 </div>
-                <p className="text-xs text-gray-400 text-center break-all max-w-full">{registrationUrl}</p>
+                <p className="text-xs text-[#5f6678] text-center break-all max-w-full">{registrationUrl}</p>
                 <button
                   onClick={copyQrLink}
-                  className="inline-flex items-center gap-1.5 text-sm text-white bg-[#7c88c4] hover:bg-[#5a68b0] px-5 py-2.5 rounded-lg transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm text-white bg-[#7c88c4] hover:bg-[#5a68b0] px-5 py-2.5 rounded-2xl transition-colors font-semibold"
                 >
                   <Copy className="w-4 h-4" />
                   {t("dashboard.content.charts.copyLink")}
@@ -384,12 +384,12 @@ export function DashboardContent() {
             </CardContent>
           </Card>
           <Card className={`${cardClass} col-span-2`}>
-            <CardHeader className="py-4 px-6 border-b border-gray-100">
+            <CardHeader className="py-4 px-6 border-b border-[#e5e7eb]">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-lg bg-[#eef0f8]">
+                <div className="p-2 rounded-2xl bg-[#f7f9ff]">
                   <Star className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-base font-semibold text-gray-800">{t("dashboard.content.charts.topCustomers")}</span>
+                <span className="text-base font-medium text-[#111111]">{t("dashboard.content.charts.topCustomers")}</span>
               </div>
             </CardHeader>
             <CardContent className="px-6 py-4">
@@ -397,14 +397,14 @@ export function DashboardContent() {
                 {stats?.topCustomers?.map((c, i) => (
                   <div
                     key={c.id}
-                    className="flex items-center justify-between py-2.5 border-b border-gray-50 last:border-0 hover:bg-[#f2f3f8] px-2 -mx-2 rounded-lg transition-colors cursor-pointer"
+                    className="flex items-center justify-between py-2.5 border-b border-[#e5e7eb] last:border-0 hover:bg-[#f7f9ff] px-2 -mx-2 rounded-2xl transition-colors cursor-pointer"
                     onClick={() => navigate(`/dashboard/customers/view/${c.id}`)}
                   >
                     <div className="flex items-center gap-3">
-                      <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white ${i === 0 ? "bg-[#7c88c4]" : i === 1 ? "bg-[#A6AFD8]" : i === 2 ? "bg-[#5a68b0]" : "bg-gray-200 text-gray-600"}`}>{i + 1}</span>
-                      <span className="text-sm font-medium text-gray-700">{c.name}</span>
+                      <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium text-white ${i === 0 ? "bg-[#7c88c4]" : i === 1 ? "bg-[#A6AFD8]" : i === 2 ? "bg-[#5a68b0]" : "bg-gray-200 text-[#5f6678]"}`}>{i + 1}</span>
+                      <span className="text-sm font-medium text-[#111111]">{c.name}</span>
                     </div>
-                    <div className="flex gap-5 text-xs text-gray-500">
+                    <div className="flex gap-5 text-xs text-[#5f6678]">
                       <span>{c.points} {t("dashboard.content.charts.pointsLabel")}</span>
                       <span>{c.visits} {t("dashboard.content.charts.visitsLabel")}</span>
                     </div>
@@ -420,22 +420,22 @@ export function DashboardContent() {
             className={`${cardClass} col-span-4 cursor-pointer`}
             onClick={() => navigate("/dashboard/cards")}
           >
-            <CardHeader className="py-4 px-6 border-b border-gray-100">
+            <CardHeader className="py-4 px-6 border-b border-[#e5e7eb]">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-lg bg-[#eef0f8]">
+                <div className="p-2 rounded-2xl bg-[#f7f9ff]">
                   <Clock className="w-5 h-5 text-[#7c88c4]" />
                 </div>
-                <span className="text-base font-semibold text-gray-800">{t("dashboard.content.charts.recentTransactions")}</span>
+                <span className="text-base font-medium text-[#111111]">{t("dashboard.content.charts.recentTransactions")}</span>
               </div>
             </CardHeader>
             <CardContent className="px-6 py-4">
               <div className="grid grid-cols-5 gap-4">
                 {stats?.recentTransactions?.map((tx, i) => (
-                  <div key={i} className="flex flex-col items-center gap-1.5 py-2 border-l border-gray-100 last:border-0">
-                    <span className="text-sm font-medium text-gray-700">{tx.customer}</span>
-                    <span className="text-xs text-gray-400 bg-[#f2f3f8] px-2 py-0.5 rounded">{tx.action}</span>
-                    <span className={`text-sm font-semibold ${tx.amount.startsWith("+") ? "text-emerald-600" : "text-red-500"}`}>{tx.amount}</span>
-                    <span className="text-[10px] text-gray-400">{tx.date}</span>
+                  <div key={i} className="flex flex-col items-center gap-1.5 py-2 border-l border-[#e5e7eb] last:border-0">
+                    <span className="text-sm font-medium text-[#111111]">{tx.customer}</span>
+                    <span className="text-xs text-[#5f6678] bg-[#f7f9ff] px-2 py-0.5 rounded">{tx.action}</span>
+                    <span className={`text-sm font-medium ${tx.amount.startsWith("+") ? "text-emerald-600" : "text-red-500"}`}>{tx.amount}</span>
+                    <span className="text-[10px] text-[#5f6678]">{tx.date}</span>
                   </div>
                 ))}
               </div>

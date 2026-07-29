@@ -5,6 +5,7 @@ import { DashboardHeader } from "./components/DashboardHeader";
 import { DashboardContent } from "./components/DashboardContent";
 import { CardsPage } from "./pages/CardsPage";
 import { CreateCardPage } from "./pages/CreateCardPage";
+import { EditCardPage } from "./pages/EditCardPage";
 import { ViewCardPage } from "./pages/ViewCardPage";
 import { TemplatesPage } from "./pages/TemplatesPage";
 import { CustomersPage } from "./pages/CustomersPage";
@@ -45,6 +46,7 @@ export default function Dashboard() {
               <Route path="/cards" element={<CardsPage />} />
               <Route path="/cards/templates" element={<TemplatesPage />} />
               <Route path="/cards/create" element={<CreateCardPage />} />
+              <Route path="/cards/edit" element={<EditCardPage />} />
               <Route path="/cards/:id" element={<ViewCardPage />} />
               <Route path="/customers" element={<CustomersPage />} />
               <Route path="/customers/view/:id" element={<ViewCustomerPage />} />

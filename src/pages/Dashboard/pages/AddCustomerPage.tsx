@@ -29,7 +29,7 @@ export function AddCustomerPage() {
   const allCards = useMemo(() => {
     const defaultCards = [
       { id: 1, name: "نادي اللياقة النخبة", cardId: "477-398-475-609" },
-      { id: 2, name: "مغاسل وتلميع تذكار", cardId: "123-456-789-012" },
+
     ];
     try {
       const raw = localStorage.getItem("dashboard_cards");
@@ -132,78 +132,82 @@ export function AddCustomerPage() {
   };
 
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4">
+    <div className="flex flex-1 flex-col gap-4 p-4 bg-[#fafbff] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Button variant="outline" size="sm" onClick={handleBack}>
+          <Button variant="outline" size="sm" onClick={handleBack} className="rounded-2xl font-bold">
             <ArrowLeft className="h-4 w-4 mr-2" />
             {t("dashboardPages.crud.back")}
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold flex items-center gap-2">
+            <h1 className="text-2xl font-black flex items-center gap-2 text-[#111111]">
               <UserPlus className="h-6 w-6" />
               {t("dashboardPages.customers.addCustomer")}
             </h1>
-            <p className="text-muted-foreground">{t("dashboardPages.messages.enterCustomerInfo") || "Enter new customer information"}</p>
+            <p className="text-[#5f6678]">{t("dashboardPages.messages.enterCustomerInfo") || "Enter new customer information"}</p>
           </div>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto w-full">
-        <Card>
+        <Card className="border border-[#e5e7eb] rounded-2xl shadow-sm">
           <CardHeader>
-            <CardTitle>معلومات العميل</CardTitle>
+            <CardTitle className="text-[#111111] font-bold">معلومات العميل</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Personal Information */}
               <div className="space-y-4">
-                <h3 className="text-lg font-medium">المعلومات الشخصية</h3>
+                <h3 className="text-lg font-bold text-[#111111]">المعلومات الشخصية</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">الاسم الكامل *</Label>
+                    <Label htmlFor="name" className="text-[#111111] font-bold">الاسم الكامل *</Label>
                     <Input
                       id="name"
                       value={formData.name}
                       onChange={(e) => handleInputChange("name", e.target.value)}
                       placeholder={t("dashboardPages.forms.fullNamePlaceholder")}
                       required
+                      className="border-[#dde1ee] rounded-2xl"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">رقم الهاتف *</Label>
+                    <Label htmlFor="phone" className="text-[#111111] font-bold">رقم الهاتف *</Label>
                     <Input
                       id="phone"
                       value={formData.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
                       placeholder="+966XXXXXXXXX"
                       required
+                      className="border-[#dde1ee] rounded-2xl"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">البريد الإلكتروني</Label>
+                    <Label htmlFor="email" className="text-[#111111] font-bold">البريد الإلكتروني</Label>
                     <Input
                       id="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       placeholder="example@email.com"
+                      className="border-[#dde1ee] rounded-2xl"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="birthDate">تاريخ الميلاد</Label>
+                    <Label htmlFor="birthDate" className="text-[#111111] font-bold">تاريخ الميلاد</Label>
                     <Input
                       id="birthDate"
                       type="date"
                       value={formData.birthDate}
                       onChange={(e) => handleInputChange("birthDate", e.target.value)}
+                      className="border-[#dde1ee] rounded-2xl"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="gender">الجنس</Label>
+                    <Label htmlFor="gender" className="text-[#111111] font-bold">الجنس</Label>
                     <Select value={formData.gender} onValueChange={(value) => handleInputChange("gender", value)}>
-                      <SelectTrigger>
+                      <SelectTrigger className="border-[#dde1ee] rounded-2xl">
                         <SelectValue placeholder={t("dashboardPages.forms.genderPlaceholder")} />
                       </SelectTrigger>
                       <SelectContent>
@@ -214,9 +218,9 @@ export function AddCustomerPage() {
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="cardId">{isArabic ? "البطاقة" : "Card"}</Label>
+                    <Label htmlFor="cardId" className="text-[#111111] font-bold">{isArabic ? "البطاقة" : "Card"}</Label>
                     <Select value={formData.cardId} onValueChange={(value) => handleInputChange("cardId", value)}>
-                      <SelectTrigger>
+                      <SelectTrigger className="border-[#dde1ee] rounded-2xl">
                         <SelectValue placeholder={isArabic ? "اختر بطاقة" : "Select a card"} />
                       </SelectTrigger>
                       <SelectContent>
@@ -228,23 +232,24 @@ export function AddCustomerPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="address">العنوان</Label>
+                  <Label htmlFor="address" className="text-[#111111] font-bold">العنوان</Label>
                   <Textarea
                     id="address"
                     value={formData.address}
                     onChange={(e) => handleInputChange("address", e.target.value)}
                     placeholder={t("dashboardPages.forms.addressPlaceholder")}
                     rows={3}
+                    className="border-[#dde1ee] rounded-2xl"
                   />
                 </div>
               </div>
 
               {/* Form Actions */}
-              <div className="flex justify-end gap-4 pt-6 border-t">
-                <Button type="button" variant="outline" onClick={handleBack}>
+              <div className="flex justify-end gap-4 pt-6 border-t border-[#e5e7eb]">
+                <Button type="button" variant="outline" onClick={handleBack} className="rounded-2xl font-bold">
                   إلغاء
                 </Button>
-                <Button type="submit" className="flex items-center gap-2">
+                <Button type="submit" className="flex items-center gap-2 rounded-2xl font-extrabold">
                   <Save className="h-4 w-4" />
                   حفظ العميل
                 </Button>

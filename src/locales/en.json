@@ -1846,6 +1846,9 @@
     "terms": "By registering you agree to the terms and conditions. Your card will be saved to your phone wallet automatically.",
     "success": "Registration successful! 🎉 Your loyalty card has been added to your wallet.",
     "error": "An error occurred during registration. Please try again.",
+    "welcomeTitle": "Welcome",
+    "welcomeSubtitle": "Successfully registered in",
+    "welcomeCardMsg": "Your points: 0",
     "validation": {
       "fullNameRequired": "Full name is required",
       "fullNameMin": "Name must be at least 2 characters",
