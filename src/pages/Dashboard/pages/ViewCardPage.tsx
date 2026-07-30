@@ -20,7 +20,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useDirection } from "@/hooks/useDirection";
 
-const cardClass = "border border-[#e5e7eb] rounded-2xl bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-[2px]";
+const cardClass = "border border-[#e5e7eb] rounded-xl bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-[1px]";
 
 export function ViewCardPage() {
   const { id } = useParams<{ id: string }>();
@@ -188,7 +188,7 @@ export function ViewCardPage() {
 
   if (loading || !card) {
     return (
-      <div className="px-6 py-4 w-full min-h-screen bg-[#fafbff] flex items-center justify-center">
+      <div className="px-4 py-3 w-full min-h-screen bg-[#fafbff] flex items-center justify-center">
         <div className="w-8 h-8 border-4 border-[#7c88c4] border-t-transparent rounded-full animate-spin" />
       </div>
     );
@@ -199,172 +199,172 @@ export function ViewCardPage() {
   const topCustomers = cardStats.topList.slice(0, 5);
 
   return (
-    <div className="px-6 py-4 w-full min-h-screen bg-[#fafbff]" dir={isRTL ? "rtl" : "rtl"}>
-      <div className="w-full flex flex-wrap items-center justify-between mb-5 gap-3">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-2xl bg-[#f7f9ff]">
-            <Award className="w-5 h-5 text-[#7c88c4]" />
+    <div className="px-4 py-3 w-full min-h-screen bg-[#fafbff]" dir={isRTL ? "rtl" : "rtl"}>
+      <div className="w-full flex flex-wrap items-center justify-between mb-4 gap-2">
+        <div className="flex items-center gap-2.5">
+          <div className="p-1.5 rounded-xl bg-[#f7f9ff]">
+            <Award className="w-4 h-4 text-[#7c88c4]" />
           </div>
           <div>
-            <h1 className="text-xl font-medium text-[#111111]">{card.name}</h1>
-            <div className="flex items-center gap-2 mt-0.5">
-              <Badge className="bg-[#f7f9ff] text-[#7c88c4] hover:bg-[#f7f9ff] border-0 text-xs font-medium">
+            <h1 className="text-lg font-medium text-[#111111]">{card.name}</h1>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <Badge className="bg-[#f7f9ff] text-[#7c88c4] hover:bg-[#f7f9ff] border-0 text-[10px] font-medium">
                 {card.status || t("dashboardPages.cards.active")}
               </Badge>
-              <span className="text-xs text-[#5f6678]">ID: {card.cardId || card.id}</span>
-              <span className="text-xs text-[#dde1ee]">|</span>
-              <span className="text-xs text-[#5f6678]">{card.issueDate ? format(card.issueDate, "dd MMM yyyy", { locale: ar }) : ""}</span>
+              <span className="text-[10px] text-[#5f6678]">ID: {card.cardId || card.id}</span>
+              <span className="text-[10px] text-[#dde1ee]">|</span>
+              <span className="text-[10px] text-[#5f6678]">{card.issueDate ? format(card.issueDate, "dd MMM yyyy", { locale: ar }) : ""}</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex items-center gap-1.5 flex-wrap">
           <button
             type="button"
             onClick={() => navigate("/dashboard/cards")}
-            className="text-xs px-3 py-1.5 rounded-2xl border transition-all bg-white text-[#5f6678] border-[#dde1ee] hover:border-[#A6AFD8] hover:shadow-sm font-medium"
+            className="text-[10px] px-2.5 py-1 rounded-lg border transition-all bg-white text-[#5f6678] border-[#dde1ee] hover:border-[#A6AFD8] hover:shadow-sm font-medium"
           >
             {t("common.back")}
           </button>
           <button
             type="button"
-            onClick={() => navigate(`/dashboard/cards/create?edit=${card.id}`)}
-            className="text-xs px-3 py-1.5 rounded-2xl border transition-all bg-white text-[#5f6678] border-[#dde1ee] hover:border-[#A6AFD8] hover:shadow-sm font-medium"
+            onClick={() => navigate(`/dashboard/cards/edit/${card.id}`)}
+            className="text-[10px] px-2.5 py-1 rounded-lg border transition-all bg-white text-[#5f6678] border-[#dde1ee] hover:border-[#A6AFD8] hover:shadow-sm font-medium"
           >
             {t("common.edit")}
           </button>
           <button
             type="button"
             onClick={() => setDeleteDialogOpen(true)}
-            className="text-xs px-3 py-1.5 rounded-2xl border border-red-200 text-red-500 bg-white hover:bg-red-50 transition-all font-medium"
+            className="text-[10px] px-2.5 py-1 rounded-lg border border-red-200 text-red-500 bg-white hover:bg-red-50 transition-all font-medium"
           >
-            <Trash2 className="w-3.5 h-3.5 inline ml-1" />
+            <Trash2 className="w-3 h-3 inline ml-1" />
             {t("common.delete")}
           </button>
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         {/* Row 1: 4 KPI cards */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-3">
           <Card className={cardClass}>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
-                  <Users className="w-5 h-5 text-[#7c88c4]" />
+            <CardContent className="p-3">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <Users className="w-3.5 h-3.5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.stats.totalCustomers")}</span>
+                <span className="text-[10px] font-medium text-[#5f6678]">{t("dashboard.content.stats.totalCustomers")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#111111]">{cardStats.totalCustomers}</span>
+              <span className="text-lg font-bold text-[#111111]">{cardStats.totalCustomers}</span>
             </CardContent>
           </Card>
           <Card className={cardClass}>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
-                  <Coins className="w-5 h-5 text-[#7c88c4]" />
+            <CardContent className="p-3">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <Coins className="w-3.5 h-3.5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.totalPoints")}</span>
+                <span className="text-[10px] font-medium text-[#5f6678]">{t("dashboard.content.charts.totalPoints")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#111111]">{cardStats.totalPoints}</span>
+              <span className="text-lg font-bold text-[#111111]">{cardStats.totalPoints}</span>
             </CardContent>
           </Card>
           <Card className={cardClass}>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
-                  <Gift className="w-5 h-5 text-[#7c88c4]" />
+            <CardContent className="p-3">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <Gift className="w-3.5 h-3.5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.rewardsRedeemed")}</span>
+                <span className="text-[10px] font-medium text-[#5f6678]">{t("dashboard.content.charts.rewardsRedeemed")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#111111]">{cardStats.totalRedeemed}</span>
+              <span className="text-lg font-bold text-[#111111]">{cardStats.totalRedeemed}</span>
             </CardContent>
           </Card>
           <Card className={cardClass}>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
-                  <RefreshCw className="w-5 h-5 text-[#7c88c4]" />
+            <CardContent className="p-3">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <RefreshCw className="w-3.5 h-3.5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.redemptionRate")}</span>
+                <span className="text-[10px] font-medium text-[#5f6678]">{t("dashboard.content.charts.redemptionRate")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#111111]">{cardStats.totalRedeemed > 0 ? Math.round((cardStats.totalRedeemed / Math.max(cardStats.totalPoints, 1)) * 100) : 0}%</span>
+              <span className="text-lg font-bold text-[#111111]">{cardStats.totalRedeemed > 0 ? Math.round((cardStats.totalRedeemed / Math.max(cardStats.totalPoints, 1)) * 100) : 0}%</span>
             </CardContent>
           </Card>
         </div>
 
         {/* Row 2: 4 stats cards */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-3">
           <Card className={cardClass}>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
-                  <TrendingUp className="w-5 h-5 text-[#7c88c4]" />
+            <CardContent className="p-3">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <TrendingUp className="w-3.5 h-3.5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.activationRate")}</span>
+                <span className="text-[10px] font-medium text-[#5f6678]">{t("dashboard.content.charts.activationRate")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#111111]">{cardStats.activationRate}%</span>
-              <p className="text-xs text-[#5f6678] mt-1.5">{cardStats.activeCount} {t("dashboard.content.charts.activeCustomersShort")}</p>
+              <span className="text-lg font-bold text-[#111111]">{cardStats.activationRate}%</span>
+              <p className="text-[9px] text-[#5f6678] mt-0.5">{cardStats.activeCount} {t("dashboard.content.charts.activeCustomersShort")}</p>
             </CardContent>
           </Card>
           <Card className={cardClass}>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
-                  <UserX className="w-5 h-5 text-[#7c88c4]" />
+            <CardContent className="p-3">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <UserX className="w-3.5 h-3.5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.inactiveCustomers")}</span>
+                <span className="text-[10px] font-medium text-[#5f6678]">{t("dashboard.content.charts.inactiveCustomers")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#111111]">{cardStats.inactiveCount}</span>
-              <p className="text-xs text-red-500 mt-1.5">{cardStats.inactivePct}% {t("dashboard.content.charts.ofTotalCustomers")}</p>
+              <span className="text-lg font-bold text-[#111111]">{cardStats.inactiveCount}</span>
+              <p className="text-[9px] text-red-500 mt-0.5">{cardStats.inactivePct}% {t("dashboard.content.charts.ofTotalCustomers")}</p>
             </CardContent>
           </Card>
           <Card className={cardClass}>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
-                  <BarChart3 className="w-5 h-5 text-[#7c88c4]" />
+            <CardContent className="p-3">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <BarChart3 className="w-3.5 h-3.5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-[#5f6678]">{t("dashboardPages.cards.avgPointsPerCustomer")}</span>
+                <span className="text-[10px] font-medium text-[#5f6678]">{t("dashboardPages.cards.avgPointsPerCustomer")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#111111]">{cardStats.avgPoints}</span>
+              <span className="text-lg font-bold text-[#111111]">{cardStats.avgPoints}</span>
             </CardContent>
           </Card>
           <Card className={cardClass}>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2.5 rounded-2xl bg-[#f7f9ff]">
-                  <Award className="w-5 h-5 text-[#7c88c4]" />
+            <CardContent className="p-3">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <Award className="w-3.5 h-3.5 text-[#7c88c4]" />
                 </div>
-                <span className="text-sm font-medium text-[#5f6678]">{t("dashboard.content.charts.closeToReward")}</span>
+                <span className="text-[10px] font-medium text-[#5f6678]">{t("dashboard.content.charts.closeToReward")}</span>
               </div>
-              <span className="text-3xl font-bold text-[#111111]">{cardStats.closeToReward}</span>
-              <p className="text-xs text-orange-500 mt-1.5">{"≥ 75%"}</p>
+              <span className="text-lg font-bold text-[#111111]">{cardStats.closeToReward}</span>
+              <p className="text-[9px] text-orange-500 mt-0.5">{"≥ 75%"}</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Row 3: QR Code - full width */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-3">
           <Card className={`${cardClass} col-span-4`}>
-            <CardHeader className="py-4 px-6 border-b border-[#e5e7eb]">
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-2xl bg-[#f7f9ff]">
-                  <Scan className="w-5 h-5 text-[#7c88c4]" />
+            <CardHeader className="py-2.5 px-3 border-b border-[#e5e7eb]">
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <Scan className="w-4 h-4 text-[#7c88c4]" />
                 </div>
-                <span className="text-base font-medium text-[#111111]">{t("dashboard.content.charts.qrCode") + " " + (t("dashboardPages.cards.viewCard.forCustomers") || "لتسجيل العملاء")}</span>
+                <span className="text-xs font-medium text-[#111111]">{t("dashboard.content.charts.qrCode") + " " + (t("dashboardPages.cards.viewCard.forCustomers") || "لتسجيل العملاء")}</span>
               </div>
             </CardHeader>
-            <CardContent className="px-6 py-6">
-              <div className="flex flex-col items-center gap-3">
-                <div className="p-4 rounded-2xl bg-[#f7f9ff]">
-                  <QRCodeCanvas value={cardUrl} size={130} bgColor="#ffffff" fgColor="#000000" level="M" />
+            <CardContent className="px-3 py-3">
+              <div className="flex flex-col items-center gap-2">
+                <div className="p-3 rounded-lg bg-[#f7f9ff]">
+                  <QRCodeCanvas value={cardUrl} size={110} bgColor="#ffffff" fgColor="#000000" level="M" />
                 </div>
-                <p className="text-xs text-[#5f6678] text-center break-all max-w-full">{cardUrl}</p>
+                <p className="text-[9px] text-[#5f6678] text-center break-all max-w-full">{cardUrl}</p>
                 <button
                   onClick={copyQrLink}
-                  className="inline-flex items-center gap-1.5 text-sm text-white bg-[#7c88c4] hover:bg-[#5a68b0] px-5 py-2.5 rounded-2xl transition-colors font-semibold"
+                  className="inline-flex items-center gap-1 text-xs text-white bg-[#7c88c4] hover:bg-[#5a68b0] px-3 py-1.5 rounded-lg transition-colors font-medium"
                 >
-                  <Copy className="w-4 h-4" />
+                  <Copy className="w-3 h-3" />
                   {copied ? (t("dashboardPages.cards.viewCard.copied") || "تم النسخ") : (t("dashboardPages.cards.viewCard.copyLink") || "نسخ رابط التسجيل")}
                 </button>
               </div>
@@ -373,27 +373,27 @@ export function ViewCardPage() {
         </div>
 
         {/* Row 4: Top Customers - full width */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-3">
           <Card className={`${cardClass} col-span-4`}>
-            <CardHeader className="py-4 px-6 border-b border-[#e5e7eb]">
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-2xl bg-[#f7f9ff]">
-                  <Star className="w-5 h-5 text-[#7c88c4]" />
+            <CardHeader className="py-2.5 px-3 border-b border-[#e5e7eb]">
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <Star className="w-4 h-4 text-[#7c88c4]" />
                 </div>
-                <span className="text-base font-medium text-[#111111]">{t("dashboard.content.charts.topCustomers")}</span>
+                <span className="text-xs font-medium text-[#111111]">{t("dashboard.content.charts.topCustomers")}</span>
               </div>
             </CardHeader>
-            <CardContent className="px-6 py-4">
+            <CardContent className="px-3 py-2.5">
               {topCustomers.length === 0 ? (
-                <div className="text-sm text-[#5f6678] text-center py-8">{t("dashboardPages.cards.noCustomersData")}</div>
+                <div className="text-xs text-[#5f6678] text-center py-6">{t("dashboardPages.cards.noCustomersData")}</div>
               ) : (
                 topCustomers.map((c, i) => (
-                  <div key={i} className="flex items-center justify-between py-2.5 border-b border-[#e5e7eb] last:border-0 px-2 rounded-2xl transition-colors cursor-pointer hover:bg-[#f7f9ff]">
-                    <div className="flex items-center gap-3">
-                      <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium text-white ${i === 0 ? "bg-[#7c88c4]" : i === 1 ? "bg-[#A6AFD8]" : i === 2 ? "bg-[#5a68b0]" : "bg-gray-200 text-[#5f6678]"}`}>{i + 1}</span>
-                      <span className="text-sm font-medium text-[#111111]">{c.name}</span>
+                  <div key={i} className="flex items-center justify-between py-2 border-b border-[#e5e7eb] last:border-0 px-1.5 rounded-lg transition-colors cursor-pointer hover:bg-[#f7f9ff]">
+                    <div className="flex items-center gap-2">
+                      <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-medium text-white ${i === 0 ? "bg-[#7c88c4]" : i === 1 ? "bg-[#A6AFD8]" : i === 2 ? "bg-[#5a68b0]" : "bg-gray-200 text-[#5f6678]"}`}>{i + 1}</span>
+                      <span className="text-xs font-medium text-[#111111]">{c.name}</span>
                     </div>
-                    <div className="flex gap-5 text-xs text-[#5f6678]">
+                    <div className="flex gap-3 text-[10px] text-[#5f6678]">
                       <span>{c.points} {t("dashboard.content.charts.pointsLabel")}</span>
                     </div>
                   </div>
@@ -404,24 +404,24 @@ export function ViewCardPage() {
         </div>
 
         {/* Row 5: Recent Transactions */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-3">
           <Card className={`${cardClass} col-span-4`}>
-            <CardHeader className="py-4 px-6 border-b border-[#e5e7eb]">
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-2xl bg-[#f7f9ff]">
-                  <Clock className="w-5 h-5 text-[#7c88c4]" />
+            <CardHeader className="py-2.5 px-3 border-b border-[#e5e7eb]">
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 rounded-lg bg-[#f7f9ff]">
+                  <Clock className="w-4 h-4 text-[#7c88c4]" />
                 </div>
-                <span className="text-base font-medium text-[#111111]">{t("dashboard.content.charts.recentTransactions")}</span>
+                <span className="text-xs font-medium text-[#111111]">{t("dashboard.content.charts.recentTransactions")}</span>
               </div>
             </CardHeader>
-            <CardContent className="px-6 py-4">
-              <div className="grid grid-cols-5 gap-4">
+            <CardContent className="px-3 py-2.5">
+              <div className="grid grid-cols-5 gap-2">
                 {recentTransactions.map((tx, i) => (
-                  <div key={i} className="flex flex-col items-center gap-1.5 py-2 border-l border-[#e5e7eb] last:border-0">
-                    <span className="text-sm font-medium text-[#111111]">{tx.customer}</span>
-                    <span className="text-xs text-[#5f6678] bg-[#f7f9ff] px-2 py-0.5 rounded">{tx.action}</span>
-                    <span className={`text-sm font-medium ${tx.amount.startsWith("+") ? "text-emerald-600" : "text-red-500"}`}>{tx.amount}</span>
-                    <span className="text-[10px] text-[#5f6678]">{tx.date}</span>
+                  <div key={i} className="flex flex-col items-center gap-1 py-1.5 border-l border-[#e5e7eb] last:border-0">
+                    <span className="text-xs font-medium text-[#111111]">{tx.customer}</span>
+                    <span className="text-[9px] text-[#5f6678] bg-[#f7f9ff] px-1.5 py-0.5 rounded">{tx.action}</span>
+                    <span className={`text-[10px] font-medium ${tx.amount.startsWith("+") ? "text-emerald-600" : "text-red-500"}`}>{tx.amount}</span>
+                    <span className="text-[8px] text-[#5f6678]">{tx.date}</span>
                   </div>
                 ))}
               </div>

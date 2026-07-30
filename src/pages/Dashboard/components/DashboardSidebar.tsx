@@ -19,7 +19,6 @@ import {
   UserCheck,
   ScrollText,
   Settings,
-  Edit,
 } from "lucide-react";
 import { SubscriptionSidebarCard } from "./SubscriptionSidebarCard";
 
@@ -36,11 +35,6 @@ export function DashboardSidebar() {
       title: t("dashboard.sidebar.cards"),
       icon: CreditCard,
       url: "/dashboard/cards",
-    },
-    {
-      title: "تعديل البطاقة",
-      icon: Edit,
-      url: "/dashboard/cards/edit",
     },
     {
       title: t("dashboard.sidebar.dashboard"),

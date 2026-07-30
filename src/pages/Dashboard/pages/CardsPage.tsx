@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { ar } from "date-fns/locale";
-import { Dot, Star, Plus } from "lucide-react";
+import { Dot, Star, Plus, Edit } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useDirection } from "@/hooks/useDirection";
 import { useNavigate } from "react-router-dom";
@@ -184,9 +184,14 @@ export function CardsPage() {
           return (
             <div key={card.id} className="bg-white rounded-2xl border border-[#e5e7eb] shadow-sm p-2 flex flex-col items-center cursor-pointer hover:shadow-md hover:-translate-y-[2px] transition-all duration-200" onClick={() => navigate(`/dashboard/cards/${card.id}`)}>
               <div dir="ltr" className="relative flex flex-col items-center w-full">
-                <div className="flex items-center gap-1 text-[9px] font-medium text-[#7c88c4] bg-[#f7f9ff] px-1.5 py-0.5 rounded-full">
-                  <span className="w-1 h-1 rounded-full bg-emerald-500" />
-                  {card.status}
+                <div className="flex items-center justify-between w-full mb-0.5">
+                  <button onClick={(e) => { e.stopPropagation(); navigate(`/dashboard/cards/edit/${card.id}`); }} className="text-[#7c88c4] hover:text-[#5a68b0] transition-colors p-0.5">
+                    <Edit className="w-3 h-3" />
+                  </button>
+                  <div className="flex items-center gap-1 text-[9px] font-medium text-[#7c88c4] bg-[#f7f9ff] px-1.5 py-0.5 rounded-full">
+                    <span className="w-1 h-1 rounded-full bg-emerald-500" />
+                    {card.status}
+                  </div>
                 </div>
                 <div className="overflow-hidden relative w-[150px] sm:w-[170px] my-0">
                   <img alt={t("dashboardPages.cards.title")} src="/dashboard/ios.svg" className="w-full h-full object-contain" />

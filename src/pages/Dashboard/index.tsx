@@ -46,7 +46,7 @@ export default function Dashboard() {
               <Route path="/cards" element={<CardsPage />} />
               <Route path="/cards/templates" element={<TemplatesPage />} />
               <Route path="/cards/create" element={<CreateCardPage />} />
-              <Route path="/cards/edit" element={<EditCardPage />} />
+              <Route path="/cards/edit/:id" element={<EditCardPage />} />
               <Route path="/cards/:id" element={<ViewCardPage />} />
               <Route path="/customers" element={<CustomersPage />} />
               <Route path="/customers/view/:id" element={<ViewCustomerPage />} />

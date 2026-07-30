@@ -79,7 +79,7 @@ const RedeemIcon = Gift;
 const BellIcon = Bell;
 
 const cardClass =
-  "border border-[#e5e7eb] rounded-2xl bg-white shadow-sm" +
+  "border border-[#e5e7eb] rounded-xl bg-white shadow-sm" +
   " transition-all duration-200 hover:shadow-md";
 
 function readPointsMap(): Record<string, Record<string, number>> {
@@ -301,44 +301,44 @@ export function ViewCustomerPage() {
   }, [customer.fullName, isArabic]);
 
   return (
-    <div className="px-4 md:px-10 py-6 bg-[#fafbff] min-h-screen" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="px-3 md:px-6 py-3 bg-[#fafbff] min-h-screen" dir={isRTL ? "rtl" : "ltr"}>
 
       {/* ===== Card 1: Customer Profile Header ===== */}
-      <Card className={`${cardClass} mb-6`}>
-        <CardContent className="p-6">
+      <Card className={`${cardClass} mb-3`}>
+        <CardContent className="p-3">
           <div className="flex items-center justify-between">
-            <Button variant="ghost" onClick={() => navigate("/dashboard/customers")} className="text-[#5f6678] rounded-2xl p-0 h-9 w-9">
-              {isRTL ? <ChevronRight className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}
+            <Button variant="ghost" onClick={() => navigate("/dashboard/customers")} className="text-[#5f6678] rounded-lg p-0 h-7 w-7">
+              {isRTL ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
             </Button>
-            <div className="flex flex-col items-center gap-2">
-              <Avatar className="h-20 w-20 ring-2 ring-[#e5e7eb] ring-offset-2 ring-offset-[#fafbff]">
-                <AvatarFallback className="bg-[#7c88c4] text-white font-bold text-xl">
+            <div className="flex flex-col items-center gap-1.5">
+              <Avatar className="h-14 w-14 ring-2 ring-[#e5e7eb] ring-offset-1 ring-offset-[#fafbff]">
+                <AvatarFallback className="bg-[#7c88c4] text-white font-bold text-sm">
                   {customer.fullName.split(" ").map(s => s[0]).join("").slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="text-center">
-                <h1 className="text-xl font-bold text-[#111111]">{customer.fullName}</h1>
-                <p className="text-sm text-[#5f6678]" dir="ltr">{customer.phone}</p>
+                <h1 className="text-base font-bold text-[#111111]">{customer.fullName}</h1>
+                <p className="text-xs text-[#5f6678]" dir="ltr">{customer.phone}</p>
               </div>
-              <div className="flex items-center justify-center gap-2 mt-2">
-                <div className="border border-[#7c88c4]/20 bg-[#f7f9ff] text-[#7c88c4] text-[10px] font-bold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
+              <div className="flex items-center justify-center gap-1.5">
+                <div className="border border-[#7c88c4]/20 bg-[#f7f9ff] text-[#7c88c4] text-[9px] font-semibold rounded-full px-2 py-0.5 leading-tight whitespace-nowrap">
                   {selectedCard.name}
                 </div>
-                <div className="border border-[#7c88c4]/20 bg-[#f7f9ff] text-[#7c88c4] text-[10px] font-bold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
+                <div className="border border-[#7c88c4]/20 bg-[#f7f9ff] text-[#7c88c4] text-[9px] font-semibold rounded-full px-2 py-0.5 leading-tight whitespace-nowrap">
                   {currentPoints} {isArabic ? "نقاط" : "Points"}
                 </div>
-                <div className="border border-[#e5e7eb] bg-[#f7f9ff] text-[#5f6678] text-[10px] font-bold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
+                <div className="border border-[#e5e7eb] bg-[#f7f9ff] text-[#5f6678] text-[9px] font-semibold rounded-full px-2 py-0.5 leading-tight whitespace-nowrap">
                   0 {isArabic ? "مكافآت" : "Rewards"}
                 </div>
-                <Badge variant="outline" className="border-red-200 text-red-500 bg-red-50 text-[10px] font-bold rounded-full px-3 py-1 leading-tight whitespace-nowrap">
+                <Badge variant="outline" className="border-red-200 text-red-500 bg-red-50 text-[9px] font-semibold rounded-full px-2 py-0.5 leading-tight whitespace-nowrap">
                   {isArabic ? "غير فعال" : "Inactive"}
                 </Badge>
               </div>
             </div>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-2xl text-[#5f6678] hover:text-red-500 hover:bg-red-50">
-                    <Trash2 className="h-4 w-4" />
+                  <Button variant="ghost" size="sm" className="h-7 w-7 p-0 rounded-lg text-[#5f6678] hover:text-red-500 hover:bg-red-50">
+                    <Trash2 className="h-3.5 w-3.5" />
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
@@ -384,19 +384,19 @@ export function ViewCustomerPage() {
       </Card>
 
       {/* ===== Card 2: Loyalty Pass Control Panel ===== */}
-      <Card className={`${cardClass} mb-6`}>
-        <CardContent className="p-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <Card className={`${cardClass} mb-3`}>
+        <CardContent className="p-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
 
             {/* ============ Left Column: Controls (RTL) ============ */}
-            <div className="space-y-5 self-center" dir="rtl">
+            <div className="space-y-3 self-center" dir="rtl">
               {/* Progress & Metrics Bar */}
               <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold text-[#111111]">{currentPoints} / {totalPoints}</span>
-                  <span className="text-xs text-[#5f6678]">{isArabic ? "النقاط" : "Points"}</span>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-bold text-[#111111]">{currentPoints} / {totalPoints}</span>
+                  <span className="text-[10px] text-[#5f6678]">{isArabic ? "النقاط" : "Points"}</span>
                 </div>
-                <div className="w-full h-2 bg-[#f7f9ff] rounded-full overflow-hidden">
+                <div className="w-full h-1.5 bg-[#f7f9ff] rounded-full overflow-hidden">
                   <div
                     className="h-full bg-[#7c88c4] rounded-full transition-all duration-300"
                     style={{ width: `${(currentPoints / Math.max(totalPoints, 1)) * 100}%` }}
@@ -405,12 +405,12 @@ export function ViewCustomerPage() {
               </div>
 
               {/* Point Input & Add Action Row */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <Button
                   onClick={() => addPoints(pointInput)}
-                  className="flex-1 bg-[#7c88c4] hover:bg-[#6a76b0] text-white rounded-2xl h-12 text-sm font-bold flex items-center justify-center gap-1.5"
+                  className="flex-1 bg-[#7c88c4] hover:bg-[#6a76b0] text-white rounded-lg h-9 text-xs font-bold flex items-center justify-center gap-1"
                 >
-                  <Plus className="h-5 w-5" /> {isArabic ? "إضافة نقطة" : "Add Point"}
+                  <Plus className="h-4 w-4" /> {isArabic ? "إضافة نقطة" : "Add Point"}
                 </Button>
                 <input
                   type="number"
@@ -418,32 +418,32 @@ export function ViewCustomerPage() {
                   onChange={(e) => setPointInput(Math.max(1, Math.min(totalPoints, Number(e.target.value) || 1)))}
                   min={1}
                   max={totalPoints}
-                  className="w-16 h-12 border border-[#e5e7eb] rounded-2xl text-center text-sm font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#7c88c4]/30"
+                  className="w-14 h-9 border border-[#e5e7eb] rounded-lg text-center text-xs font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#7c88c4]/30"
                 />
                 <Button
                   onClick={() => deductPoints(pointInput)}
-                  className="flex-1 bg-rose-500 hover:bg-rose-600 text-white rounded-2xl h-12 text-sm font-bold flex items-center justify-center gap-1.5"
+                  className="flex-1 bg-rose-500 hover:bg-rose-600 text-white rounded-lg h-9 text-xs font-bold flex items-center justify-center gap-1"
                 >
-                  <Gift className="h-5 w-5" /> {isArabic ? "استبدال" : "Redeem"}
+                  <Gift className="h-4 w-4" /> {isArabic ? "استبدال" : "Redeem"}
                 </Button>
               </div>
 
               {/* Gift / Status Button */}
-              <Button className="w-full bg-[#A0E7E5] hover:bg-[#92D2BF] text-gray-700 rounded-2xl h-12 text-sm font-bold flex items-center justify-center gap-2 transition-all duration-200">
-                <Gift className="h-5 w-5" /> {isArabic ? "لا توجد هدايا" : "No Gifts"}
+              <Button className="w-full bg-[#A0E7E5] hover:bg-[#92D2BF] text-gray-700 rounded-lg h-9 text-xs font-bold flex items-center justify-center gap-1.5 transition-all duration-200">
+                <Gift className="h-4 w-4" /> {isArabic ? "لا توجد هدايا" : "No Gifts"}
               </Button>
 
               {/* Digital Wallet Buttons */}
-              <div className="space-y-3 pt-1">
-                <button className="w-full bg-black hover:bg-gray-900 text-white rounded-2xl h-11 text-xs font-extrabold flex items-center justify-center gap-2.5 transition-all duration-200 shadow-sm">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <div className="space-y-2">
+                <button className="w-full bg-black hover:bg-gray-900 text-white rounded-lg h-8 text-[10px] font-bold flex items-center justify-center gap-2 transition-all duration-200 shadow-sm">
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
                     <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
                   <span className="tracking-tight">{isArabic ? "Apple Wallet" : "Add to Apple Wallet"}</span>
                 </button>
-                <button className="w-full bg-white border border-[#e5e7eb] text-[#111111] rounded-2xl h-11 text-xs font-extrabold flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all duration-200">
-                  <svg className="h-4 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button className="w-full bg-white border border-[#e5e7eb] text-[#111111] rounded-lg h-8 text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all duration-200">
+                  <svg className="h-3.5 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
                     <path d="M8 12h8M12 8v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
@@ -454,39 +454,39 @@ export function ViewCustomerPage() {
               </div>
             </div>
 
-            {/* ============ Right Column: Phone same as CardsPage ============ */}
+            {/* ============ Right Column: Phone preview ============ */}
             <div className="flex justify-center items-center" dir="ltr">
-              <div className="relative flex flex-col items-center w-full max-w-[170px]">
-                <div className="flex items-center gap-1.5 mb-1 text-[10px] font-bold text-[#7c88c4] bg-[#f7f9ff] px-2 py-0.5 rounded-full">
+              <div className="relative flex flex-col items-center w-full max-w-[150px]">
+                <div className="flex items-center gap-1 mb-1 text-[9px] font-bold text-[#7c88c4] bg-[#f7f9ff] px-2 py-0.5 rounded-full">
                   <span className="w-1 h-1 rounded-full bg-emerald-500" />
                   {selectedCard.status}
                 </div>
-                <div className="overflow-hidden relative w-[150px] sm:w-[170px] my-2">
+                <div className="overflow-hidden relative w-[130px] sm:w-[150px] my-1">
                   <img alt="Phone" src="/dashboard/ios.svg" className="w-full h-full object-contain" />
                   <div
                     className="w-[82%] h-[65%] absolute top-[18%] right-[50%] translate-x-[50%] rounded-lg shadow-[0px_2px_8px_rgba(0,0,0,0.15)] overflow-hidden bg-fixed bg-center bg-cover bg-no-repeat"
                     style={{ ...gradientStyle, color: selectedCard.textColor }}
                     dir="rtl"
                   >
-                    <div className="h-full flex flex-col p-1.5">
-                      <div className="flex flex-col items-center justify-center mb-1">
+                    <div className="h-full flex flex-col p-1">
+                      <div className="flex flex-col items-center justify-center mb-0.5">
                         <div className="text-center mb-0.5">
-                          <div className="text-[7px] font-medium leading-tight">
+                          <div className="text-[6px] font-medium leading-tight">
                             <span className="tracking-tight">{selectedCard.name}</span>
                           </div>
                         </div>
                         <div className="flex items-center justify-center">
-                          <span className="text-[6px] font-semibold opacity-90">{isArabic ? "النقاط" : "Points"}: {currentPoints}/{totalPoints}</span>
+                          <span className="text-[5px] font-semibold opacity-90">{isArabic ? "النقاط" : "Points"}: {currentPoints}/{totalPoints}</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-center gap-0.5 mb-1 pb-1 border-b border-white/20">
+                      <div className="flex items-center justify-center gap-0.5 mb-0.5 pb-0.5 border-b border-white/20">
                         {Array.from({ length: totalPoints }, (_, i) => {
                           const stageNumber = i + 1;
                           const isCompleted = stageNumber < currentPoints;
                           const isCurrent = stageNumber === currentPoints;
                           return (
                             <div key={i} className="relative flex items-center justify-center">
-                              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 className={`transition-all duration-300 ${
                                   isCompleted
                                     ? "text-yellow-500"
@@ -501,23 +501,23 @@ export function ViewCustomerPage() {
                           );
                         })}
                       </div>
-                      <div className="flex-grow min-w-0 overflow-hidden text-center mb-1">
-                        <h3 className="text-[7px] font-extralight line-clamp-1 leading-tight">{selectedCard.title}</h3>
-                        <div className="line-clamp-2 font-light text-[6px] leading-tight">{selectedCard.description}</div>
+                      <div className="flex-grow min-w-0 overflow-hidden text-center mb-0.5">
+                        <h3 className="text-[6px] font-extralight line-clamp-1 leading-tight">{selectedCard.title}</h3>
+                        <div className="line-clamp-2 font-light text-[5px] leading-tight">{selectedCard.description}</div>
                       </div>
-                      <div className="flex items-center justify-center mb-1">
-                        <div className="rounded w-[60px] h-[60px] flex place-content-center items-center shadow-sm bg-white">
-                          <QRCodeCanvas value={qrValue} size={44} bgColor="#ffffff" fgColor="#000000" level="M" />
+                      <div className="flex items-center justify-center mb-0.5">
+                        <div className="rounded w-[50px] h-[50px] flex place-content-center items-center shadow-sm bg-white">
+                          <QRCodeCanvas value={qrValue} size={36} bgColor="#ffffff" fgColor="#000000" level="M" />
                         </div>
                       </div>
-                      <div className="flex self-end mt-auto pt-1 border-t border-white/20">
+                      <div className="flex self-end mt-auto pt-0.5 border-t border-white/20">
                         <div className="flex-grow text-right">
-                          <div className="text-[4px] font-extralight opacity-80">{isArabic ? "رقم العضوية" : "Card ID"}</div>
-                          <div className="text-[6px] font-light truncate">{selectedCard.cardId || memberId}</div>
+                          <div className="text-[3px] font-extralight opacity-80">{isArabic ? "رقم العضوية" : "Card ID"}</div>
+                          <div className="text-[5px] font-light truncate">{selectedCard.cardId || memberId}</div>
                         </div>
                         <div className="flex-none text-left">
-                          <div className="text-[4px] font-extralight opacity-80">{isArabic ? "العميل" : "Member"}</div>
-                          <div className="text-[6px] font-light truncate">{memberId.slice(0, 10)}</div>
+                          <div className="text-[3px] font-extralight opacity-80">{isArabic ? "العميل" : "Member"}</div>
+                          <div className="text-[5px] font-light truncate">{memberId.slice(0, 10)}</div>
                         </div>
                       </div>
                     </div>
@@ -531,18 +531,18 @@ export function ViewCustomerPage() {
       </Card>
 
       {/* ===== Card 3: Send Notification ===== */}
-      <Card className={`${cardClass} mb-6`}>
-        <CardContent className="p-6">
-          <h2 className="text-base font-bold text-[#111111] mb-4 flex items-center gap-2">
-            <Smartphone className="h-5 w-5 text-[#7c88c4]" />
+      <Card className={`${cardClass} mb-3`}>
+        <CardContent className="p-3">
+          <h2 className="text-sm font-bold text-[#111111] mb-3 flex items-center gap-1.5">
+            <Smartphone className="h-4 w-4 text-[#7c88c4]" />
             {isArabic ? "إرسال إشعار" : "Send Notification"}
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2.5">
             <Textarea
               placeholder={isArabic ? "رسالتك..." : "Your message..."}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="border-[#e5e7eb] rounded-2xl bg-white text-sm text-[#111111] min-h-[120px] resize-none"
+              className="border-[#e5e7eb] rounded-lg bg-white text-xs text-[#111111] min-h-[80px] resize-none"
             />
             <Button
               onClick={() => {
@@ -553,52 +553,52 @@ export function ViewCustomerPage() {
                 toast.success(isArabic ? "تم إرسال الإشعار" : "Notification sent");
                 setMessage("");
               }}
-              className="w-full bg-[#b0b8da] hover:bg-[#7c88c4] text-white rounded-2xl h-12 text-sm font-extrabold flex items-center justify-center gap-2"
+              className="w-full bg-[#b0b8da] hover:bg-[#7c88c4] text-white rounded-lg h-9 text-xs font-bold flex items-center justify-center gap-1.5"
             >
-              <Send className="h-5 w-5" /> {isArabic ? "إرسال الرسالة" : "Send Message"}
+              <Send className="h-4 w-4" /> {isArabic ? "إرسال الرسالة" : "Send Message"}
             </Button>
           </div>
         </CardContent>
       </Card>
 
       {/* ===== Card 4: Last Transactions ===== */}
-      <Card className={`${cardClass} mb-6`}>
-        <CardContent className="p-6">
-          <h2 className="text-base font-bold text-[#111111] mb-4 flex items-center gap-2">
+      <Card className={`${cardClass}`}>
+        <CardContent className="p-3">
+          <h2 className="text-sm font-bold text-[#111111] mb-2 flex items-center gap-1.5">
             {isArabic ? "آخر المعاملات" : "Last Transactions"}
           </h2>
           <Table>
             <TableHeader>
               <TableRow className="border-b border-[#e5e7eb]">
-                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4">{isArabic ? "التاريخ" : "Date"}</TableHead>
-                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4">{isArabic ? "العميل" : "Customer"}</TableHead>
-                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4">{isArabic ? "الوصف" : "Description"}</TableHead>
-                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4">{isArabic ? "النوع" : "Type"}</TableHead>
-                <TableHead className="text-[11px] text-[#5f6678] font-bold py-3 px-4 text-center">{isArabic ? "النقاط" : "Points"}</TableHead>
+                <TableHead className="text-[10px] text-[#5f6678] font-semibold py-2 px-2">{isArabic ? "التاريخ" : "Date"}</TableHead>
+                <TableHead className="text-[10px] text-[#5f6678] font-semibold py-2 px-2">{isArabic ? "العميل" : "Customer"}</TableHead>
+                <TableHead className="text-[10px] text-[#5f6678] font-semibold py-2 px-2">{isArabic ? "الوصف" : "Description"}</TableHead>
+                <TableHead className="text-[10px] text-[#5f6678] font-semibold py-2 px-2">{isArabic ? "النوع" : "Type"}</TableHead>
+                <TableHead className="text-[10px] text-[#5f6678] font-semibold py-2 px-2 text-center">{isArabic ? "النقاط" : "Points"}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {transactions.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center text-[#5f6678] text-xs py-8">{isArabic ? "لا توجد معاملات" : "No transactions"}</TableCell>
+                  <TableCell colSpan={5} className="text-center text-[#5f6678] text-xs py-5">{isArabic ? "لا توجد معاملات" : "No transactions"}</TableCell>
                 </TableRow>
               ) : transactions.map((tx, i) => {
                 const Icon = tx.icon;
                 return (
                   <TableRow key={i} className="border-b border-[#e5e7eb] last:border-0">
-                    <TableCell className="text-xs py-4 px-4 text-[#5f6678] whitespace-nowrap">{tx.date}</TableCell>
-                    <TableCell className="text-xs py-4 px-4">
-                      <button className="text-[#7c88c4] hover:underline font-bold">{isArabic ? "تفاصيل العميل" : "Details"}</button>
+                    <TableCell className="text-xs py-2.5 px-2 text-[#5f6678] whitespace-nowrap">{tx.date}</TableCell>
+                    <TableCell className="text-xs py-2.5 px-2">
+                      <button className="text-[#7c88c4] hover:underline font-semibold">{isArabic ? "تفاصيل العميل" : "Details"}</button>
                     </TableCell>
-                    <TableCell className="text-xs py-4 px-4 text-[#5f6678]">{tx.desc}</TableCell>
-                    <TableCell className="text-xs py-4 px-4">
-                      <div className="flex items-center gap-2">
-                        <Icon className="h-4 w-4 text-[#5f6678]" />
+                    <TableCell className="text-xs py-2.5 px-2 text-[#5f6678]">{tx.desc}</TableCell>
+                    <TableCell className="text-xs py-2.5 px-2">
+                      <div className="flex items-center gap-1.5">
+                        <Icon className="h-3.5 w-3.5 text-[#5f6678]" />
                         <span className="text-[#111111] text-xs">{tx.type}</span>
                       </div>
                     </TableCell>
-                    <TableCell className="text-xs py-4 px-4 text-center">
-                      <span className={`font-black ${tx.points > 0 ? "text-green-500" : "text-[#111111]"}`}>
+                    <TableCell className="text-xs py-2.5 px-2 text-center">
+                      <span className={`font-bold ${tx.points > 0 ? "text-green-500" : "text-[#111111]"}`}>
                         {tx.points > 0 ? `+${tx.points}` : tx.points}
                       </span>
                     </TableCell>

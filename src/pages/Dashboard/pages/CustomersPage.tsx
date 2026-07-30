@@ -92,77 +92,77 @@ export function CustomersPage() {
   const getInitials = (name: string) =>
     name.split(" ").filter(Boolean).map((s) => s[0]).join("").slice(0, 2).toUpperCase();
 
-  const cardClass = "border border-[#e5e7eb] rounded-2xl bg-white shadow-sm transition-all duration-200 hover:shadow-md";
+  const cardClass = "border border-[#e5e7eb] rounded-xl bg-white shadow-sm transition-all duration-200 hover:shadow-md";
 
   return (
-    <div className="px-4 md:px-10 py-6 bg-[#fafbff] min-h-screen" dir={isRTL ? "rtl" : "ltr"}>
-      <h1 className="text-xl font-bold text-[#111111] mb-6">
+    <div className="px-3 md:px-6 py-3 bg-[#fafbff] min-h-screen" dir={isRTL ? "rtl" : "ltr"}>
+      <h1 className="text-base font-bold text-[#111111] mb-3">
         {t("dashboardPages.customers.title")}
       </h1>
 
-      {/* Search bar — full width */}
-      <div className="flex items-center gap-2 mb-6">
+      {/* Search bar */}
+      <div className="flex items-center gap-2 mb-3">
         <Input
           placeholder={t("dashboardPages.customers.searchPlaceholder")}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && setSearchInput(searchInput)}
-          className="flex-1 border-[#dde1ee] rounded-2xl bg-white h-11 text-sm text-[#111111]"
+          className="flex-1 border-[#dde1ee] rounded-lg bg-white h-8 text-xs text-[#111111]"
         />
         <Button
           onClick={() => setSearchInput(searchInput)}
-          className="bg-[#7c88c4] hover:bg-[#6a76b0] text-white rounded-2xl h-11 px-6 flex items-center gap-2 shrink-0 text-sm font-extrabold"
+          className="bg-[#7c88c4] hover:bg-[#6a76b0] text-white rounded-lg h-8 px-3 flex items-center gap-1.5 shrink-0 text-xs font-bold"
         >
-          <Search className="h-4 w-4" />
+          <Search className="h-3.5 w-3.5" />
           {t("dashboardPages.customers.search")}
         </Button>
       </div>
 
       {/* List */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
         {filtered.length === 0 ? (
-          <Card className={`${cardClass} p-8 text-center`}>
-            <p className="text-sm text-[#5f6678]">
+          <Card className={`${cardClass} p-5 text-center`}>
+            <p className="text-xs text-[#5f6678]">
               {searchInput
                 ? t("dashboardPages.customers.noResults", { query: searchInput })
                 : t("dashboardPages.customers.noCustomers")}
             </p>
           </Card>
         ) : filtered.map((customer, idx) => (
-          <Card key={customer.id} className={`${cardClass} hover:-translate-y-0.5`}>
-            <div className="p-4">
+          <Card key={customer.id} className={`${cardClass}`}>
+            <div className="p-2.5">
               {/* Column headers */}
-              <div className="grid grid-cols-12 gap-2 mb-1 px-1">
-                <div className="col-span-4 text-xs text-[#5f6678] font-bold">{t("dashboardPages.customers.customerName")}</div>
-                <div className="col-span-3 text-xs text-[#5f6678] font-bold text-center">{t("dashboardPages.customers.points")}</div>
-                <div className="col-span-3 text-xs text-[#5f6678] font-bold text-center">{t("dashboardPages.customers.status")}</div>
+              <div className="grid grid-cols-12 gap-1 mb-0.5 px-0.5">
+                <div className="col-span-4 text-[10px] text-[#5f6678] font-semibold">{t("dashboardPages.customers.customerName")}</div>
+                <div className="col-span-3 text-[10px] text-[#5f6678] font-semibold text-center">{t("dashboardPages.customers.points")}</div>
+                <div className="col-span-3 text-[10px] text-[#5f6678] font-semibold text-center">{t("dashboardPages.customers.status")}</div>
                 <div className="col-span-2"></div>
               </div>
               {/* Row data */}
-              <div className="grid grid-cols-12 gap-2 items-center px-1">
-                <div className="col-span-4 flex items-center gap-2.5">
-                  <Avatar className="h-8 w-8 shrink-0">
-                    <AvatarFallback className="text-white text-xs font-bold" style={{ backgroundColor: avatarColors[idx % avatarColors.length] }}>
+              <div className="grid grid-cols-12 gap-1 items-center px-0.5">
+                <div className="col-span-4 flex items-center gap-2">
+                  <Avatar className="h-7 w-7 shrink-0">
+                    <AvatarFallback className="text-white text-[10px] font-bold" style={{ backgroundColor: avatarColors[idx % avatarColors.length] }}>
                       {getInitials(customer.fullName)}
                     </AvatarFallback>
                   </Avatar>
                   <div className="min-w-0">
-                    <p className="font-bold text-[#111111] text-sm truncate">{customer.fullName}</p>
-                    <p className="text-[11px] text-[#5f6678]" dir="ltr">{customer.phone}</p>
+                    <p className="font-semibold text-[#111111] text-xs truncate">{customer.fullName}</p>
+                    <p className="text-[10px] text-[#5f6678]" dir="ltr">{customer.phone}</p>
                   </div>
                 </div>
                 <div className="col-span-3 text-center">
-                  <span className="font-black text-[#111111]">{customerTotalPoints[String(customer.id)] || 0}</span>
+                  <span className="font-bold text-[#111111]">{customerTotalPoints[String(customer.id)] || 0}</span>
                 </div>
                 <div className="col-span-3 text-center">
-                  <Badge variant="outline" className="border-red-200 text-red-500 bg-red-50 text-[11px] rounded-full px-2.5">
+                  <Badge variant="outline" className="border-red-200 text-red-500 bg-red-50 text-[10px] rounded-full px-2">
                     {t("dashboardPages.customers.inactive")}
                   </Badge>
                 </div>
                 <div className="col-span-2 text-left">
                   <Button
                     onClick={() => navigate(`/dashboard/customers/view/${customer.id}`)}
-                    className="bg-[#7c88c4] hover:bg-[#6a76b0] text-white text-xs font-extrabold rounded-2xl h-8 px-4 w-full"
+                    className="bg-[#7c88c4] hover:bg-[#6a76b0] text-white text-[10px] font-bold rounded-lg h-7 px-3 w-full"
                   >
                     {t("dashboardPages.customers.details")}
                   </Button>

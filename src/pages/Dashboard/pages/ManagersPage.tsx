@@ -283,8 +283,12 @@ export function ManagersPage() {
           managerMap.set(log.managerName, { name: log.managerName, stamps: 0, rewards: 0, total: 0 });
         }
         const row = managerMap.get(log.managerName)!;
-        row.stamps += log.cashbackStamps;
-        row.rewards += 0;
+        const isRedemption = log.event?.includes("استبدل") || log.event?.includes("Redeemed");
+        if (isRedemption) {
+          row.rewards += log.cashbackStamps || 1;
+        } else {
+          row.stamps += log.cashbackStamps || 1;
+        }
         row.total = row.stamps + row.rewards;
       }
       const managerRows = Array.from(managerMap.values());
@@ -459,19 +463,19 @@ export function ManagersPage() {
         </>
       ) : (
         <>
-          <div className={`flex flex-wrap items-center justify-between gap-4 mb-6 ${cardClass} p-4`}>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              <CalendarDays className="h-4 w-4 text-gray-400 shrink-0" />
-              <Input type="date" defaultValue="2026-07-01" className="w-32 h-9 border border-[#d4d9ef] rounded-lg text-xs px-2 bg-white" dir="ltr" />
+          <div className={`flex flex-wrap items-center justify-between gap-2 mb-3 ${cardClass} p-2.5`}>
+            <div className="flex items-center gap-1.5 text-xs text-gray-700">
+              <CalendarDays className="h-3.5 w-3.5 text-gray-400 shrink-0" />
+              <Input type="date" defaultValue="2026-07-01" className="w-24 h-7 border border-[#d4d9ef] rounded text-[10px] px-1.5 bg-white" dir="ltr" />
               <span className="text-gray-400">–</span>
-              <Input type="date" defaultValue="2026-07-29" className="w-32 h-9 border border-[#d4d9ef] rounded-lg text-xs px-2 bg-white" dir="ltr" />
+              <Input type="date" defaultValue="2026-07-29" className="w-24 h-7 border border-[#d4d9ef] rounded text-[10px] px-1.5 bg-white" dir="ltr" />
             </div>
-            <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+            <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-0.5">
               {quickRanges.map((r) => (
                 <button
                   key={r}
                   onClick={() => setActiveRange(r)}
-                  className={`px-3.5 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                  className={`px-2.5 py-1 text-[10px] font-medium rounded-md transition-colors ${
                     activeRange === r
                       ? "bg-[#7c88c4] text-white"
                       : "text-gray-600 hover:text-gray-900"
@@ -483,27 +487,27 @@ export function ManagersPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-            {kpiCards.map((k) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 mb-3">
+            {kpiCards.map((k, idx) => {
               const Icon = k.icon;
-              return k.dark ? (
-                <Card key={k.title} className="border-0 rounded-2xl bg-[#7c88c4] text-white shadow-[0_4px_24px_rgba(124,136,196,.12)]">
-                  <CardContent className="p-5">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Icon className="h-5 w-5 text-yellow-300 shrink-0" />
-                      <span className="text-xs font-medium text-gray-100">{k.title}</span>
+              return idx === 0 ? (
+                <Card key={k.title} className="border-0 rounded-xl bg-[#7c88c4] text-white shadow-[0_4px_24px_rgba(124,136,196,.12)]">
+                  <CardContent className="p-3">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Icon className="h-3.5 w-3.5 text-yellow-300 shrink-0" />
+                      <span className="text-[10px] font-medium text-gray-100">{k.title}</span>
                     </div>
-                    <p className="text-sm text-gray-200">{k.value}</p>
+                    <p className="text-[11px] text-gray-200">{k.value}</p>
                   </CardContent>
                 </Card>
               ) : (
                 <Card key={k.title} className={cardClass}>
-                  <CardContent className="p-5">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Icon className="h-5 w-5 text-[#7c88c4]" />
-                      <span className="text-xs font-medium text-gray-500">{k.title}</span>
+                  <CardContent className="p-3">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Icon className="h-3.5 w-3.5 text-[#7c88c4]" />
+                      <span className="text-[10px] font-medium text-gray-500">{k.title}</span>
                     </div>
-                    <p className="text-lg font-bold text-gray-800">{k.value}</p>
+                    <p className="text-xs font-bold text-gray-800">{k.value}</p>
                   </CardContent>
                 </Card>
               );
@@ -511,29 +515,28 @@ export function ManagersPage() {
           </div>
 
           <Card className={cardClass}>
-            <CardContent className="p-5">
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="text-sm font-bold text-gray-800 text-start">
+            <CardContent className="p-3.5">
+              <div className="flex items-center justify-between mb-2.5">
+                <h3 className="text-[11px] font-bold text-gray-800 text-start">
                   {isArabic ? "العمليات حسب المدير" : "Transactions by Manager"}
                 </h3>
               </div>
               {analytics.managerRows.length === 0 ? (
-                <div className="flex items-center justify-center h-64 text-gray-400 text-sm bg-[#f8f9fa] rounded-xl">
+                <div className="flex items-center justify-center h-44 text-gray-400 text-xs bg-[#f8f9fa] rounded-xl">
                   <div className="text-center">
-                    <BarChart3 className="h-10 w-10 mx-auto mb-3 text-gray-300" />
+                    <BarChart3 className="h-8 w-8 mx-auto mb-2 text-gray-300" />
                     <p>{isArabic ? "لا يوجد نشاط في هذه الفترة" : "No activity in this period"}</p>
                   </div>
                 </div>
               ) : (
-                <div className="h-64">
+                <div className="h-44">
                   <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={analytics.managerRows}>
-                      <CartesianGrid stroke="#f0f0f0" strokeDasharray="3 3" />
-                      <XAxis dataKey="name" stroke="#9ca3af" tick={{ fontSize: 11 }} tickLine={false} axisLine={{ stroke: "#e5e7eb" }} />
-                      <YAxis stroke="#9ca3af" tick={{ fontSize: 11 }} tickLine={false} axisLine={{ stroke: "#e5e7eb" }} />
-                      <Tooltip contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e5e7eb" }} labelStyle={{ fontSize: 11 }} />
-                      <Bar dataKey="stamps" name={isArabic ? "الأختام" : "Stamps"} fill="#7c88c4" radius={[4, 4, 0, 0]} />
-                      <Bar dataKey="total" name={isArabic ? "الإجمالي" : "Total"} fill="#A6AFD8" radius={[4, 4, 0, 0]} />
+                    <BarChart data={analytics.managerRows} barCategoryGap="20%" barGap={4}>
+                      <XAxis dataKey="name" stroke="#9ca3af" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+                      <YAxis stroke="#9ca3af" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+                      <Tooltip contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }} labelStyle={{ fontSize: 11 }} />
+                      <Bar dataKey="stamps" name={isArabic ? "الأختام" : "Stamps"} fill="#7c88c4" radius={[6, 6, 0, 0]} maxBarSize={30} />
+                      <Bar dataKey="rewards" name={isArabic ? "المكافآت" : "Rewards"} fill="#A6AFD8" radius={[6, 6, 0, 0]} maxBarSize={30} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -542,17 +545,22 @@ export function ManagersPage() {
           </Card>
 
           <Card className={cardClass}>
-            <CardContent className="p-6">
-              <h3 className="text-sm font-bold text-gray-800 text-center mb-5">
+            <CardContent className="p-3.5">
+              <h3 className="text-[11px] font-bold text-gray-800 text-center mb-2.5">
                 {isArabic ? "التحليلات صفحة جانبية للمدير" : "Manager Side Analytics"}
               </h3>
               <Table>
                 <TableHeader>
                   <TableRow className="border-b border-[#d4d9ef]/60">
-                    {managerTableColumns.map((col) => (
+                    {[
+                      { label: isArabic ? "المدير" : "Manager", key: "name", width: "" },
+                      { label: isArabic ? "الأختام الممنوحة" : "Stamps Granted", key: "stamps", width: "text-center" },
+                      { label: isArabic ? "المكافآت المستبدلة" : "Rewards Redeemed", key: "rewards", width: "text-center" },
+                      { label: isArabic ? "الإجمالي" : "Total", key: "total", width: "text-center" },
+                    ].map((col) => (
                       <TableHead
                         key={col.key}
-                        className={`text-xs text-gray-500 font-medium py-4 px-4 whitespace-nowrap ${col.width} text-start`}
+                        className={`text-[10px] text-gray-500 font-medium py-1.5 px-2 whitespace-nowrap ${col.width}`}
                       >
                         {col.label}
                       </TableHead>
@@ -562,16 +570,16 @@ export function ManagersPage() {
                 <TableBody>
                   {analytics.managerRows.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={4} className="text-center text-gray-400 text-xs py-14">
+                      <TableCell colSpan={4} className="text-center text-gray-400 text-xs py-8">
                         {isArabic ? "لا يوجد نشاط بعد" : "No activity yet"}
                       </TableCell>
                     </TableRow>
                   ) : analytics.managerRows.map((row, i) => (
                     <TableRow key={i} className="border-b border-[#d4d9ef]/30 last:border-0">
-                      <TableCell className="text-sm font-medium text-gray-800 py-4 px-4">{row.name}</TableCell>
-                      <TableCell className="text-sm text-gray-600 py-4 px-4 text-center">{row.stamps}</TableCell>
-                      <TableCell className="text-sm text-gray-600 py-4 px-4 text-center">{row.rewards}</TableCell>
-                      <TableCell className="text-sm font-semibold text-gray-800 py-4 px-4 text-center">{row.total}</TableCell>
+                      <TableCell className="text-xs font-medium text-gray-800 py-2 px-2">{row.name}</TableCell>
+                      <TableCell className="text-xs text-gray-600 py-2 px-2 text-center">{row.stamps}</TableCell>
+                      <TableCell className="text-xs text-gray-600 py-2 px-2 text-center">{row.rewards}</TableCell>
+                      <TableCell className="text-xs font-semibold text-gray-800 py-2 px-2 text-center">{row.total}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
