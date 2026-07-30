@@ -20,7 +20,7 @@ export function FeaturesSectionForm({ data, isRTL, t, onChange }: FeaturesSectio
     });
   };
 
-  const updateItem = (index: number, field: "title" | "description", value: string) => {
+  const updateItem = (index: number, field: "title" | "description" | "image", value: string) => {
     const items = data.items.map((item, itemIndex) =>
       itemIndex === index ? { ...item, [field]: value } : item,
     );
@@ -73,6 +73,24 @@ export function FeaturesSectionForm({ data, isRTL, t, onChange }: FeaturesSectio
                     dir={isRTL ? "rtl" : "ltr"}
                     rows={3}
                   />
+                </div>
+                <div className="space-y-2">
+                  <Label className={isRTL ? "block text-right" : "block text-left"}>
+                    {t("admin.siteManagement.features.itemImage")} {index + 1}
+                  </Label>
+                  <Input
+                    value={item.image || ""}
+                    onChange={(event) => updateItem(index, "image", event.target.value)}
+                    dir={isRTL ? "rtl" : "ltr"}
+                    placeholder="https://..."
+                  />
+                  {item.image && (
+                    <img
+                      src={item.image}
+                      alt=""
+                      className="w-32 h-20 object-contain border rounded mt-1"
+                    />
+                  )}
                 </div>
               </CardContent>
             </Card>

@@ -1,4 +1,3 @@
-import { Smartphone, Watch, QrCode, Zap, Users, Bell } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -6,20 +5,11 @@ import { useDirection } from "@/hooks/useDirection";
 import { getSiteContent } from "@/lib/siteContentStorage";
 import { useMemo } from "react";
 
-const iconMap: Record<string, any> = {
-  mobileCompatible: Smartphone,
-  realTimeUpdates: Watch,
-  easySetup: Zap,
-  varietyCards: QrCode,
-  analytics: Users,
-  notifications: Bell,
-};
-
 const getFeatures = (t: any, featuresContent: any) => {
   return featuresContent.items.map((item: any) => ({
-    icon: iconMap[item.key] || Smartphone,
     title: item.title,
-    description: item.description
+    description: item.description,
+    image: item.image
   }));
 };
 
@@ -68,13 +58,20 @@ export const Features = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card 
-                className="p-8 hover:shadow-lg transition-all duration-300 border-2 h-full"
+                className="overflow-hidden hover:shadow-lg transition-all duration-300 border-2 h-full flex flex-col"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-6">
-                  <feature.icon className="h-7 w-7 text-inverse" />
+                <div className="relative w-full h-48 bg-muted/20 flex items-center justify-center p-4">
+                  <img 
+                    src={feature.image} 
+                    alt={feature.title}
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                  />
                 </div>
-                <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed flex-1">{feature.description}</p>
+                </div>
               </Card>
             </motion.div>
           ))}

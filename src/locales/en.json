@@ -1775,7 +1775,8 @@
         "titleLabel": "Section Title",
         "itemsLabel": "Feature Items",
         "itemTitle": "Feature Title",
-        "itemDescription": "Feature Description"
+        "itemDescription": "Feature Description",
+        "itemImage": "Feature Image"
       },
       "howItWorks": {
         "title": "How It Works",

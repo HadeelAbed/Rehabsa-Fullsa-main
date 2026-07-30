@@ -18,6 +18,7 @@ export interface FeatureItem {
   key: string;
   title: string;
   description: string;
+  image?: string;
 }
 
 export interface FeaturesContent {
@@ -158,31 +159,37 @@ const getDefaultContent = (language: Language): SiteContent => {
         key: 'mobileCompatible',
         title: translations.features?.mobileCompatible?.title || '',
         description: translations.features?.mobileCompatible?.description || '',
+        image: 'https://loyapro.com/assets/guest/images/features/mobile-compatible.png',
       },
       {
         key: 'realTimeUpdates',
         title: translations.features?.realTimeUpdates?.title || '',
         description: translations.features?.realTimeUpdates?.description || '',
+        image: 'https://loyapro.com/assets/guest/images/features/real-time-updates.png',
       },
       {
         key: 'easySetup',
         title: translations.features?.easySetup?.title || '',
         description: translations.features?.easySetup?.description || '',
+        image: 'https://loyapro.com/assets/guest/images/features/easy-setup.png',
       },
       {
         key: 'varietyCards',
         title: translations.features?.varietyCards?.title || '',
         description: translations.features?.varietyCards?.description || '',
+        image: 'https://loyapro.com/assets/guest/images/features/variety-cards.png',
       },
       {
         key: 'analytics',
         title: translations.features?.analytics?.title || '',
         description: translations.features?.analytics?.description || '',
+        image: 'https://loyapro.com/assets/guest/images/features/analytics.png',
       },
       {
         key: 'notifications',
         title: translations.features?.notifications?.title || '',
         description: translations.features?.notifications?.description || '',
+        image: 'https://loyapro.com/assets/guest/images/features/notifications.png',
       },
     ],
   };

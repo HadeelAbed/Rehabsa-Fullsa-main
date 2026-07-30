@@ -1771,7 +1771,8 @@
         "titleLabel": "عنوان القسم",
         "itemsLabel": "عناصر الميزات",
         "itemTitle": "عنوان الميزة",
-        "itemDescription": "وصف الميزة"
+        "itemDescription": "وصف الميزة",
+        "itemImage": "صورة الميزة"
       },
       "howItWorks": {
         "title": "كيف يعمل",
