@@ -55,7 +55,14 @@
     "subtitle": "Stand out and attract visitors to convert them into loyal customers using mobile-compatible loyalty cards that can be saved in Apple Wallet and Google Wallet. Plus, custom phone notifications to keep your customers engaged without needing to download any app.",
     "cta": "Talk to Us",
     "requestDemo": "Request Demo",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "pill1": "No app needed",
+    "pill2": "Loyalty points",
+    "pill3": "Smart reports",
+    "cardLabel": "Loyalty Card",
+    "cardMember": "Member",
+    "cardPoints": "Points",
+    "platformLabel": "Digital Loyalty Platform"
   },
   "features": {
     "title": "Why Choose Digital Loyalty Cards?",
@@ -139,12 +146,22 @@
     "subtitle": "We're here to help you anytime",
     "whatsapp": "0555332289",
     "whatsappTitle": "WhatsApp",
-    "email": "info@roaait.com",
+    "email": "info@rehabsa.com",
     "emailTitle": "Email",
     "phone": "0555332289",
     "phoneTitle": "Phone",
     "address": "Saudi Arabia",
     "addressTitle": "Address"
+  },
+  "freeTrial": {
+    "badge": "Try Free · No credit card",
+    "title": "Ready to start? Try the platform free for 14 days",
+    "subtitle": "Design your loyalty card and start gathering customers today — no app, no complexity, no waiting.",
+    "perk1": "Start in just 5 minutes",
+    "perk2": "No app for customers",
+    "perk3": "Unlimited notifications",
+    "perk4": "Direct WhatsApp support",
+    "cta": "Start your free trial →"
   },
   "footer": {
     "description": "Grow your business with digital loyalty cards! Stand out and attract visitors to convert them into loyal customers.",
@@ -159,7 +176,7 @@
     "termsOfService": "Terms of Service",
     "cookiePolicy": "Cookie Policy",
     "phone": "0555332289",
-    "email": "info@bookk.com",
+    "email": "info@rehabsa.com",
     "address": "Khartoum, Sudan"
   },
   "blog": {

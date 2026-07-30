@@ -79,9 +79,9 @@ export const ContactPage = () => {
     {
       icon: <Mail className="h-6 w-6" />,
       title: "البريد الإلكتروني",
-      value: "info@bookk.com",
+      value: "info@rehabsa.com",
       description: "نرد خلال 24 ساعة",
-      link: "mailto:info@bookk.com"
+      link: "mailto:info@rehabsa.com"
     },
     {
       icon: <MapPin className="h-6 w-6" />,

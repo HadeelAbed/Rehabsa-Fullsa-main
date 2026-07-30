@@ -84,7 +84,7 @@ export const Footer = () => {
             <ul className="space-y-3 text-white/60">
               <li className="flex items-center gap-2.5 text-sm">
                 <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 text-blue-400" />
-                <span>{t('footer.email') || 'info@roaait.com'}</span>
+                <span>{t('footer.email') || 'info@rehabsa.com'}</span>
               </li>
               <li className="flex items-center gap-2.5 text-sm">
                 <FontAwesomeIcon icon={faWhatsappBrand} className="w-4 h-4 text-green-400" />

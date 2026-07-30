@@ -10,6 +10,7 @@ import { Benefits } from "@/components/Benefits";
 import { Pricing } from "@/components/Pricing";
 import { CTABanner } from "@/components/CTABanner";
 import { TutorialSection } from "@/components/TutorialSection";
+import { FreeTrial } from "@/components/FreeTrial";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
@@ -28,6 +29,7 @@ const Index = () => {
       <Pricing />
       <CTABanner />
       <TutorialSection />
+      <FreeTrial />
       <ContactSection />
       <Footer />
     </div>

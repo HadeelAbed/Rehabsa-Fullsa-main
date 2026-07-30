@@ -5,10 +5,10 @@ import { useDirection } from "@/hooks/useDirection";
 import { getSiteContent } from "@/lib/siteContentStorage";
 import { useMemo, useState, useEffect } from "react";
 
-const cardImages = [
-  "https://loyapro.com/assets/guest/images/card-mockup-1.png",
-  "https://loyapro.com/assets/guest/images/card-mockup-2.png",
-  "https://loyapro.com/assets/guest/images/card-mockup-3.png",
+const cardThemes = [
+  { bg: '#3d2810', strip: '#f5e6d8', cup: '#6b4226', label: 'COFFEE', points: '2/5' },
+  { bg: '#0f2540', strip: '#d0e8ff', cup: '#2a6a9c', label: 'RESTAURANT', points: '4/5' },
+  { bg: '#1e0d30', strip: '#e8d5ff', cup: '#7b4fa0', label: 'BEAUTY', points: '3/5' },
 ];
 
 export const Hero = () => {
@@ -18,7 +18,7 @@ export const Hero = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCardIndex((prev) => (prev + 1) % cardImages.length);
+      setCardIndex((prev) => (prev + 1) % cardThemes.length);
     }, 3000);
     return () => clearInterval(timer);
   }, []);
@@ -37,15 +37,16 @@ export const Hero = () => {
     }
   }, [language, t]);
 
+  const theme = cardThemes[cardIndex];
+
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10">
+    <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: '#dde1f2' }}>
       {/* Floating orbs */}
       <div className="orb orb1"></div>
       <div className="orb orb2"></div>
       <div className="orb orb3"></div>
       <div className="orb orb4"></div>
 
-      {/* Gradient glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: `
           radial-gradient(ellipse 70% 80% at 15% 50%, rgba(0,206,194,.15) 0%, transparent 60%),
@@ -54,17 +55,18 @@ export const Hero = () => {
         `
       }}></div>
 
-      <div className="container-custom relative z-10">
+      <div className="container mx-auto max-w-[1120px] px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-          {/* Left: Visual */}
+          {/* Left: Phone mockup with card */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             className="flex flex-col items-center"
           >
+            {/* Phone frame */}
             <div className="relative" style={{ width: 280, height: 420 }}>
-              {cardImages.map((img, idx) => (
+              {cardThemes.map((th, idx) => (
                 <div
                   key={idx}
                   className="absolute inset-0 flex items-center justify-center transition-all duration-500"
@@ -74,17 +76,74 @@ export const Hero = () => {
                     pointerEvents: cardIndex === idx ? 'auto' : 'none',
                   }}
                 >
-                  <img
-                    src={img}
-                    alt=""
-                    className="w-[230px] h-auto rounded-[22px] shadow-[0_24px_64px_rgba(0,0,0,.4),0_4px_16px_rgba(0,0,0,.2)]"
-                  />
+                  {/* Phone body */}
+                  <div className="relative" style={{ width: 200, height: 390, background: '#111', borderRadius: 36, padding: '10px 8px 14px', boxShadow: '0 24px 64px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.2)' }}>
+                    {/* Notch */}
+                    <div style={{ width: 60, height: 5, background: '#333', borderRadius: 3, margin: '0 auto 10px' }}></div>
+
+                    {/* Loyalty card */}
+                    <div className="flex flex-col rounded-[14px] overflow-hidden" style={{ flex: 1, height: 290, background: th.bg }}>
+                      {/* Card top */}
+                      <div className="flex justify-between items-start px-3 py-2.5">
+                        <div>
+                          <div style={{ fontSize: 8, color: 'rgba(255,255,255,.5)', fontWeight: 700 }}>{t('hero.cardLabel') || 'LOYALTY CARD'}</div>
+                          <div style={{ fontSize: 13, color: 'rgba(255,255,255,.9)', fontWeight: 900, marginTop: 2 }}>{th.label}</div>
+                        </div>
+                        <div style={{ textAlign: 'right' }}>
+                          <div style={{ fontSize: 7, color: 'rgba(255,255,255,.4)' }}>{t('hero.cardMember') || 'Member'}</div>
+                          <div style={{ fontSize: 8, color: 'rgba(255,255,255,.7)', fontWeight: 700 }}>★★★★★</div>
+                        </div>
+                      </div>
+
+                      {/* Strip - stamp area */}
+                      <div className="relative" style={{ height: 80, background: th.strip }}>
+                        <div className="flex items-center justify-center gap-1.5 h-full relative z-10">
+                          {[...Array(5)].map((_, i) => (
+                            <svg key={i} width="22" height="38" viewBox="0 0 24 40">
+                              <path d="M12 4L14 16L12 28L4 16Z" fill={th.cup} opacity={i < parseInt(th.points[0]) ? 1 : 0.18}/>
+                            </svg>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Card bottom */}
+                      <div className="px-3 py-2 flex items-center justify-between">
+                        <div>
+                          <div style={{ fontSize: 7, color: 'rgba(255,255,255,.5)' }}>{t('hero.cardPoints') || 'Points'}</div>
+                          <div style={{ fontSize: 14, color: 'white', fontWeight: 900 }}>{th.points}</div>
+                        </div>
+                        {/* QR placeholder */}
+                        <div style={{ width: 34, height: 34, background: 'white', borderRadius: 4, padding: 3 }}>
+                          <svg viewBox="0 0 24 24" width="100%" height="100%">
+                            <rect x="2" y="2" width="8" height="8" fill="#111"/>
+                            <rect x="14" y="2" width="8" height="8" fill="#333"/>
+                            <rect x="2" y="14" width="8" height="8" fill="#333"/>
+                            <rect x="14" y="14" width="4" height="4" fill="#111"/>
+                            <rect x="18" y="18" width="4" height="4" fill="#111"/>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Card shine */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ borderRadius: 36, padding: '10px 8px 14px' }}>
+                      <div style={{
+                        position: 'absolute',
+                        top: 10, left: 8, right: 8, bottom: 14,
+                        background: 'linear-gradient(120deg, transparent 0%, rgba(255,255,255,.5) 50%, transparent 100%)',
+                        transform: 'translateX(-100%)',
+                        borderRadius: 14,
+                        animation: 'card-shine 9s ease-in-out infinite',
+                      }}></div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
+
             {/* Dots */}
             <div className="flex gap-[7px] mt-5">
-              {cardImages.map((_, idx) => (
+              {cardThemes.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCardIndex(idx)}
@@ -96,12 +155,13 @@ export const Hero = () => {
                 />
               ))}
             </div>
+
             {/* Platform badges */}
             <div className="flex items-center justify-center gap-2.5 mt-4 flex-wrap">
-              <span className="text-xs font-semibold text-muted-foreground">منصة الولاء الرقمي</span>
+              <span className="text-xs font-semibold" style={{ color: '#6b7082' }}>{t('hero.platformLabel') || 'Digital Loyalty Platform'}</span>
               <div className="flex gap-2">
-                <span className="bg-white border border-border rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-sm text-muted-foreground">SAAS</span>
-                <span className="bg-white border border-border rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-sm text-muted-foreground">AI</span>
+                <span className="bg-white border rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-sm" style={{ borderColor: '#d4d9ef', color: '#3d4257' }}>SAAS</span>
+                <span className="bg-white border rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-sm" style={{ borderColor: '#d4d9ef', color: '#3d4257' }}>AI</span>
               </div>
             </div>
           </motion.div>
@@ -112,14 +172,18 @@ export const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 px-4 py-1.5 rounded-full text-sm font-bold mb-5 text-secondary">
-              <span className="w-[7px] h-[7px] rounded-full bg-secondary" style={{ animation: 'blink 2s infinite' }}></span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-5" style={{
+              background: 'rgba(0,206,194,.12)',
+              border: '1px solid rgba(0,206,194,.3)',
+              color: '#447596',
+            }}>
+              <span className="w-[7px] h-[7px] rounded-full" style={{ background: '#447596', animation: 'blink 2s infinite' }}></span>
               {heroContent.requestDemo}
             </div>
             <h1 className="text-[clamp(26px,3.6vw,46px)] font-black leading-[1.15] mb-4">
               {heroContent.title}
             </h1>
-            <p className="text-[17px] leading-relaxed mb-8 max-w-[460px] text-muted-foreground">
+            <p className="text-[17px] leading-relaxed mb-8 max-w-[460px]" style={{ color: '#6b7082' }}>
               {heroContent.subtitle}
             </p>
             <div className="flex flex-wrap gap-3 mb-8">
@@ -132,9 +196,9 @@ export const Hero = () => {
               </button>
             </div>
             <div className="flex flex-wrap gap-2.5">
-              {['بدون تطبيق', 'نقاط ولاء', 'تقارير ذكية'].map((pill, i) => (
-                <span key={i} className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                  <svg className="w-4 h-4 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+              {[t('hero.pill1') || 'بدون تطبيق', t('hero.pill2') || 'نقاط ولاء', t('hero.pill3') || 'تقارير ذكية'].map((pill, i) => (
+                <span key={i} className="flex items-center gap-1.5 text-sm" style={{ color: '#6b7082' }}>
+                  <svg className="w-4 h-4 flex-shrink-0" style={{ color: '#447596' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                   {pill}
                 </span>
               ))}
@@ -145,7 +209,11 @@ export const Hero = () => {
 
       <style>{`
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+        @keyframes card-shine {
+          0%,8%   { transform: translateX(-100%); opacity: 1; }
+          18%     { transform: translateX(200%); opacity: 1; }
+          19%,100%{ transform: translateX(200%); opacity: 0; }
+        }
         .orb {
           position: absolute;
           border-radius: 50%;
@@ -182,6 +250,7 @@ export const Hero = () => {
           animation-delay: -1s;
           opacity: .55;
         }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
       `}</style>
     </section>
   );
