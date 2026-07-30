@@ -84,7 +84,7 @@ export const Header = () => {
           )}
         </div>
 
-        {/* Login + Lang */}
+        {/* Login + Lang + CTA */}
         <div className="hidden md:flex items-center gap-2">
           <LanguageSwitcher />
           <Link
@@ -92,6 +92,17 @@ export const Header = () => {
             className="text-sm font-semibold px-3.5 py-1.5 rounded-full border border-border no-underline transition-all hover:border-primary hover:text-secondary flex-shrink-0 text-foreground"
           >
             {t('navigation.login')}
+          </Link>
+          <Link
+            to="/register"
+            className="text-sm font-extrabold px-4 py-1.5 rounded-full no-underline transition-all hover:-translate-y-0.5 flex-shrink-0"
+            style={{
+              background: '#00CEC2',
+              color: '#fff',
+              boxShadow: '0 2px 8px rgba(0,206,194,.35)',
+            }}
+          >
+            {t('navigation.startNow') || 'ابدأ الآن'}
           </Link>
         </div>
 
