@@ -187,7 +187,7 @@ export const SubscriptionFailurePage = () => {
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-sm font-medium">+249 111 638 872</p>
+                  <p className="text-sm font-medium">+0555332289</p>
                   <p className="text-xs text-muted-foreground">{t('subscription.phoneSupport', 'Phone Support')}</p>
                 </div>
               </div>

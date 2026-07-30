@@ -54,7 +54,8 @@
     "title": "Grow Your Business with Digital Loyalty Cards!",
     "subtitle": "Stand out and attract visitors to convert them into loyal customers using mobile-compatible loyalty cards that can be saved in Apple Wallet and Google Wallet. Plus, custom phone notifications to keep your customers engaged without needing to download any app.",
     "cta": "Talk to Us",
-    "requestDemo": "Request Demo"
+    "requestDemo": "Request Demo",
+    "learnMore": "Learn More"
   },
   "features": {
     "title": "Why Choose Digital Loyalty Cards?",
@@ -81,18 +82,83 @@
     "notifications": {
       "title": "Mobile Push Notifications",
       "description": "Send custom notifications to your customers' phones without needing to download any app"
-    }
+    },
+    "badge": "Features",
+    "subtitle": ""
+  },
+  "trustStrip": {
+    "title": "Thousands of brands trust Ru'ya"
+  },
+  "howItWorks": {
+    "customerTab": "How Customers Join",
+    "businessTab": "How You Add Points",
+    "customerStep1Title": "Customer scans QR code",
+    "customerStep1Desc": "The customer opens their phone camera and scans the QR code at the store or on the receipt.",
+    "customerStep2Title": "Enters name & number",
+    "customerStep2Desc": "The customer enters their name and phone number only — no app download or account creation needed.",
+    "customerStep3Title": "Saves card to phone",
+    "customerStep3Desc": "The loyalty card is added directly to Apple Wallet or Google Wallet, and notifications arrive automatically.",
+    "businessStep1Title": "Customer buys & shows card",
+    "businessStep1Desc": "After purchase, the customer opens their card from the wallet and shows the QR code to the cashier.",
+    "businessStep2Title": "Cashier scans the card",
+    "businessStep2Desc": "The employee opens the cashier app and scans the customer's QR code to add a point in seconds.",
+    "businessStep3Title": "Customer gets reward",
+    "businessStep3Desc": "When points are complete, the customer is notified automatically and receives their reward on their next visit."
+  },
+  "logoToCard": {
+    "badge": "Automated System",
+    "title": "Your Store Logo to a Professional Loyalty Card",
+    "description": "Just upload your store logo and our smart system automatically selects the right colors and design",
+    "uploadHint": "Upload your logo",
+    "accepted": "Accepted",
+    "generating": "Generating suitable colors",
+    "done": "Done",
+    "ready": "Card Ready",
+    "cta": "Start Now"
+  },
+  "cta": {
+    "badge": "Start Now",
+    "title": "Ready to Turn Your Customers into Loyal Members?",
+    "description": "Discover how a digital loyalty system can increase repeat purchases and boost customer loyalty without an app or hassle.",
+    "perk1": "Smart loyalty points without an app",
+    "perk2": "Real-time reports and analytics",
+    "perk3": "Premium 24/7 technical support",
+    "cta": "Start Your Free Trial",
+    "contact": "Contact Sales"
+  },
+  "tutorial": {
+    "badge": "Getting Started",
+    "title": "See How to Start",
+    "subtitle": "From registration to your first loyalty card ready — a complete step-by-step guide.",
+    "videoAlt": "Ru'ya IT Platform Tutorial",
+    "watchLabel": "Full Platform Tutorial"
+  },
+  "contact": {
+    "badge": "Contact Us",
+    "title": "Get in Touch",
+    "subtitle": "We're here to help you anytime",
+    "whatsapp": "0555332289",
+    "whatsappTitle": "WhatsApp",
+    "email": "info@roaait.com",
+    "emailTitle": "Email",
+    "phone": "0555332289",
+    "phoneTitle": "Phone",
+    "address": "Saudi Arabia",
+    "addressTitle": "Address"
   },
   "footer": {
     "description": "Grow your business with digital loyalty cards! Stand out and attract visitors to convert them into loyal customers.",
     "quickLinks": "Quick Links",
+    "merchantLogin": "Merchant Login",
+    "ourWork": "Our Work",
+    "policies": "Policies",
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
     "copyright": "© 2024 Bookk. All rights reserved.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "cookiePolicy": "Cookie Policy",
-    "phone": "+249 111 638 872",
+    "phone": "0555332289",
     "email": "info@bookk.com",
     "address": "Khartoum, Sudan"
   },

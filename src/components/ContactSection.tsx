@@ -27,8 +27,8 @@ export const ContactSection = () => {
                 {t(`contact.${c.key}Title`) || ''}
               </h4>
               {c.key === 'whatsapp' ? (
-                <a href="https://wa.me/249111638872" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-secondary hover:underline no-underline">
-                  {t('contact.whatsapp') || '+249 111 638 872'}
+                <a href="https://wa.me/966555332289" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-secondary hover:underline no-underline">
+                  {t('contact.whatsapp') || '0555332289'}
                 </a>
               ) : (
                 <p className="text-sm font-semibold text-secondary">

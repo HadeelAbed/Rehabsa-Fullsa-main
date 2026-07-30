@@ -155,7 +155,7 @@ export const CookiePolicy = () => {
                 {t('cookiePolicy.cta.emailButton')}
               </a>
               <a 
-                href="tel:+249111638872"
+                href="tel:+966555332289"
                 className="btn-secondary rounded-full px-8 py-3 text-center"
               >
                 {t('cookiePolicy.cta.phoneButton')}

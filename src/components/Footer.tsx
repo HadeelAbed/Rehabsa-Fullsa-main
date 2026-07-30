@@ -88,8 +88,8 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-2.5 text-sm">
                 <FontAwesomeIcon icon={faWhatsappBrand} className="w-4 h-4 text-green-400" />
-                <a href="https://wa.me/249111638872" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  +249 111 638 872
+                <a href="https://wa.me/966555332289" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  0555332289
                 </a>
               </li>
               <li className="flex items-center gap-2.5 text-sm">
