@@ -59,7 +59,7 @@ export const FreeTrial = () => {
             </button>
           </div>
 
-          {/* Right: Demo window */}
+          {/* Right: Card builder demo */}
           <div className="rounded-2xl overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,.5)] bg-[#f5f6fa]" style={{ direction: i18n.language === 'ar' ? 'rtl' : 'ltr' }}>
             {/* Title bar */}
             <div className="flex items-center gap-1.5 px-3.5 py-2" style={{ background: '#e8e9f0', borderBottom: '1px solid #d4d5de' }}>
@@ -67,88 +67,125 @@ export const FreeTrial = () => {
               <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#febc2e' }}></span>
               <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#28c840' }}></span>
               <span className="flex-1 mx-2.5 bg-white rounded text-[9px] text-[#888] font-mono text-center border border-[#ddd]" style={{ padding: '1px 8px', direction: 'ltr' }}>
-                app.rehabsa.com/dashboard
+                app.rehabsa.com/dashboard/cards/edit/1
               </span>
             </div>
 
-            {/* Body */}
-            <div className="flex" style={{ height: 340 }}>
-              {/* Sidebar */}
-              <div className="w-[42px] flex-shrink-0 bg-white flex flex-col items-center gap-0.5 py-2.5 border-l border-[#e8e9f0]">
-                <div className="w-[30px] h-[30px] mb-2.5 flex items-center justify-center text-[11px] font-black" style={{ color: '#00CEC2' }}>R</div>
-                {['□', '◎', '◇'].map((s, i) => (
-                  <div key={i} className={`w-[30px] h-[30px] rounded-lg flex items-center justify-center text-sm ${i === 0 ? 'text-white' : 'text-[#aaa]'}`} style={i === 0 ? { background: '#00CEC2' } : {}}>{s}</div>
-                ))}
+            {/* Body: two-panel layout like EditCardPage */}
+            <div className="flex" style={{ height: 360 }}>
+              {/* Left: Phone preview */}
+              <div className="flex-1 bg-white flex items-center justify-center p-4 border-l border-[#e8e9f0]">
+                <div className="bg-[#111] rounded-[24px] p-[6px_5px_10px] shadow-[0_16px_48px_rgba(0,0,0,.35)] flex flex-col items-center" style={{ width: 170 }}>
+                  <div className="w-[36px] h-[4px] bg-[#333] rounded mx-auto mb-2 flex-shrink-0"></div>
+                  {/* Card preview */}
+                  <div className="w-full rounded-[12px] overflow-hidden flex flex-col" style={{
+                    background: 'linear-gradient(135deg, #0f2540 0%, #1a3a5c 100%)',
+                    minHeight: 220,
+                  }}>
+                    {/* Logo + Name */}
+                    <div className="flex items-center gap-2 px-3 pt-3 pb-1">
+                      <div className="w-[28px] h-[28px] rounded-full bg-white/20 flex items-center justify-center text-white text-[10px] font-black">R</div>
+                      <div>
+                        <div className="text-[7px] text-white/60">{i18n.language === 'ar' ? 'بطاقة ولاء' : 'Loyalty Card'}</div>
+                        <div className="text-[9px] text-white font-bold">{i18n.language === 'ar' ? 'قهوة المذاق' : 'Coffee Shop'}</div>
+                      </div>
+                    </div>
+                    {/* Stars/Stamp area */}
+                    <div className="mx-3 my-2 rounded-[8px] flex items-center justify-center gap-1 py-2" style={{ background: 'rgba(255,255,255,.12)' }}>
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} width="16" height="24" viewBox="0 0 24 36">
+                          <path d="M12 4L14 14L12 24L4 14Z" fill="#FFD700" opacity={i < 2 ? 1 : 0.2}/>
+                        </svg>
+                      ))}
+                    </div>
+                    {/* Reward info */}
+                    <div className="px-3 pb-2">
+                      <div className="text-[7px] text-white/60">{i18n.language === 'ar' ? 'المكافأة' : 'Reward'}</div>
+                      <div className="text-[9px] text-white font-bold">{i18n.language === 'ar' ? 'مشروب مجاني' : 'Free Drink'}</div>
+                    </div>
+                    {/* QR placeholder */}
+                    <div className="mt-auto px-3 pb-3 flex items-center justify-between">
+                      <div className="w-[28px] h-[28px] bg-white rounded-[4px] p-[2px]">
+                        <svg viewBox="0 0 24 24" width="100%" height="100%">
+                          <rect x="2" y="2" width="8" height="8" fill="#111"/>
+                          <rect x="14" y="2" width="8" height="8" fill="#333"/>
+                          <rect x="2" y="14" width="8" height="8" fill="#333"/>
+                        </svg>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-[6px] text-white/50">{i18n.language === 'ar' ? 'رقم العضوية' : 'Member ID'}</div>
+                        <div className="text-[7px] text-white/80 font-mono">#RH-1842</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-[7px] text-[#666] mt-2 font-semibold">{i18n.language === 'ar' ? 'معاينة البطاقة' : 'Card Preview'}</div>
+                </div>
               </div>
 
-              {/* Main */}
-              <div className="flex-1 p-3 flex gap-3 overflow-hidden">
-                {/* Phone preview */}
-                <div className="w-[88px] flex-shrink-0">
-                  <div className="bg-[#111] rounded-[18px] p-[5px_4px_8px] shadow-[0_10px_30px_rgba(0,0,0,.4)] flex flex-col" style={{ height: 191 }}>
-                    <div className="w-[34px] h-[4px] bg-[#333] rounded mx-auto mb-1.5 flex-shrink-0"></div>
-                    {/* Card */}
-                    <div className="flex-1 rounded-[10px] overflow-hidden flex flex-col" style={{ background: '#3d2810' }}>
-                      <div className="flex justify-between items-start px-1.5 py-1">
-                        <div className="text-[5px] text-white/50">COFFEE</div>
-                        <div className={isRTL ? 'text-right' : 'text-left'}>
-                          <span className="text-[4px] text-white/50 block">Ahmed</span>
-                          <span className="text-[5px] text-white/80 font-bold block">★★★★★</span>
-                        </div>
-                      </div>
-                      {/* Strip */}
-                      <div className="relative h-[42px]" style={{ background: '#f5e6d8' }}>
-                        <div className="flex items-center justify-center gap-0.5 h-full relative z-10">
-                          {[...Array(5)].map((_, i) => (
-                            <svg key={i} width="14" height="26" viewBox="0 0 24 40"><path d="M12 4L14 16L12 28L4 16Z" fill="#6b4226" opacity={i < 3 ? 1 : 0.2}/></svg>
-                          ))}
-                        </div>
-                      </div>
-                      {/* Bottom */}
-                      <div className="px-1.5 py-1 flex items-center justify-between">
-                        <div>
-                          <span className="text-[4px] text-white/50 block">Points</span>
-                          <span className="text-[9px] text-white font-black block">2/5</span>
-                        </div>
-                        <div className="w-[26px] h-[26px] bg-white rounded p-0.5">
-                          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="8" height="8" fill="#111"/><rect x="14" y="4" width="6" height="6" fill="#333"/><rect x="4" y="14" width="8" height="6" fill="#333"/></svg>
-                        </div>
-                      </div>
-                    </div>
+              {/* Right: Form panel */}
+              <div className="w-[200px] flex flex-col p-3 gap-2 overflow-hidden flex-shrink-0">
+                {/* Tabs */}
+                <div className="flex gap-0.5 border-b border-[#e0e1ea] pb-1.5">
+                  {[
+                    i18n.language === 'ar' ? 'التفاصيل' : 'Details',
+                    i18n.language === 'ar' ? 'تصميم' : 'Design',
+                    i18n.language === 'ar' ? 'روابط' : 'Links'
+                  ].map((tab, i) => (
+                    <span key={i} className={`text-[7.5px] font-bold px-1.5 pb-1 ${i === 1 ? '' : 'text-[#aaa]'}`}
+                      style={i === 1 ? { color: '#00CEC2', borderBottom: '2px solid #00CEC2' } : {}}>{tab}</span>
+                  ))}
+                </div>
+
+                {/* Logo upload field */}
+                <div>
+                  <div className="text-[7.5px] text-[#555] font-bold mb-1">
+                    {i18n.language === 'ar' ? 'شعار المتجر' : 'Store Logo'} <span style={{ color: '#e44' }}>*</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-[26px] h-[26px] rounded-[5px] bg-[#f0ebe4] border border-[#ddd] flex items-center justify-center text-[9px] text-[#bbb]">↑</div>
+                    <span className="text-[7px] bg-[#f3f4f8] border border-[#dde] rounded px-1.5 py-0.5 text-[#666] font-semibold">
+                      {i18n.language === 'ar' ? 'اختر ملف' : 'Choose File'}
+                    </span>
                   </div>
                 </div>
 
-                {/* Form area */}
-                <div className="flex-1 flex flex-col gap-1.5 overflow-hidden min-w-0">
-                  <div className="text-[10px] font-black px-1 py-1.5 rounded" style={{ background: '#00CEC2', color: '#fff' }}>
-                    {i18n.language === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
+                {/* Background image upload */}
+                <div>
+                  <div className="text-[7.5px] text-[#555] font-bold mb-1">
+                    {i18n.language === 'ar' ? 'صورة الخلفية' : 'Background Image'}
                   </div>
-                  <div className="flex gap-1">
-                    {['التفاصيل', 'تصميم', 'روابط'].map((tab, i) => (
-                      <span key={i} className={`text-[8px] font-bold px-2 pb-1 ${i === 1 ? '' : 'text-[#aaa]'}`} style={i === 1 ? { color: '#00CEC2', borderBottom: '2px solid #00CEC2' } : {}}>{tab}</span>
-                    ))}
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-[26px] h-[26px] rounded-[5px] bg-[#e8eef8] border border-[#ddd] flex items-center justify-center text-[9px] text-[#bbb]">🖼</div>
+                    <span className="text-[7px] bg-[#f3f4f8] border border-[#dde] rounded px-1.5 py-0.5 text-[#666] font-semibold">
+                      {i18n.language === 'ar' ? 'اختر ملف' : 'Choose File'}
+                    </span>
                   </div>
-                  {/* Upload row */}
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <div className="w-6 h-6 rounded flex items-center justify-center text-[9px] border border-[#ddd]" style={{ background: '#f0ebe4', color: '#bbb' }}>↑</div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-[7px] text-[#555] font-bold mb-0.5">{i18n.language === 'ar' ? 'شعار المتجر' : 'Store Logo'} <span style={{ color: '#e44' }}>*</span></div>
-                      <span className="text-[7px] bg-[#f3f4f8] border border-[#dde] rounded px-1.5 py-0.5 text-[#666] font-semibold">{i18n.language === 'ar' ? 'اختر ملف' : 'Choose File'}</span>
-                    </div>
-                  </div>
-                  {/* Color row */}
-                  <div className="flex gap-2 mt-1">
-                    {['bg', 'text', 'strip'].map((_, i) => (
-                      <div key={i} className="flex flex-col gap-0.5">
-                        <span className="text-[6px] text-[#888] font-bold">{['لون الخلفية','لون النص','لون الشريط'][i] || 'Color'}</span>
-                        <div className="w-[18px] h-[18px] rounded border border-[#ddd]" style={{ background: ['#3d2810','#f5e6d8','#6b4226'][i] }}></div>
+                </div>
+
+                {/* Color pickers */}
+                <div>
+                  <div className="text-[7.5px] text-[#555] font-bold mb-1.5">{i18n.language === 'ar' ? 'الألوان' : 'Colors'}</div>
+                  <div className="flex gap-2">
+                    {[
+                      { label: i18n.language === 'ar' ? 'خلفية البطاقة' : 'Card BG', color: '#0f2540' },
+                      { label: i18n.language === 'ar' ? 'لون الشريط' : 'Bar BG', color: '#1a3a5c' },
+                      { label: i18n.language === 'ar' ? 'لون النص' : 'Text', color: '#FFFFFF' },
+                    ].map((c, i) => (
+                      <div key={i} className="flex flex-col items-center gap-0.5">
+                        <div className="w-[20px] h-[20px] rounded-[4px] border border-[#ddd] shadow-sm" style={{ background: c.color }}></div>
+                        <span className="text-[6px] text-[#999] font-semibold">{c.label}</span>
                       </div>
                     ))}
                   </div>
-                  <button className="self-start mt-auto text-[8px] font-extrabold text-white border-none rounded px-3 py-1.5 cursor-pointer" style={{ background: '#00CEC2', boxShadow: '0 4px 12px rgba(0,206,194,.4)' }}>
-                    {i18n.language === 'ar' ? 'التالي ←' : 'Next →'}
-                  </button>
                 </div>
+
+                {/* Next button */}
+                <button className="self-start mt-auto text-[8px] font-extrabold text-white border-none rounded px-3 py-1.5 cursor-pointer transition-all hover:opacity-90" style={{
+                  background: '#00CEC2',
+                  boxShadow: '0 4px 12px rgba(0,206,194,.4)',
+                }}>
+                  {i18n.language === 'ar' ? 'حفظ ←' : 'Save →'}
+                </button>
               </div>
             </div>
           </div>
