@@ -118,7 +118,7 @@ export const Header = () => {
               <button
                 key={link.key}
                 onClick={() => handleSectionNavigation(link.section!)}
-                className="py-2 text-sm font-medium text-left border-none bg-transparent cursor-pointer hover:text-secondary text-foreground"
+                className={`py-2 text-sm font-medium ${isRTL ? 'text-right' : 'text-left'} border-none bg-transparent cursor-pointer hover:text-secondary text-foreground`}
               >
                 {t(`navigation.${link.key}`)}
               </button>

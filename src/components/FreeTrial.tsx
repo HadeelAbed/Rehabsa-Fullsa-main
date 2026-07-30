@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
+import { useDirection } from "@/hooks/useDirection";
 
 export const FreeTrial = () => {
   const { t, i18n } = useTranslation();
+  const { isRTL } = useDirection();
 
   return (
     <section className="relative overflow-hidden" style={{
@@ -89,7 +91,7 @@ export const FreeTrial = () => {
                     <div className="flex-1 rounded-[10px] overflow-hidden flex flex-col" style={{ background: '#3d2810' }}>
                       <div className="flex justify-between items-start px-1.5 py-1">
                         <div className="text-[5px] text-white/50">COFFEE</div>
-                        <div className="text-right">
+                        <div className={isRTL ? 'text-right' : 'text-left'}>
                           <span className="text-[4px] text-white/50 block">Ahmed</span>
                           <span className="text-[5px] text-white/80 font-bold block">★★★★★</span>
                         </div>

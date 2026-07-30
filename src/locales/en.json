@@ -97,6 +97,8 @@
     "title": "Thousands of brands trust Ru'ya"
   },
   "howItWorks": {
+    "title": "How Does the Card Work?",
+    "subtitle": "How It Works",
     "customerTab": "How Customers Join",
     "businessTab": "How You Add Points",
     "customerStep1Title": "Customer scans QR code",
@@ -121,7 +123,13 @@
     "generating": "Generating suitable colors",
     "done": "Done",
     "ready": "Card Ready",
-    "cta": "Start Now"
+    "cta": "Start Now",
+    "step1Title": "Upload your business logo",
+    "step1Description": "PNG or JPG — the system recognizes it instantly",
+    "step2Title": "Extract colors & identity",
+    "step2Description": "AI automatically selects the best color harmony",
+    "step3Title": "Your card is ready to share",
+    "step3Description": "Share the link with your customers and start right away"
   },
   "cta": {
     "badge": "Start Now",
@@ -171,13 +179,13 @@
     "policies": "Policies",
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
-    "copyright": "© 2024 Bookk. All rights reserved.",
+    "copyright": "© 2024 Rehabsa. All rights reserved.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "cookiePolicy": "Cookie Policy",
     "phone": "0555332289",
     "email": "info@rehabsa.com",
-    "address": "Khartoum, Sudan"
+    "address": "Saudi Arabia"
   },
   "blog": {
     "title": "Bookk Blog",
@@ -192,17 +200,6 @@
       "subtitle": "Subscribe to our newsletter to receive the latest articles and technical tips",
       "subscribe": "Subscribe"
     }
-  },
-  "howItWorks": {
-    "subtitle": "How It Works",
-    "title": "How Does the Card Work?",
-    "step1Title": "Step One",
-    "step1Description": "Point your phone camera at the barcode located on the store's cashier.",
-    "step2Title": "Step Two",
-    "step2Description": "Simple registration steps.",
-    "step3Title": "Step Three",
-    "step3Description": "Load your card to your phone wallet in Apple Pay or Google Pay",
-    "imageAlt": "How the card works"
   },
   "benefits": {
     "title": "What Value Will You Get?",
@@ -228,6 +225,7 @@
     }
   },
   "pricing": {
+    "badge": "Pricing",
     "title": "Affordable Pricing",
     "subtitle": "Get our features at affordable prices. Our plans are designed specifically to provide unmatched value.",
     "mostPopular": "Most Popular",

@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useDirection } from "@/hooks/useDirection";
 
 export const Industries = () => {
   const { t } = useTranslation();
+  const { isRTL } = useDirection();
   const navigate = useNavigate();
   
   const handleContactClick = () => {
@@ -108,7 +110,7 @@ export const Industries = () => {
           >
             <Button size="lg" className="font-bold group" onClick={handleContactClick}>
               {t('industries.contactButton')}
-              <ArrowLeft className="mr-2 h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+              {isRTL ? <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" /> : <ArrowLeft className="mr-2 h-5 w-5 group-hover:-translate-x-1 transition-transform" />}
             </Button>
           </motion.div>
         </div>

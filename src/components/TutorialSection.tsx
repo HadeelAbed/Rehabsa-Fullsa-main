@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
+import { useDirection } from "@/hooks/useDirection";
 
 export const TutorialSection = () => {
   const { t } = useTranslation();
+  const { isRTL } = useDirection();
 
   return (
     <section id="tutorial" className="lp-section bg-white">
@@ -37,7 +39,7 @@ export const TutorialSection = () => {
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
               <div className="w-[72px] h-[72px] rounded-full bg-secondary flex items-center justify-center shadow-[0_8px_30px_rgba(68,117,150,.5)] group-hover:scale-110 group-hover:shadow-[0_12px_40px_rgba(68,117,150,.7)] transition-all">
-                <svg className="w-7 h-7 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg className={`w-7 h-7 text-white ${isRTL ? 'mr-0.5' : 'ml-0.5'}`} fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
               <span className="text-sm font-bold text-white bg-black/55 px-4 py-1.5 rounded-full backdrop-blur">
                 ▶ {t('tutorial.watchLabel') || 'شرح المنصة كاملاً'}
