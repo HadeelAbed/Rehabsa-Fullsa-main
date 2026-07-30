@@ -58,7 +58,7 @@ export const HowItWorks = () => {
 
         {/* Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Phone image */}
+          {/* Phone mockup */}
           <motion.div
             key={`img-${activeTab}`}
             initial={{ opacity: 0, x: isRTL ? 30 : -30 }}
@@ -66,12 +66,64 @@ export const HowItWorks = () => {
             transition={{ duration: 0.4 }}
             className="flex justify-center"
           >
-            <div className="relative">
-              <img
-                src="https://loyapro.com/assets/guest/images/iphone-frame.webp"
-                alt=""
-                className="w-64 h-auto"
-              />
+            <div className="relative" style={{ width: 220 }}>
+              {/* Phone frame */}
+              <div className="bg-[#111] rounded-[32px] p-[10px_8px_14px] shadow-[0_24px_64px_rgba(0,0,0,.35)] mx-auto" style={{ width: 200 }}>
+                {/* Notch */}
+                <div className="w-[50px] h-[5px] bg-[#333] rounded mx-auto mb-3"></div>
+                {/* Card screen */}
+                <div className="rounded-[14px] overflow-hidden" style={{
+                  background: activeTab === 'customer'
+                    ? 'linear-gradient(135deg, #0f2540, #1a3a5c)'
+                    : 'linear-gradient(135deg, #2d1a3a, #4a2a5c)',
+                  minHeight: 260
+                }}>
+                  {/* Status bar */}
+                  <div className="flex items-center justify-between px-3 pt-3 pb-1">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center text-[7px] text-white font-black">R</div>
+                      <span className="text-[7px] text-white/70 font-bold">{t('howItWorks.appName') || 'رحاب'}</span>
+                    </div>
+                    <div className="text-white/50 text-[6px]">9:41</div>
+                  </div>
+
+                  {/* Step content */}
+                  <div className="px-3 pt-2 pb-3">
+                    {/* Big step number */}
+                    <div className="text-center mb-2">
+                      <span className="text-[30px] font-black text-white/15">{steps[0].number}</span>
+                    </div>
+                    {/* QR code visual */}
+                    <div className="flex justify-center mb-3">
+                      <div className="w-14 h-14 bg-white rounded-[6px] p-1.5 shadow-lg">
+                        <svg viewBox="0 0 24 24" width="100%" height="100%">
+                          <rect x="2" y="2" width="8" height="8" fill="#111" rx="1"/>
+                          <rect x="14" y="2" width="8" height="8" fill="#333" rx="1"/>
+                          <rect x="2" y="14" width="8" height="8" fill="#333" rx="1"/>
+                          <rect x="14" y="14" width="3" height="3" fill="#111"/>
+                          <rect x="18" y="18" width="3" height="3" fill="#111"/>
+                          <rect x="14" y="18" width="3" height="3" fill="#111"/>
+                        </svg>
+                      </div>
+                    </div>
+                    {/* Step title/desc on phone */}
+                    <div className="bg-white/10 rounded-[8px] p-2 mb-1">
+                      <div className="text-[8px] font-bold text-white mb-0.5">{steps[0].title}</div>
+                      <div className="text-[6px] text-white/60 leading-relaxed">{steps[0].description}</div>
+                    </div>
+                    {/* Dots */}
+                    <div className="flex justify-center gap-1 mt-2">
+                      {[0,1,2].map(i => (
+                        <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: i === 0 ? '#00CEC2' : 'rgba(255,255,255,.2)' }}></div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Label */}
+              <div className="text-center mt-3">
+                <span className="text-[11px] font-semibold text-muted-foreground">{t('howItWorks.phoneLabel') || 'واجهة العميل'}</span>
+              </div>
             </div>
           </motion.div>
 
@@ -84,7 +136,7 @@ export const HowItWorks = () => {
             className="space-y-8"
           >
             {steps.map((step, index) => (
-              <div key={index} className={`flex gap-5 ${isRTL ? 'flex-row' : 'flex-row'}`}>
+              <div key={index} className="flex gap-5">
                 <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-black flex-shrink-0 shadow-md">
                   {step.number}
                 </div>
@@ -95,17 +147,6 @@ export const HowItWorks = () => {
               </div>
             ))}
           </motion.div>
-        </div>
-
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-12">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="w-2 h-2 rounded-full"
-              style={{ background: 'hsl(215, 20%, 85%)' }}
-            ></div>
-          ))}
         </div>
       </div>
     </section>
