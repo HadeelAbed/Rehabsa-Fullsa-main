@@ -15,7 +15,7 @@ const iconMap: Record<string, any> = {
 };
 
 const visualBgColors = [
-  "from-[#eef0f8] to-[#dde1f2]",
+  "from-[#e6f7f5] to-[#d1f0ec]",
   "from-[#edf5ee] to-[#d5edda]",
   "from-[#fdf3ea] to-[#f5e6d8]",
   "from-[#e8eefb] to-[#d0ddf5]",

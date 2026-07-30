@@ -50,7 +50,7 @@ export const Header = () => {
       style={{
         background: 'rgba(255,255,255,.92)',
         backdropFilter: 'blur(20px)',
-        border: '1px solid rgba(166,175,216,.2)',
+        border: '1px solid rgba(0,206,194,.2)',
         borderRadius: '16px',
         padding: '8px 20px',
       }}
@@ -89,8 +89,7 @@ export const Header = () => {
           <LanguageSwitcher />
           <Link
             to="/login"
-            className="text-sm font-semibold px-3.5 py-1.5 rounded-full border border-[#c4c7d6] no-underline transition-all hover:border-[#7c88c4] hover:text-[#5a68b0] flex-shrink-0"
-            style={{ color: '#3d4257' }}
+            className="text-sm font-semibold px-3.5 py-1.5 rounded-full border border-border no-underline transition-all hover:border-primary hover:text-secondary flex-shrink-0 text-foreground"
           >
             {t('navigation.login')}
           </Link>
@@ -104,14 +103,13 @@ export const Header = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden pt-3 pb-2 flex flex-col gap-1.5 border-t border-[#eef0f8] mt-2.5">
+        <div className="md:hidden pt-3 pb-2 flex flex-col gap-1.5 border-t border-border mt-2.5">
           {navLinks.map((link) =>
             link.type === 'link' ? (
               <Link
                 key={link.key}
                 to={link.to!}
-                className="py-2 text-sm font-medium no-underline hover:text-[#5a68b0]"
-                style={{ color: '#3d4257' }}
+                className="py-2 text-sm font-medium no-underline hover:text-secondary text-foreground"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t(`navigation.${link.key}`)}
@@ -120,19 +118,17 @@ export const Header = () => {
               <button
                 key={link.key}
                 onClick={() => handleSectionNavigation(link.section!)}
-                className="py-2 text-sm font-medium text-left border-none bg-transparent cursor-pointer hover:text-[#5a68b0]"
-                style={{ color: '#3d4257' }}
+                className="py-2 text-sm font-medium text-left border-none bg-transparent cursor-pointer hover:text-secondary text-foreground"
               >
                 {t(`navigation.${link.key}`)}
               </button>
             )
           )}
-          <div className="flex items-center gap-2 pt-2 border-t border-[#eef0f8] mt-1">
+          <div className="flex items-center gap-2 pt-2 border-t border-border mt-1">
             <LanguageSwitcher />
             <Link
               to="/login"
-              className="text-sm font-semibold px-3.5 py-1.5 rounded-full border border-[#c4c7d6] no-underline"
-              style={{ color: '#3d4257' }}
+              className="text-sm font-semibold px-3.5 py-1.5 rounded-full border border-border no-underline text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
               {t('navigation.login')}

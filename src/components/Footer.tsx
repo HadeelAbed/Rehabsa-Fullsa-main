@@ -27,8 +27,8 @@ export const Footer = () => {
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: `
-          radial-gradient(ellipse 55% 70% at 80% 50%, rgba(124,136,196,.18) 0%, transparent 60%),
-          radial-gradient(ellipse 35% 50% at 15% 30%, rgba(90,104,176,.14) 0%, transparent 55%)
+          radial-gradient(ellipse 55% 70% at 80% 50%, rgba(0,206,194,.12) 0%, transparent 60%),
+          radial-gradient(ellipse 35% 50% at 15% 30%, rgba(68,117,150,.1) 0%, transparent 55%)
         `
       }}></div>
 

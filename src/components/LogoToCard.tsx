@@ -143,7 +143,7 @@ export const LogoToCard = () => {
         }
         .ltc-dot {
           width: 8px; height: 8px; border-radius: 50%;
-          background: #d4d9ef; transition: all .3s;
+          background: hsl(215, 20%, 85%); transition: all .3s;
         }
         .ltc-dot-1 { animation: ltc-dot-on 9s ease-in-out infinite; }
         .ltc-dot-2 { animation: ltc-dot-on 9s ease-in-out infinite; animation-delay: 3s; }
@@ -151,7 +151,7 @@ export const LogoToCard = () => {
         @keyframes ltc-dot-on {
           0%,5%   { background: #00CEC2; transform: scale(1.5); }
           30%     { background: #00CEC2; transform: scale(1.5); }
-          33%,100%{ background: #d4d9ef; transform: scale(1); }
+          33%,100%{ background: hsl(215, 20%, 85%); transform: scale(1); }
         }
         .ltc-upload-zone {
           width: 160px; height: 160px; border: 2.5px dashed #8CE4DE;
@@ -193,7 +193,7 @@ export const LogoToCard = () => {
           display: flex; flex-direction: column; align-items: center; gap: 18px;
           padding: 0 32px; width: 100%;
         }
-        .ltc-gen-title { font-size: 13px; font-weight: 700; color: #3d4257; }
+        .ltc-gen-title { font-size: 13px; font-weight: 700; color: hsl(215, 20%, 45%); }
         .ltc-gen-bar-wrap {
           width: 100%; height: 8px; background: rgba(255,255,255,.7);
           border-radius: 50px; overflow: hidden;
@@ -277,7 +277,7 @@ export const LogoToCard = () => {
         }
         .ltc-step-num {
           width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-          background: #eef0f8; border: 2px solid #d4d9ef;
+          background: hsl(215, 20%, 95%); border: 2px solid hsl(215, 20%, 85%);
           display: flex; align-items: center; justify-content: center;
           font-size: 13px; font-weight: 900; color: #00CEC2;
         }
@@ -287,7 +287,7 @@ export const LogoToCard = () => {
         @keyframes ltc-num-hl {
           0%,5%   { background: #00CEC2; border-color: #00CEC2; color: white; }
           30%     { background: #00CEC2; border-color: #00CEC2; color: white; }
-          33%,100%{ background: #eef0f8; border-color: #d4d9ef; color: #00CEC2; }
+          33%,100%{ background: hsl(215, 20%, 95%); border-color: hsl(215, 20%, 85%); color: #00CEC2; }
         }
         .ltc-step-item-1 { animation: ltc-step-hl 9s ease-in-out infinite; }
         .ltc-step-item-2 { animation: ltc-step-hl 9s ease-in-out infinite; animation-delay: 3s; }
@@ -298,7 +298,7 @@ export const LogoToCard = () => {
           33%,100%{ opacity: .35; }
         }
         .ltc-step-text strong { font-size: 15px; font-weight: 800; display: block; margin-bottom: 3px; }
-        .ltc-step-text span   { font-size: 13px; color: #6b7082; }
+        .ltc-step-text span   { font-size: 13px; color: hsl(215, 20%, 45%); }
         .ltc-cta {
           display: inline-flex; align-items: center; gap: 8px;
           padding: 14px 32px; border-radius: 50px;
