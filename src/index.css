@@ -200,4 +200,229 @@
   .text-active {
     @apply text-green-600;
   }
+
+  /* ── Landing Page (Roaait-inspired) ── */
+  .lp-section {
+    @apply py-24;
+  }
+  .lp-tag {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    background: #eef0f8;
+    color: #5a68b0;
+    border: 1px solid #d4d9ef;
+    margin-bottom: 14px;
+  }
+  .lp-title {
+    font-size: clamp(26px, 3.8vw, 44px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .lp-sub {
+    font-size: 17px;
+    color: #6b7082;
+    max-width: 540px;
+    margin: 0 auto 52px;
+    line-height: 1.7;
+  }
+  .lp-card {
+    background: white;
+    border-radius: 22px;
+    border: 1.5px solid #d4d9ef;
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .lp-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 48px rgba(124,136,196,.26);
+  }
+  .lp-card-visual {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .lp-card-body {
+    padding: 24px 24px 28px;
+  }
+  .lp-card-body h3 {
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 9px;
+  }
+  .lp-card-body p {
+    font-size: 14px;
+    color: #6b7082;
+    line-height: 1.6;
+  }
+  .lp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all .2s ease;
+  }
+  .lp-btn-primary {
+    background: #7c88c4;
+    color: white;
+    box-shadow: 0 4px 18px rgba(124,136,196,.4);
+  }
+  .lp-btn-primary:hover {
+    background: #5a68b0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(124,136,196,.5);
+  }
+  .lp-btn-outline {
+    background: transparent;
+    color: #7c88c4;
+    border: 1.5px solid #A6AFD8;
+  }
+  .lp-btn-outline:hover {
+    background: #eef0f8;
+    transform: translateY(-2px);
+  }
+  .lp-step {
+    background: white;
+    border: 1.5px solid #d4d9ef;
+    border-radius: 22px;
+    padding: 34px 28px;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .lp-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px rgba(124,136,196,.26);
+  }
+  .lp-step-n {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c88c4, #5a68b0);
+    color: white;
+    font-weight: 900;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .lp-step h3 {
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 9px;
+  }
+  .lp-step p {
+    font-size: 14px;
+    color: #6b7082;
+    line-height: 1.65;
+  }
+
+  /* plan / pricing */
+  .lp-plan {
+    background: white;
+    border: 1.5px solid #d4d9ef;
+    border-radius: 22px;
+    padding: 34px 28px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .lp-plan:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px rgba(124,136,196,.26);
+  }
+  .lp-plan.pop {
+    border-color: #7c88c4;
+    background: linear-gradient(170deg, #eef0f8 0%, white 60%);
+    box-shadow: 0 12px 48px rgba(124,136,196,.26);
+    transform: scale(1.035);
+  }
+  .lp-plan.pop:hover {
+    transform: scale(1.035) translateY(-4px);
+  }
+  .lp-pop-badge {
+    position: absolute;
+    top: -13px;
+    right: 28px;
+    background: #7c88c4;
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 16px;
+    border-radius: 50px;
+  }
+  .lp-plan .tier {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6b7082;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .lp-plan .price {
+    font-size: 50px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .lp-plan .cur {
+    font-size: 18px;
+    font-weight: 700;
+    color: #6b7082;
+    vertical-align: super;
+  }
+  .lp-plan .period {
+    font-size: 12px;
+    color: #6b7082;
+    margin: 4px 0 16px;
+  }
+  .lp-plan .desc {
+    font-size: 14px;
+    color: #6b7082;
+    margin-bottom: 22px;
+    line-height: 1.5;
+  }
+  .lp-plan hr {
+    border: none;
+    border-top: 1px solid #f2f3f8;
+    margin-bottom: 20px;
+  }
+  .lp-plan ul {
+    list-style: none;
+    margin-bottom: 28px;
+    flex: 1;
+  }
+  .lp-plan ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid #f2f3f8;
+  }
+  .lp-plan ul li:last-child { border: none; }
+  .lp-ck {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: #eef0f8;
+    color: #7c88c4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
 }

@@ -1,15 +1,34 @@
-import { Card } from "@/components/ui/card";
+import { Smartphone, Watch, QrCode, Zap, Users, Bell } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useDirection } from "@/hooks/useDirection";
 import { getSiteContent } from "@/lib/siteContentStorage";
 import { useMemo } from "react";
 
+const iconMap: Record<string, any> = {
+  mobileCompatible: Smartphone,
+  realTimeUpdates: Watch,
+  easySetup: Zap,
+  varietyCards: QrCode,
+  analytics: Users,
+  notifications: Bell,
+};
+
+const visualBgColors = [
+  "from-[#eef0f8] to-[#dde1f2]",
+  "from-[#edf5ee] to-[#d5edda]",
+  "from-[#fdf3ea] to-[#f5e6d8]",
+  "from-[#e8eefb] to-[#d0ddf5]",
+  "from-[#f5edf8] to-[#e8d5f0]",
+  "from-[#fef3e2] to-[#fae4c8]",
+];
+
 const getFeatures = (t: any, featuresContent: any) => {
   return featuresContent.items.map((item: any) => ({
+    icon: iconMap[item.key] || Smartphone,
     title: item.title,
     description: item.description,
-    image: item.image
+    key: item.key,
   }));
 };
 
@@ -17,7 +36,6 @@ export const Features = () => {
   const { t } = useTranslation();
   const { language } = useDirection();
   
-  // Get content from localStorage or fallback to translations
   const featuresContent = useMemo(() => {
     try {
       const content = getSiteContent(language as 'ar' | 'en');
@@ -40,15 +58,15 @@ export const Features = () => {
   const features = getFeatures(t, featuresContent);
   
   return (
-    <section id="features" className="section-padding bg-muted/30">
-      <div className="container-custom">
+    <section id="features" className="lp-section bg-[#f2f3f8]">
+      <div className="container mx-auto max-w-[1120px] px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            {featuresContent.title}
-          </h2>
+          <span className="lp-tag">{t('features.badge') || 'Features'}</span>
+          <h2 className="lp-title">{featuresContent.title}</h2>
+          <p className="lp-sub">{t('features.subtitle') || ''}</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -56,23 +74,15 @@ export const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="lp-card"
             >
-              <Card 
-                className="overflow-hidden hover:shadow-lg transition-all duration-300 border-2 h-full flex flex-col"
-              >
-                <div className="relative w-full h-48 bg-muted/20 flex items-center justify-center p-4">
-                  <img 
-                    src={feature.image} 
-                    alt={feature.title}
-                    className="w-full h-full object-contain"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed flex-1">{feature.description}</p>
-                </div>
-              </Card>
+              <div className={`lp-card-visual bg-gradient-to-br ${visualBgColors[index % visualBgColors.length]}`}>
+                <feature.icon className="w-16 h-16 text-[#7c88c4] opacity-80" />
+              </div>
+              <div className="lp-card-body">
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </div>
             </motion.div>
           ))}
         </div>

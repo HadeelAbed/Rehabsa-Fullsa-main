@@ -1,16 +1,28 @@
-import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useDirection } from "@/hooks/useDirection";
 import { getSiteContent } from "@/lib/siteContentStorage";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
+
+const cardImages = [
+  "https://loyapro.com/assets/guest/images/card-mockup-1.png",
+  "https://loyapro.com/assets/guest/images/card-mockup-2.png",
+  "https://loyapro.com/assets/guest/images/card-mockup-3.png",
+];
 
 export const Hero = () => {
   const { t, i18n } = useTranslation();
   const { language } = useDirection();
-  
-  // Get content from localStorage or fallback to translations
+  const [cardIndex, setCardIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCardIndex((prev) => (prev + 1) % cardImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
   const heroContent = useMemo(() => {
     try {
       const content = getSiteContent(language as 'ar' | 'en');
@@ -24,60 +36,153 @@ export const Hero = () => {
       };
     }
   }, [language, t]);
-  
+
   return (
-    <section className="pt-32 pb-20 md:pt-40 md:pb-32 gradient-bg relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-      
-      <div className="container-custom relative">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 inline-block"
-          >
-            <Button variant="outline" className="rounded-full">
-              {heroContent.requestDemo}
-            </Button>
-          </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
-          >
-            {heroContent.title}
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
-          >
-            {heroContent.subtitle}
-          </motion.p>
-          
+    <section id="hero" className="relative overflow-hidden min-h-screen flex items-center" style={{ background: '#dde1f2' }}>
+      {/* Floating orbs */}
+      <div className="orb orb1"></div>
+      <div className="orb orb2"></div>
+      <div className="orb orb3"></div>
+      <div className="orb orb4"></div>
+
+      {/* Gradient glow */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: `
+          radial-gradient(ellipse 70% 80% at 15% 50%, rgba(124,136,196,.28) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 60% at 85% 20%, rgba(166,175,216,.22) 0%, transparent 55%),
+          radial-gradient(ellipse 40% 40% at 60% 90%, rgba(90,104,176,.15) 0%, transparent 55%)
+        `
+      }}></div>
+
+      <div className="container mx-auto max-w-[1120px] px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          {/* Left: Visual */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex justify-center"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center"
           >
-            <Button 
-              size="lg" 
-              className="btn-primary rounded-full px-8 py-6 text-lg"
-            >
-              {heroContent.cta}
-              <ArrowLeft className="mr-2 h-5 w-5" />
-            </Button>
+            <div className="relative" style={{ width: 280, height: 420 }}>
+              {cardImages.map((img, idx) => (
+                <div
+                  key={idx}
+                  className="absolute inset-0 flex items-center justify-center transition-all duration-500"
+                  style={{
+                    opacity: cardIndex === idx ? 1 : 0,
+                    transform: cardIndex === idx ? 'none' : 'translateY(14px) scale(.96)',
+                    pointerEvents: cardIndex === idx ? 'auto' : 'none',
+                  }}
+                >
+                  <img
+                    src={img}
+                    alt=""
+                    className="w-[230px] h-auto rounded-[22px] shadow-[0_24px_64px_rgba(0,0,0,.4),0_4px_16px_rgba(0,0,0,.2)]"
+                  />
+                </div>
+              ))}
+            </div>
+            {/* Dots */}
+            <div className="flex gap-[7px] mt-5">
+              {cardImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCardIndex(idx)}
+                  className="w-[7px] h-[7px] rounded-full transition-all border-none p-0"
+                  style={{
+                    background: cardIndex === idx ? 'white' : 'rgba(255,255,255,.25)',
+                    transform: cardIndex === idx ? 'scale(1.35)' : 'scale(1)',
+                  }}
+                />
+              ))}
+            </div>
+            {/* Platform badges */}
+            <div className="flex items-center justify-center gap-2.5 mt-4 flex-wrap">
+              <span className="text-xs font-semibold" style={{ color: '#6b7082' }}>منصة الولاء الرقمي</span>
+              <div className="flex gap-2">
+                <span className="bg-white border border-[#d4d9ef] rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-[0_2px_8px_rgba(124,136,196,.12)]" style={{ color: '#3d4257' }}>SAAS</span>
+                <span className="bg-white border border-[#d4d9ef] rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-[0_2px_8px_rgba(124,136,196,.12)]" style={{ color: '#3d4257' }}>AI</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right: Text */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="inline-flex items-center gap-2 bg-[rgba(124,136,196,.12)] border border-[rgba(124,136,196,.3)] px-4 py-1.5 rounded-full text-sm font-bold mb-5" style={{ color: '#5a68b0' }}>
+              <span className="w-[7px] h-[7px] rounded-full" style={{ background: '#5a68b0', animation: 'blink 2s infinite' }}></span>
+              {heroContent.requestDemo}
+            </div>
+            <h1 className="text-[clamp(26px,3.6vw,46px)] font-black leading-[1.15] mb-4">
+              {heroContent.title}
+            </h1>
+            <p className="text-[17px] leading-relaxed mb-8 max-w-[460px]" style={{ color: '#3d4257' }}>
+              {heroContent.subtitle}
+            </p>
+            <div className="flex flex-wrap gap-3 mb-8">
+              <button className="lp-btn lp-btn-primary text-base">
+                {heroContent.cta}
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+              <button className="lp-btn lp-btn-outline text-base">
+                {t('hero.learnMore') || 'اعرف المزيد'}
+              </button>
+            </div>
+            <div className="flex flex-wrap gap-2.5">
+              {['بدون تطبيق', 'نقاط ولاء', 'تقارير ذكية'].map((pill, i) => (
+                <span key={i} className="flex items-center gap-1.5 text-sm" style={{ color: '#6b7082' }}>
+                  <svg className="w-4 h-4 flex-shrink-0" style={{ color: '#5a68b0' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                  {pill}
+                </span>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+        .orb {
+          position: absolute;
+          border-radius: 50%;
+          pointer-events: none;
+          animation: float 6s ease-in-out infinite;
+        }
+        .orb1 {
+          width: 90px; height: 90px;
+          background: radial-gradient(circle at 35% 35%, #b0bcee, #7c88c4);
+          top: 12%; left: 6%;
+          box-shadow: 0 12px 40px rgba(124,136,196,.35);
+          opacity: .7;
+        }
+        .orb2 {
+          width: 56px; height: 56px;
+          background: radial-gradient(circle at 35% 35%, #c8cfe8, #8592cc);
+          top: 68%; left: 36%;
+          animation-delay: -2s;
+          box-shadow: 0 8px 24px rgba(124,136,196,.3);
+          opacity: .65;
+        }
+        .orb3 {
+          width: 40px; height: 40px;
+          background: radial-gradient(circle at 35% 35%, #9aa5d8, #6b77c4);
+          top: 28%; right: 4%;
+          animation-delay: -4s;
+          box-shadow: 0 6px 18px rgba(124,136,196,.3);
+          opacity: .6;
+        }
+        .orb4 {
+          width: 24px; height: 24px;
+          background: radial-gradient(circle at 35% 35%, #a6afD8, #7c88c4);
+          bottom: 22%; left: 10%;
+          animation-delay: -1s;
+          opacity: .55;
+        }
+      `}</style>
     </section>
   );
 };

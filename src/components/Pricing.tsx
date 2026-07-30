@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullseye, faRocket, faStar } from "@fortawesome/free-solid-svg-icons";
@@ -87,18 +85,15 @@ export const Pricing = () => {
   const plans = getPlans(t);
 
   return (
-    <section id="pricing" className="section-padding bg-muted/30">
-      <div className="container-custom">
+    <section id="pricing" className="lp-section bg-[#f2f3f8]">
+      <div className="container mx-auto max-w-[1120px] px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            {t("pricing.title")}
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t("pricing.subtitle")}
-          </p>
+          <span className="lp-tag">{t("pricing.badge") || 'Pricing'}</span>
+          <h2 className="lp-title">{t("pricing.title")}</h2>
+          <p className="lp-sub">{t("pricing.subtitle")}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -106,83 +101,53 @@ export const Pricing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`lp-plan ${plan.featured ? 'pop' : ''}`}
             >
-              <Card
-                className={`relative h-full p-6 md:p-7 hover:shadow-2xl transition-all duration-300 ${
-                  plan.featured ? "border-4 border-primary" : "border-2"
-                }`}
-              >
-                {plan.featured && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-primary-foreground px-5 py-2 rounded-full text-xs md:text-sm font-bold">
-                    {t("pricing.mostPopular")}
-                  </div>
-                )}
+              {plan.featured && (
+                <div className="lp-pop-badge">{t("pricing.mostPopular")}</div>
+              )}
 
-                <div className="text-center mb-6">
-                  <div className="mb-4 flex justify-center">
-                    <FontAwesomeIcon icon={plan.icon} className="text-4xl text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                  <div className="text-3xl font-bold mb-1">{plan.price}</div>
-                  {plan.period && (
-                    <div className="text-muted-foreground text-sm">/{plan.period}</div>
-                  )}
+              <div className="tier">{plan.name}</div>
+              <div className="price">
+                <span className="cur">SAR </span>{plan.price}
+              </div>
+              {plan.period && <div className="period">/{plan.period}</div>}
+
+              <hr />
+              <ul>
+                {plan.features.map((feature, idx) => (
+                  <li key={idx}>
+                    <span className="lp-ck">✓</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              {plan.extras && (
+                <div className="mb-6 rounded-xl border border-[#7c88c4]/20 bg-[#7c88c4]/5 p-4 text-sm">
+                  <h4 className="font-semibold mb-3" style={{ color: '#7c88c4' }}>{plan.extras.title}</h4>
+                  <ul className="space-y-2">
+                    {plan.extras.items.map((item, extrasIdx) => (
+                      <li key={extrasIdx} className="flex items-start gap-2 text-sm" style={{ color: '#3d4257' }}>
+                        <span className="lp-ck shrink-0 mt-0.5">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+              )}
 
-                <ul className="space-y-3 mb-6">
-                  {plan.features.map((feature, idx) => (
-                    <li
-                      key={idx}
-                      className={`text-sm leading-relaxed ${
-                        isRTL ? "text-left" : "text-right"
-                      }`}
-                    >
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                {plan.extras && (
-                  <div
-                    className={`mb-6 rounded-xl border border-primary/20 bg-primary/5 p-4 ${
-                      isRTL ? "text-left" : "text-right"
-                    }`}
-                  >
-                    <h4 className="text-sm font-semibold text-primary mb-3">
-                      {plan.extras.title}
-                    </h4>
-                    <ul className="space-y-2">
-                      {plan.extras.items.map((item, extrasIdx) => (
-                        <li
-                          key={extrasIdx}
-                          className={`text-sm leading-relaxed ${
-                            isRTL ? "text-left" : "text-right"
-                          }`}
-                        >
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {plan.price === t("pricing.premium.price") ? (
-                  <Button className="w-full rounded-full py-4 btn-primary" asChild>
-                    <Link to="/contact">{t("pricing.contactUs")}</Link>
-                  </Button>
-                ) : (
-                  <Button
-                    className={`w-full rounded-full py-4 ${
-                      plan.featured
-                        ? "bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground"
-                        : "btn-primary"
-                    }`}
-                    asChild
-                  >
-                    <Link to={`/subscribe/${plan.id}`}>{t("pricing.getStarted")}</Link>
-                  </Button>
-                )}
-              </Card>
+              {plan.price === t("pricing.premium.price") ? (
+                <button className="lp-btn lp-btn-primary w-full justify-center mt-auto">
+                  <Link to="/contact" className="text-white no-underline">{t("pricing.contactUs")}</Link>
+                </button>
+              ) : (
+                <button className={`lp-btn w-full justify-center mt-auto ${plan.featured ? 'lp-btn-primary' : 'lp-btn-outline'}`}>
+                  <Link to={`/subscribe/${plan.id}`} className={`no-underline ${plan.featured ? 'text-white' : ''}`}>
+                    {t("pricing.getStarted")}
+                  </Link>
+                </button>
+              )}
             </motion.div>
           ))}
         </div>

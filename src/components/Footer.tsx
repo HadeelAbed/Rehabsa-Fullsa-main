@@ -23,8 +23,16 @@ export const Footer = () => {
   const { getLogo } = useTheme();
   
   return (
-    <footer className="section-padding text-white" style={{ backgroundColor: '#447595' }}>
-      <div className="container-custom">
+    <footer style={{ background: 'linear-gradient(135deg, #1a1d35 0%, #2a3068 50%, #1a1d35 100%)' }} className="py-24 text-white relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: `
+          radial-gradient(ellipse 55% 70% at 80% 50%, rgba(124,136,196,.18) 0%, transparent 60%),
+          radial-gradient(ellipse 35% 50% at 15% 30%, rgba(90,104,176,.14) 0%, transparent 55%)
+        `
+      }}></div>
+
+      <div className="container mx-auto max-w-[1120px] px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Logo & Description */}
           <div className="md:col-span-2">
@@ -42,7 +50,7 @@ export const Footer = () => {
               {t('footer.description')}
             </p>
             <Button 
-              className="bg-white text-[#447595] hover:bg-white/90 rounded-full px-8 py-3 text-lg font-semibold shadow-lg"
+              className="bg-white text-[#2a3068] hover:bg-white/90 rounded-full px-8 py-3 text-lg font-semibold shadow-lg"
             >
               {t('hero.requestDemo')}
             </Button>
@@ -86,7 +94,7 @@ export const Footer = () => {
               <li>
                 <a href="#features" className="text-white/70 hover:text-white transition-colors flex items-center gap-2 group">
                   <FontAwesomeIcon icon={faBullseye} className="w-4 h-4 group-hover:text-white" />
-                  {t('navigation.products')}
+                  {t('navigation.features')}
                 </a>
               </li>
               <li>
@@ -96,9 +104,9 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-white/70 hover:text-white transition-colors flex items-center gap-2 group">
+                <a href="#how-it-works" className="text-white/70 hover:text-white transition-colors flex items-center gap-2 group">
                   <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 group-hover:text-white" />
-                  {t('navigation.news')}
+                  {t('navigation.howItWorks')}
                 </a>
               </li>
               <li>

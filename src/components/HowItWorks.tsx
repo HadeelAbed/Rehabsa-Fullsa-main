@@ -8,7 +8,6 @@ export const HowItWorks = () => {
   const { t } = useTranslation();
   const { language } = useDirection();
   
-  // Get content from localStorage or fallback to translations
   const howItWorksContent = useMemo(() => {
     try {
       const content = getSiteContent(language as 'ar' | 'en');
@@ -30,51 +29,29 @@ export const HowItWorks = () => {
   const steps = howItWorksContent.steps;
   
   return (
-    <section id="how-it-works" className="py-20 px-4 bg-secondary/30">
-      <div className="container mx-auto">
+    <section id="how-it-works" className="lp-section bg-[#f2f3f8]">
+      <div className="container mx-auto max-w-[1120px] px-6">
         <div className="text-center mb-16">
-          <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-4">
-            {howItWorksContent.subtitle}
-          </p>
-          <h2 className="text-4xl lg:text-5xl font-bold">{howItWorksContent.title}</h2>
+          <span className="lp-tag">{howItWorksContent.subtitle}</span>
+          <h2 className="lp-title">{howItWorksContent.title}</h2>
+          <p className="lp-sub">{t('howItWorks.description') || ''}</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            {steps.map((step, index) => (
-              <motion.div 
-                key={index} 
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex gap-6 items-start"
-              >
-                 <div className="flex-shrink-0">
-                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg">
-                     <span className="text-white font-bold text-lg">
-                       {step.number}
-                     </span>
-                   </div>
-                 </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <div className="relative">
-            <motion.img
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[22px]">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              src="https://loyapro.com/assets/guest/images/hand-holding-phone-with-qr-1.png"
-              alt={howItWorksContent.imageAlt}
-              className="w-full h-auto"
-            />
-          </div>
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="lp-step"
+            >
+              <div className="lp-step-n">{step.number}</div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
