@@ -30,7 +30,7 @@ export const HowItWorks = () => {
   const steps = howItWorksContent.steps;
   
   return (
-    <section className="py-20 px-4 bg-secondary/30">
+    <section id="how-it-works" className="py-20 px-4 bg-secondary/30">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-4">

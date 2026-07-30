@@ -55,7 +55,7 @@ export const Header = () => {
             onClick={() => handleSectionNavigation('features')} 
             className="text-foreground hover:text-primary transition-colors"
           >
-            {t('navigation.products')}
+            {t('navigation.features')}
           </button>
           <button 
             onClick={() => handleSectionNavigation('pricing')} 
@@ -63,9 +63,12 @@ export const Header = () => {
           >
             {t('navigation.pricing')}
           </button>
-          <Link to="/blog" className="text-foreground hover:text-primary transition-colors">
-            {t('navigation.blog')}
-          </Link>
+          <button 
+            onClick={() => handleSectionNavigation('how-it-works')} 
+            className="text-foreground hover:text-primary transition-colors"
+          >
+            {t('navigation.howItWorks')}
+          </button>
           <Link to="/about" className="text-foreground hover:text-primary transition-colors">
             {t('navigation.about')}
           </Link>
@@ -101,7 +104,7 @@ export const Header = () => {
               onClick={() => handleSectionNavigation('features')} 
               className="py-2 text-foreground hover:text-primary transition-colors text-left"
             >
-              {t('navigation.products')}
+              {t('navigation.features')}
             </button>
             <button 
               onClick={() => handleSectionNavigation('pricing')} 
@@ -109,9 +112,12 @@ export const Header = () => {
             >
               {t('navigation.pricing')}
             </button>
-            <Link to="/blog" className="py-2 text-foreground hover:text-primary transition-colors">
-              {t('navigation.blog')}
-            </Link>
+            <button 
+              onClick={() => handleSectionNavigation('how-it-works')} 
+              className="py-2 text-foreground hover:text-primary transition-colors text-left"
+            >
+              {t('navigation.howItWorks')}
+            </button>
             <Link to="/about" className="py-2 text-foreground hover:text-primary transition-colors">
               {t('navigation.about')}
             </Link>
