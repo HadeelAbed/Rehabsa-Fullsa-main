@@ -52,7 +52,7 @@ export const Header = () => {
         backdropFilter: 'blur(20px)',
         border: '1px solid rgba(0,206,194,.2)',
         borderRadius: '16px',
-        padding: '8px 60px',
+        padding: '8px 80px',
       }}
     >
       <div className="flex items-center gap-2.5 whitespace-nowrap">
