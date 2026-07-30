@@ -68,8 +68,7 @@ export const Header = () => {
               <Link
                 key={link.key}
                 to={link.to!}
-                className="nav-link text-sm font-medium px-3 py-1.5 rounded-full transition-colors hover:bg-[#eef0f8] no-underline"
-                style={{ color: '#3d4257' }}
+                className="text-sm font-medium px-3 py-1.5 rounded-full transition-colors hover:bg-muted no-underline text-foreground"
               >
                 {t(`navigation.${link.key}`)}
               </Link>
@@ -77,8 +76,7 @@ export const Header = () => {
               <button
                 key={link.key}
                 onClick={() => handleSectionNavigation(link.section!)}
-                className="nav-link text-sm font-medium px-3 py-1.5 rounded-full transition-colors hover:bg-[#eef0f8] border-none cursor-pointer"
-                style={{ color: '#3d4257' }}
+                className="text-sm font-medium px-3 py-1.5 rounded-full transition-colors hover:bg-muted border-none cursor-pointer text-foreground"
               >
                 {t(`navigation.${link.key}`)}
               </button>

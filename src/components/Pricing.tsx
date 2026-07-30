@@ -124,8 +124,8 @@ export const Pricing = () => {
               </ul>
 
               {plan.extras && (
-                <div className="mb-6 rounded-xl border border-[#7c88c4]/20 bg-[#7c88c4]/5 p-4 text-sm">
-                  <h4 className="font-semibold mb-3" style={{ color: '#7c88c4' }}>{plan.extras.title}</h4>
+                <div className="mb-6 rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm">
+                  <h4 className="font-semibold mb-3 text-primary">{plan.extras.title}</h4>
                   <ul className="space-y-2">
                     {plan.extras.items.map((item, extrasIdx) => (
                       <li key={extrasIdx} className="flex items-start gap-2 text-sm" style={{ color: '#3d4257' }}>

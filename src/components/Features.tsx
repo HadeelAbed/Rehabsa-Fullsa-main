@@ -77,7 +77,7 @@ export const Features = () => {
               className="lp-card"
             >
               <div className={`lp-card-visual bg-gradient-to-br ${visualBgColors[index % visualBgColors.length]}`}>
-                <feature.icon className="w-16 h-16 text-[#7c88c4] opacity-80" />
+                <feature.icon className="w-16 h-16 text-primary opacity-80" />
               </div>
               <div className="lp-card-body">
                 <h3>{feature.title}</h3>

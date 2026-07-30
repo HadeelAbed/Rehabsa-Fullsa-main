@@ -38,7 +38,7 @@ export const Hero = () => {
   }, [language, t]);
 
   return (
-    <section id="hero" className="relative overflow-hidden min-h-screen flex items-center" style={{ background: '#dde1f2' }}>
+    <section className="relative overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10">
       {/* Floating orbs */}
       <div className="orb orb1"></div>
       <div className="orb orb2"></div>
@@ -48,13 +48,13 @@ export const Hero = () => {
       {/* Gradient glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: `
-          radial-gradient(ellipse 70% 80% at 15% 50%, rgba(124,136,196,.28) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 60% at 85% 20%, rgba(166,175,216,.22) 0%, transparent 55%),
-          radial-gradient(ellipse 40% 40% at 60% 90%, rgba(90,104,176,.15) 0%, transparent 55%)
+          radial-gradient(ellipse 70% 80% at 15% 50%, rgba(0,206,194,.15) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 60% at 85% 20%, rgba(68,117,150,.12) 0%, transparent 55%),
+          radial-gradient(ellipse 40% 40% at 60% 90%, rgba(0,206,194,.08) 0%, transparent 55%)
         `
       }}></div>
 
-      <div className="container mx-auto max-w-[1120px] px-6 relative z-10">
+      <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           {/* Left: Visual */}
           <motion.div
@@ -98,10 +98,10 @@ export const Hero = () => {
             </div>
             {/* Platform badges */}
             <div className="flex items-center justify-center gap-2.5 mt-4 flex-wrap">
-              <span className="text-xs font-semibold" style={{ color: '#6b7082' }}>منصة الولاء الرقمي</span>
+              <span className="text-xs font-semibold text-muted-foreground">منصة الولاء الرقمي</span>
               <div className="flex gap-2">
-                <span className="bg-white border border-[#d4d9ef] rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-[0_2px_8px_rgba(124,136,196,.12)]" style={{ color: '#3d4257' }}>SAAS</span>
-                <span className="bg-white border border-[#d4d9ef] rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-[0_2px_8px_rgba(124,136,196,.12)]" style={{ color: '#3d4257' }}>AI</span>
+                <span className="bg-white border border-border rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-sm text-muted-foreground">SAAS</span>
+                <span className="bg-white border border-border rounded-lg px-3 py-1 text-[11px] font-extrabold shadow-sm text-muted-foreground">AI</span>
               </div>
             </div>
           </motion.div>
@@ -112,14 +112,14 @@ export const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="inline-flex items-center gap-2 bg-[rgba(124,136,196,.12)] border border-[rgba(124,136,196,.3)] px-4 py-1.5 rounded-full text-sm font-bold mb-5" style={{ color: '#5a68b0' }}>
-              <span className="w-[7px] h-[7px] rounded-full" style={{ background: '#5a68b0', animation: 'blink 2s infinite' }}></span>
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 px-4 py-1.5 rounded-full text-sm font-bold mb-5 text-secondary">
+              <span className="w-[7px] h-[7px] rounded-full bg-secondary" style={{ animation: 'blink 2s infinite' }}></span>
               {heroContent.requestDemo}
             </div>
             <h1 className="text-[clamp(26px,3.6vw,46px)] font-black leading-[1.15] mb-4">
               {heroContent.title}
             </h1>
-            <p className="text-[17px] leading-relaxed mb-8 max-w-[460px]" style={{ color: '#3d4257' }}>
+            <p className="text-[17px] leading-relaxed mb-8 max-w-[460px] text-muted-foreground">
               {heroContent.subtitle}
             </p>
             <div className="flex flex-wrap gap-3 mb-8">
@@ -133,8 +133,8 @@ export const Hero = () => {
             </div>
             <div className="flex flex-wrap gap-2.5">
               {['بدون تطبيق', 'نقاط ولاء', 'تقارير ذكية'].map((pill, i) => (
-                <span key={i} className="flex items-center gap-1.5 text-sm" style={{ color: '#6b7082' }}>
-                  <svg className="w-4 h-4 flex-shrink-0" style={{ color: '#5a68b0' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                <span key={i} className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                  <svg className="w-4 h-4 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                   {pill}
                 </span>
               ))}
@@ -154,30 +154,30 @@ export const Hero = () => {
         }
         .orb1 {
           width: 90px; height: 90px;
-          background: radial-gradient(circle at 35% 35%, #b0bcee, #7c88c4);
+          background: radial-gradient(circle at 35% 35%, #66DBD0, #00CEC2);
           top: 12%; left: 6%;
-          box-shadow: 0 12px 40px rgba(124,136,196,.35);
+          box-shadow: 0 12px 40px rgba(0,206,194,.35);
           opacity: .7;
         }
         .orb2 {
           width: 56px; height: 56px;
-          background: radial-gradient(circle at 35% 35%, #c8cfe8, #8592cc);
+          background: radial-gradient(circle at 35% 35%, #8FC7D8, #447596);
           top: 68%; left: 36%;
           animation-delay: -2s;
-          box-shadow: 0 8px 24px rgba(124,136,196,.3);
+          box-shadow: 0 8px 24px rgba(68,117,150,.3);
           opacity: .65;
         }
         .orb3 {
           width: 40px; height: 40px;
-          background: radial-gradient(circle at 35% 35%, #9aa5d8, #6b77c4);
+          background: radial-gradient(circle at 35% 35%, #66DBD0, #00CEC2);
           top: 28%; right: 4%;
           animation-delay: -4s;
-          box-shadow: 0 6px 18px rgba(124,136,196,.3);
+          box-shadow: 0 6px 18px rgba(0,206,194,.3);
           opacity: .6;
         }
         .orb4 {
           width: 24px; height: 24px;
-          background: radial-gradient(circle at 35% 35%, #a6afD8, #7c88c4);
+          background: radial-gradient(circle at 35% 35%, #8FC7D8, #447596);
           bottom: 22%; left: 10%;
           animation-delay: -1s;
           opacity: .55;

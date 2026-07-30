@@ -201,7 +201,7 @@
     @apply text-green-600;
   }
 
-  /* ── Landing Page (Roaait-inspired) ── */
+  /* ── Landing Page (original theme) ── */
   .lp-section {
     @apply py-24;
   }
@@ -211,9 +211,9 @@
     border-radius: 50px;
     font-size: 13px;
     font-weight: 700;
-    background: #eef0f8;
-    color: #5a68b0;
-    border: 1px solid #d4d9ef;
+    background: hsl(215, 20%, 95%);
+    color: hsl(210, 35%, 45%);
+    border: 1px solid hsl(215, 20%, 85%);
     margin-bottom: 14px;
   }
   .lp-title {
@@ -224,7 +224,7 @@
   }
   .lp-sub {
     font-size: 17px;
-    color: #6b7082;
+    color: hsl(215, 20%, 45%);
     max-width: 540px;
     margin: 0 auto 52px;
     line-height: 1.7;
@@ -232,13 +232,13 @@
   .lp-card {
     background: white;
     border-radius: 22px;
-    border: 1.5px solid #d4d9ef;
+    border: 1.5px solid hsl(215, 20%, 85%);
     overflow: hidden;
     transition: transform .3s, box-shadow .3s;
   }
   .lp-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 48px rgba(124,136,196,.26);
+    box-shadow: 0 12px 48px rgba(0,206,194,.18);
   }
   .lp-card-visual {
     height: 220px;
@@ -258,7 +258,7 @@
   }
   .lp-card-body p {
     font-size: 14px;
-    color: #6b7082;
+    color: hsl(215, 20%, 45%);
     line-height: 1.6;
   }
   .lp-btn {
@@ -275,40 +275,40 @@
     transition: all .2s ease;
   }
   .lp-btn-primary {
-    background: #7c88c4;
+    background: #00CEC2;
     color: white;
-    box-shadow: 0 4px 18px rgba(124,136,196,.4);
+    box-shadow: 0 4px 18px rgba(0,206,194,.4);
   }
   .lp-btn-primary:hover {
-    background: #5a68b0;
+    background: #00B8AD;
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(124,136,196,.5);
+    box-shadow: 0 8px 28px rgba(0,206,194,.5);
   }
   .lp-btn-outline {
     background: transparent;
-    color: #7c88c4;
-    border: 1.5px solid #A6AFD8;
+    color: #00CEC2;
+    border: 1.5px solid #8CE4DE;
   }
   .lp-btn-outline:hover {
-    background: #eef0f8;
+    background: hsl(215, 20%, 95%);
     transform: translateY(-2px);
   }
   .lp-step {
     background: white;
-    border: 1.5px solid #d4d9ef;
+    border: 1.5px solid hsl(215, 20%, 85%);
     border-radius: 22px;
     padding: 34px 28px;
     transition: transform .3s, box-shadow .3s;
   }
   .lp-step:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 48px rgba(124,136,196,.26);
+    box-shadow: 0 12px 48px rgba(0,206,194,.18);
   }
   .lp-step-n {
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #7c88c4, #5a68b0);
+    background: linear-gradient(135deg, #00CEC2, #447596);
     color: white;
     font-weight: 900;
     font-size: 20px;
@@ -324,14 +324,14 @@
   }
   .lp-step p {
     font-size: 14px;
-    color: #6b7082;
+    color: hsl(215, 20%, 45%);
     line-height: 1.65;
   }
 
   /* plan / pricing */
   .lp-plan {
     background: white;
-    border: 1.5px solid #d4d9ef;
+    border: 1.5px solid hsl(215, 20%, 85%);
     border-radius: 22px;
     padding: 34px 28px;
     position: relative;
@@ -341,12 +341,12 @@
   }
   .lp-plan:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 48px rgba(124,136,196,.26);
+    box-shadow: 0 12px 48px rgba(0,206,194,.18);
   }
   .lp-plan.pop {
-    border-color: #7c88c4;
-    background: linear-gradient(170deg, #eef0f8 0%, white 60%);
-    box-shadow: 0 12px 48px rgba(124,136,196,.26);
+    border-color: #00CEC2;
+    background: linear-gradient(170deg, hsl(215, 20%, 95%) 0%, white 60%);
+    box-shadow: 0 12px 48px rgba(0,206,194,.18);
     transform: scale(1.035);
   }
   .lp-plan.pop:hover {
@@ -356,7 +356,7 @@
     position: absolute;
     top: -13px;
     right: 28px;
-    background: #7c88c4;
+    background: #00CEC2;
     color: white;
     font-size: 12px;
     font-weight: 800;
@@ -366,7 +366,7 @@
   .lp-plan .tier {
     font-size: 13px;
     font-weight: 700;
-    color: #6b7082;
+    color: hsl(215, 20%, 45%);
     text-transform: uppercase;
     margin-bottom: 10px;
   }
@@ -378,23 +378,23 @@
   .lp-plan .cur {
     font-size: 18px;
     font-weight: 700;
-    color: #6b7082;
+    color: hsl(215, 20%, 45%);
     vertical-align: super;
   }
   .lp-plan .period {
     font-size: 12px;
-    color: #6b7082;
+    color: hsl(215, 20%, 45%);
     margin: 4px 0 16px;
   }
   .lp-plan .desc {
     font-size: 14px;
-    color: #6b7082;
+    color: hsl(215, 20%, 45%);
     margin-bottom: 22px;
     line-height: 1.5;
   }
   .lp-plan hr {
     border: none;
-    border-top: 1px solid #f2f3f8;
+    border-top: 1px solid hsl(215, 20%, 95%);
     margin-bottom: 20px;
   }
   .lp-plan ul {
@@ -408,15 +408,15 @@
     gap: 9px;
     font-size: 14px;
     padding: 6px 0;
-    border-bottom: 1px solid #f2f3f8;
+    border-bottom: 1px solid hsl(215, 20%, 95%);
   }
   .lp-plan ul li:last-child { border: none; }
   .lp-ck {
     width: 19px;
     height: 19px;
     border-radius: 50%;
-    background: #eef0f8;
-    color: #7c88c4;
+    background: hsl(215, 20%, 95%);
+    color: #00CEC2;
     display: inline-flex;
     align-items: center;
     justify-content: center;
