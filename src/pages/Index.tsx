@@ -8,7 +8,6 @@ import { CardTypes } from "@/components/CardTypes";
 import { Industries } from "@/components/Industries";
 import { Benefits } from "@/components/Benefits";
 import { Pricing } from "@/components/Pricing";
-import { CTABanner } from "@/components/CTABanner";
 import { TutorialSection } from "@/components/TutorialSection";
 import { FreeTrial } from "@/components/FreeTrial";
 import { ContactSection } from "@/components/ContactSection";
@@ -27,7 +26,6 @@ const Index = () => {
       <Industries />
       <Benefits />
       <Pricing />
-      <CTABanner />
       <TutorialSection />
       <FreeTrial />
       <ContactSection />
