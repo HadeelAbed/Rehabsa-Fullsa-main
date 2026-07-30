@@ -37,10 +37,10 @@ export const Header = () => {
 
   const navLinks = [
     { key: 'features', section: 'features' },
-    { key: 'howItWorks', section: 'how-it-works' },
     { key: 'pricing', section: 'pricing' },
-    { key: 'about', type: 'link', to: '/about' },
-    { key: 'contact', type: 'link', to: '/contact' },
+    { key: 'tutorial', section: 'tutorial' },
+    { key: 'industries', section: 'industries' },
+    { key: 'contact', section: 'contact' },
   ];
 
   return (

@@ -9,6 +9,7 @@ import { Industries } from "@/components/Industries";
 import { Benefits } from "@/components/Benefits";
 import { Pricing } from "@/components/Pricing";
 import { CTABanner } from "@/components/CTABanner";
+import { TutorialSection } from "@/components/TutorialSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
@@ -26,6 +27,7 @@ const Index = () => {
       <Benefits />
       <Pricing />
       <CTABanner />
+      <TutorialSection />
       <ContactSection />
       <Footer />
     </div>
