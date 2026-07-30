@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
 
-const logos = [
-  "https://loyapro.com/assets/guest/images/logo-1.svg",
-  "https://loyapro.com/assets/guest/images/logo-2.svg",
-  "https://loyapro.com/assets/guest/images/logo-3.svg",
-  "https://loyapro.com/assets/guest/images/logo-4.svg",
-  "https://loyapro.com/assets/guest/images/logo-5.svg",
-  "https://loyapro.com/assets/guest/images/logo-6.svg",
-  "https://loyapro.com/assets/guest/images/logo-7.svg",
-  "https://loyapro.com/assets/guest/images/logo-8.svg",
+const brands = [
+  { name: 'Starbucks', color: '#00704a', textColor: '#fff' },
+  { name: 'McDonald\'s', color: '#da291c', textColor: '#fff' },
+  { name: 'Nike', color: '#111', textColor: '#fff' },
+  { name: 'Adidas', color: '#000', textColor: '#fff' },
+  { name: 'Amazon', color: '#ff9900', textColor: '#000' },
+  { name: 'Google', color: '#4285f4', textColor: '#fff' },
+  { name: 'Zara', color: '#0f0f0f', textColor: '#fff' },
+  { name: 'Uber', color: '#000', textColor: '#fff' },
 ];
 
 export const TrustStrip = () => {
@@ -20,14 +20,24 @@ export const TrustStrip = () => {
         <p className="text-center text-sm font-bold text-muted-foreground mb-5 tracking-wide">
           {t('trustStrip.title') || 'آلاف العلامات التجارية تثق في رؤى'}
         </p>
-        <div className="flex items-center justify-center gap-0 flex-nowrap overflow-x-auto scrollbar-none pb-1">
-          {logos.map((src, i) => (
-            <img
+        <div className="flex items-center justify-center gap-4 flex-wrap">
+          {brands.map((brand, i) => (
+            <div
               key={i}
-              src={src}
-              alt=""
-              className="h-[70px] w-20 flex-shrink-0 object-contain opacity-85 hover:opacity-100 transition-opacity"
-            />
+              className="flex-shrink-0 flex items-center justify-center rounded-xl font-extrabold select-none shadow-sm"
+              style={{
+                height: 44,
+                padding: '0 22px',
+                background: brand.color,
+                color: brand.textColor,
+                fontSize: 15,
+                letterSpacing: '0.3px',
+                opacity: 0.8,
+                border: '1px solid rgba(255,255,255,0.1)',
+              }}
+            >
+              {brand.name}
+            </div>
           ))}
         </div>
       </div>
