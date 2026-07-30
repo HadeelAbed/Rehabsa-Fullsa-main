@@ -1,19 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const useDirection = () => {
   const { i18n } = useTranslation();
 
+  const getLang = useCallback(() => {
+    return i18n.resolvedLanguage || i18n.language || localStorage.getItem('i18nextLng') || 'en';
+  }, [i18n]);
+
   useEffect(() => {
-    // Default to LTR (English) if no language is set
-    const currentLanguage = i18n.language || 'en';
-    const isRTL = currentLanguage === 'ar';
-    
-    // Apply direction and language to document
+    const lang = getLang();
+    const isRTL = lang === 'ar';
+
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-    document.documentElement.lang = currentLanguage;
-    
-    // Add/remove RTL class to body for Tailwind RTL utilities
+    document.documentElement.lang = lang;
+
     if (isRTL) {
       document.body.classList.add('rtl');
       document.body.classList.remove('ltr');
@@ -21,16 +22,16 @@ export const useDirection = () => {
       document.body.classList.add('ltr');
       document.body.classList.remove('rtl');
     }
-    
-    // Set default language to English if not set
-    if (!i18n.language) {
-      i18n.changeLanguage('en');
-    }
-  }, [i18n.language, i18n]);
+  }, [i18n.language, i18n.resolvedLanguage, getLang]);
+
+  const lang = getLang();
 
   return {
-    isRTL: (i18n.language || 'en') === 'ar',
-    language: i18n.language || 'en',
-    changeLanguage: i18n.changeLanguage,
+    isRTL: lang === 'ar',
+    language: lang,
+    changeLanguage: (lng: string) => {
+      localStorage.setItem('i18nextLng', lng);
+      i18n.changeLanguage(lng);
+    },
   };
 };

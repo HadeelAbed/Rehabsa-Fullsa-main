@@ -102,13 +102,13 @@ export function SystemLogsPage() {
 
   const getLevelIcon = (level: string) => {
     const iconConfig = {
-      "INFO": <Info className="h-4 w-4 text-blue-600" />,
-      "WARNING": <AlertTriangle className="h-4 w-4 text-yellow-600" />,
-      "ERROR": <XCircle className="h-4 w-4 text-red-600" />,
-      "SUCCESS": <CheckCircle className="h-4 w-4 text-green-600" />,
+      "INFO": <Info className="h-3 w-3 text-blue-600" />,
+      "WARNING": <AlertTriangle className="h-3 w-3 text-yellow-600" />,
+      "ERROR": <XCircle className="h-3 w-3 text-red-600" />,
+      "SUCCESS": <CheckCircle className="h-3 w-3 text-green-600" />,
     };
     
-    return iconConfig[level as keyof typeof iconConfig] || <Clock className="h-4 w-4 text-gray-600" />;
+    return iconConfig[level as keyof typeof iconConfig] || <Clock className="h-3 w-3 text-gray-600" />;
   };
 
   const getLevelBadge = (level: string) => {
@@ -163,23 +163,23 @@ export function SystemLogsPage() {
   const infoLogs = systemLogs.filter(log => log.level === "INFO").length;
 
   return (
-    <div className={`flex flex-col gap-4 p-4 h-full ${isRTL ? 'font-arabic' : 'font-sans'}`} dir={isRTL ? "rtl" : "ltr"}>
+    <div className={`flex flex-col gap-3 p-3 h-full ${isRTL ? 'font-arabic' : 'font-sans'}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
       <div className={`flex items-center justify-between ${isRTL ? 'flex-row' : 'flex-row'}`}>
-        <h1 className={`text-2xl font-semibold flex items-center gap-2 ${isRTL ? 'text-left' : 'text-right'}`}>
-          <FileText className="h-6 w-6" />
+        <h1 className={`text-base font-semibold flex items-center gap-1.5 ${isRTL ? 'text-left' : 'text-right'}`}>
+          <FileText className="h-4 w-4" />
           {t("admin.systemLogs.title")}
         </h1>
-        <div className="flex items-center gap-2">
-          <Button onClick={handleExport} variant="outline" className={isRTL ? 'text-left' : 'text-right'}>
+        <div className="flex items-center gap-1.5">
+          <Button onClick={handleExport} variant="outline" className="h-7 text-xs px-2">
             <span>{t("admin.systemLogs.export")}</span>
-            <Download className={`h-4 w-4 ${isRTL ? 'mr-2' : 'ml-2'}`} />
+            <Download className="h-3 w-3" />
           </Button>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         <AdminStatsCard
           title={t("admin.systemLogs.totalLogs")}
           value={totalLogs}
@@ -212,35 +212,27 @@ export function SystemLogsPage() {
 
       {/* Filters */}
       <Card>
-        <CardContent className="p-4">
-          <div className={`flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-            <div className="relative flex-1 max-w-sm">
-              <Search className={`absolute top-2.5 ${isRTL ? 'left-2' : 'right-2'} h-4 w-4 text-muted-foreground`} />
+        <CardContent className="p-2">
+          <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+            <div className="relative flex-1 max-w-xs">
+              <Search className={`absolute top-1.5 ${isRTL ? 'left-1.5' : 'right-1.5'} h-3 w-3 text-muted-foreground`} />
               <input
                 type="text"
                 placeholder={t("admin.systemLogs.searchPlaceholder")}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className={`w-full ${isRTL ? 'pl-8 pr-4 text-right' : 'pr-8 pl-4 text-left'} py-2 border border-gray-300 rounded-md`}
+                className={`w-full text-xs ${isRTL ? 'pl-6 pr-2 text-right' : 'pr-6 pl-2 text-left'} py-1 border border-gray-300 rounded-md`}
                 dir={isRTL ? "rtl" : "ltr"}
               />
             </div>
-            <select
-              value={levelFilter}
-              onChange={(e) => setLevelFilter(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-md"
-            >
+            <select value={levelFilter} onChange={(e) => setLevelFilter(e.target.value)} className="h-7 text-xs px-2 border border-gray-300 rounded-md">
               <option value="all">{t("admin.systemLogs.allLevels")}</option>
               <option value="INFO">{t("admin.systemLogs.info")}</option>
               <option value="WARNING">{t("admin.systemLogs.warning")}</option>
               <option value="ERROR">{t("admin.systemLogs.error")}</option>
               <option value="SUCCESS">{t("admin.systemLogs.success")}</option>
             </select>
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-md"
-            >
+            <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} className="h-7 text-xs px-2 border border-gray-300 rounded-md">
               <option value="all">{t("admin.systemLogs.allCategories")}</option>
               <option value="Authentication">{t("admin.systemLogs.authentication")}</option>
               <option value="Payment">{t("admin.systemLogs.payment")}</option>
@@ -259,65 +251,45 @@ export function SystemLogsPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className={isRTL ? "text-left" : "text-right"}>
-                  {t("admin.systemLogs.timestamp")}
-                </TableHead>
-                <TableHead className={isRTL ? "text-left" : "text-right"}>
-                  {t("admin.systemLogs.level")}
-                </TableHead>
-                <TableHead className={isRTL ? "text-left" : "text-right"}>
-                  {t("admin.systemLogs.category")}
-                </TableHead>
-                <TableHead className={isRTL ? "text-left" : "text-right"}>
-                  {t("admin.systemLogs.message")}
-                </TableHead>
-                <TableHead className={isRTL ? "text-left" : "text-right"}>
-                  {t("admin.systemLogs.user")}
-                </TableHead>
-                <TableHead className={isRTL ? "text-left" : "text-right"}>
-                  {t("admin.systemLogs.store")}
-                </TableHead>
-                <TableHead className={isRTL ? "text-left" : "text-right"}>
-                  {t("admin.systemLogs.ip")}
-                </TableHead>
+                <TableHead className={`text-[10px] ${isRTL ? "text-left" : "text-right"}`}>{t("admin.systemLogs.timestamp")}</TableHead>
+                <TableHead className={`text-[10px] ${isRTL ? "text-left" : "text-right"}`}>{t("admin.systemLogs.level")}</TableHead>
+                <TableHead className={`text-[10px] ${isRTL ? "text-left" : "text-right"}`}>{t("admin.systemLogs.category")}</TableHead>
+                <TableHead className={`text-[10px] ${isRTL ? "text-left" : "text-right"}`}>{t("admin.systemLogs.message")}</TableHead>
+                <TableHead className={`text-[10px] ${isRTL ? "text-left" : "text-right"}`}>{t("admin.systemLogs.user")}</TableHead>
+                <TableHead className={`text-[10px] ${isRTL ? "text-left" : "text-right"}`}>{t("admin.systemLogs.store")}</TableHead>
+                <TableHead className={`text-[10px] ${isRTL ? "text-left" : "text-right"}`}>{t("admin.systemLogs.ip")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredLogs.map((log) => (
                 <TableRow key={log.id}>
-                  <TableCell className={isRTL ? "text-left" : "text-right"}>
-                    {log.timestamp}
-                  </TableCell>
+                  <TableCell className={`text-[11px] ${isRTL ? "text-left" : "text-right"}`}>{log.timestamp}</TableCell>
                   <TableCell>
-                    <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <div className={`flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
                       {getLevelIcon(log.level)}
                       {getLevelBadge(log.level)}
                     </div>
                   </TableCell>
-                  <TableCell>
-                    {getCategoryBadge(log.category)}
-                  </TableCell>
+                  <TableCell>{getCategoryBadge(log.category)}</TableCell>
                   <TableCell className={isRTL ? "text-left" : "text-right"}>
                     <div>
-                      <div className="font-medium">{log.message}</div>
-                      <div className="text-sm text-gray-600">{log.details}</div>
+                      <div className="text-xs font-medium">{log.message}</div>
+                      <div className="text-[10px] text-gray-600">{log.details}</div>
                     </div>
                   </TableCell>
                   <TableCell className={isRTL ? "text-left" : "text-right"}>
-                    <div className={`flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <div className={`flex items-center gap-0.5 ${isRTL ? 'flex-row-reverse' : ''}`}>
                       <User className="h-3 w-3 text-gray-500" />
-                      {log.user}
+                      <span className="text-xs">{log.user}</span>
                     </div>
                   </TableCell>
                   <TableCell className={isRTL ? "text-left" : "text-right"}>
-                    <div className={`flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <div className={`flex items-center gap-0.5 ${isRTL ? 'flex-row-reverse' : ''}`}>
                       <Store className="h-3 w-3 text-gray-500" />
-                      {log.store}
+                      <span className="text-xs">{log.store}</span>
                     </div>
                   </TableCell>
-                  <TableCell className={isRTL ? "text-left" : "text-right"}>
-                    {log.ip}
-                  </TableCell>
+                  <TableCell className={`text-xs ${isRTL ? "text-left" : "text-right"}`}>{log.ip}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -325,9 +297,8 @@ export function SystemLogsPage() {
         </CardContent>
       </Card>
 
-      {/* Pagination */}
       <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-        <p className={`text-sm text-gray-600 ${isRTL ? 'text-right' : 'text-left'}`}>
+        <p className={`text-[11px] text-gray-600 ${isRTL ? 'text-right' : 'text-left'}`}>
           {t("admin.systemLogs.shownFrom", { shown: filteredLogs.length, total: systemLogs.length })}
         </p>
       </div>

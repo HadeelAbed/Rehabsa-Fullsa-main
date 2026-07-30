@@ -1088,11 +1088,13 @@
   "admin": {
     "sidebar": {
       "dashboard": "Dashboard",
-      "stores": "Stores Management",
-      "users": "Users Management",
+      "management": "Management",
+      "stores": "Stores",
+      "users": "Users",
       "subscriptions": "Subscriptions",
       "marketing": "Marketing & Coupons",
       "plans": "Plans Management",
+      "reportsAnalytics": "Reports & Analytics",
       "reports": "Financial Reports",
       "analytics": "Analytics",
       "systemLogs": "System Logs",

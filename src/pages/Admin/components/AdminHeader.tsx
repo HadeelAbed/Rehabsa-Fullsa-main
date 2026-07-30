@@ -20,61 +20,58 @@ export function AdminHeader() {
   const { isRTL } = useDirection();
 
   return (
-    <header className={`sticky top-0 z-40 flex h-16 items-center gap-2 border-b border-border bg-card/95 backdrop-blur-md shadow-md px-4 ${isRTL ? 'font-arabic' : 'font-sans'} flex-shrink-0`} dir={isRTL ? "rtl" : "ltr"}>
+    <header className={`sticky top-0 z-40 flex h-12 items-center gap-2 border-b border-border bg-card/95 backdrop-blur-md shadow-sm px-3 ${isRTL ? 'font-arabic' : 'font-sans'} flex-shrink-0`} dir={isRTL ? "rtl" : "ltr"}>
       <SidebarTrigger className={isRTL ? "-ml-1" : "-mr-1"} />
       
-      <div className={`flex flex-1 items-center gap-2 px-3 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-        <div className="relative flex-1 max-w-sm">
-          <Search className={`absolute top-2.5 ${isRTL ? 'left-2' : 'right-2'} h-4 w-4 text-muted-foreground`} />
+      <div className={`flex flex-1 items-center gap-2 px-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+        <div className="relative flex-1 max-w-xs">
+          <Search className={`absolute top-2 ${isRTL ? 'left-2' : 'right-2'} h-3.5 w-3.5 text-muted-foreground`} />
           <Input
             placeholder={t("admin.header.searchPlaceholder")}
-            className={`${isRTL ? 'pl-8 pr-4 text-right' : 'pr-8 pl-4 text-left'}`}
+            className={`h-7 text-xs ${isRTL ? 'pl-7 pr-3 text-right' : 'pr-7 pl-3 text-left'}`}
             dir={isRTL ? "rtl" : "ltr"}
           />
         </div>
       </div>
       
-      <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+      <div className={`flex items-center gap-1.5 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
         <LanguageSwitcher />
         
-        <Button variant="ghost" size="icon" className="relative">
-          <Bell className="h-4 w-4" />
-          <span className={`absolute -top-1 ${isRTL ? '-right-1' : '-left-1'} h-3 w-3 rounded-full bg-red-500 text-xs text-primary-foreground flex items-center justify-center`}>
-            5
-          </span>
+        <Button variant="ghost" size="icon" className="relative h-7 w-7">
+          <Bell className="h-3.5 w-3.5" />
         </Button>
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-              <Avatar className="h-8 w-8">
+            <Button variant="ghost" className="relative h-7 w-7 rounded-full">
+              <Avatar className="h-7 w-7">
                 <AvatarImage src="/avatars/admin.png" alt={t("admin.header.adminAlt")} />
                 <AvatarFallback>
-                  <User className="h-4 w-4" />
+                  <User className="h-3.5 w-3.5" />
                 </AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" align={isRTL ? "start" : "end"} forceMount>
-            <DropdownMenuLabel className="font-normal">
-              <div className="flex flex-col space-y-1">
-                <p className={`text-sm font-medium leading-none ${isRTL ? 'text-right' : 'text-left'}`}>
+          <DropdownMenuContent className="w-44 min-w-0" align={isRTL ? "start" : "end"} forceMount>
+            <DropdownMenuLabel className="font-normal py-1.5 px-2">
+              <div className="flex flex-col space-y-0.5">
+                <p className={`text-xs font-medium leading-tight ${isRTL ? 'text-right' : 'text-left'}`}>
                   {t("admin.header.adminName")}
                 </p>
-                <p className={`text-xs leading-none text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>
+                <p className={`text-[10px] leading-tight text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>
                   {t("admin.header.adminEmail")}
                 </p>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className={isRTL ? "text-right" : "text-left"}>
+            <DropdownMenuItem className={`${isRTL ? "text-right" : "text-left"} text-xs py-1.5 px-2`}>
               {t("admin.header.profile")}
             </DropdownMenuItem>
-            <DropdownMenuItem className={isRTL ? "text-right" : "text-left"}>
+            <DropdownMenuItem className={`${isRTL ? "text-right" : "text-left"} text-xs py-1.5 px-2`}>
               {t("admin.header.settings")}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className={`text-red-600 ${isRTL ? 'text-right' : 'text-left'}`}>
+            <DropdownMenuItem className={`text-red-600 ${isRTL ? 'text-right' : 'text-left'} text-xs py-1.5 px-2`}>
               {t("admin.header.logout")}
             </DropdownMenuItem>
           </DropdownMenuContent>

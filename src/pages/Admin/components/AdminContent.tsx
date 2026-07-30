@@ -197,21 +197,21 @@ export function AdminContent() {
   ];
 
   return (
-    <div className={`flex flex-col gap-4 p-4 w-full ${isRTL ? 'font-arabic' : 'font-sans'}`} dir={isRTL ? "rtl" : "ltr"}>
-      {/* Header with filters */}
-      <div className={`flex items-center justify-between gap-4`}>
-        <h1 className={`text-2xl font-semibold ${isRTL ? 'text-right' : 'text-left'}`}>
+    <div className={`flex flex-col gap-3 p-3 w-full ${isRTL ? 'font-arabic' : 'font-sans'}`} dir={isRTL ? "rtl" : "ltr"}>
+      {/* Header */}
+      <div className={`flex items-center justify-between gap-3`}>
+        <h1 className={`text-base font-semibold ${isRTL ? 'text-right' : 'text-left'}`}>
           {t("admin.dashboard.title")}
         </h1>
-        <div className={`flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-          <div className="flex gap-2">
+        <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+          <div className="flex gap-1">
             {periods.map((period) => (
               <Button
                 key={period}
                 variant={selectedPeriod === period ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedPeriod(period)}
-                className={`${selectedPeriod === period ? "bg-primary text-primary-foreground" : ""} ${isRTL ? 'text-right' : 'text-left'}`}
+                className={`h-7 text-[10px] px-2 ${selectedPeriod === period ? "bg-primary text-primary-foreground" : ""} ${isRTL ? 'text-right' : 'text-left'}`}
               >
                 {period}
               </Button>
@@ -219,8 +219,8 @@ export function AdminContent() {
           </div>
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" className={`w-[300px] justify-end font-normal ${isRTL ? 'text-right flex items-center gap-2 flex-row-reverse' : 'text-left flex items-center gap-2 flex-row'}`}>
-                <CalendarIcon className="h-4 w-4" />
+              <Button variant="outline" className={`h-7 text-[10px] px-2 justify-end font-normal ${isRTL ? 'text-right flex items-center gap-1 flex-row-reverse' : 'text-left flex items-center gap-1 flex-row'}`}>
+                <CalendarIcon className="h-3 w-3" />
                 {date ? format(date, "PPP", { locale: isRTL ? ar : enUS }) : t("admin.dashboard.selectDate")}
               </Button>
             </PopoverTrigger>
@@ -238,7 +238,7 @@ export function AdminContent() {
       </div>
 
       {/* Main Stats */}
-      <div className="grid grid-cols-2 auto-rows-min gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 auto-rows-min gap-3 md:grid-cols-2 lg:grid-cols-4">
         <AdminStatsCard
           title={stats[0].title}
           value={stats[0].value}
@@ -278,14 +278,14 @@ export function AdminContent() {
       </div>
 
       {/* Additional Stats */}
-      <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2">
+      <div className="grid grid-cols-3 gap-3 max-md:grid-cols-2">
         {additionalStats.map((stat, index) => (
-          <Card key={stat.title} className="h-[90px] transition-all duration-300 hover:shadow-md border border-gray-200">
-            <CardContent className="p-3 flex flex-col gap-2 justify-between h-full">
-              <h1 className={`text-sm font-medium text-center ${isRTL ? 'text-right' : 'text-left'}`}>{stat.title}</h1>
-              <h1 className={`text-lg font-semibold text-center flex items-center gap-2 justify-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+          <Card key={stat.title} className="transition-all duration-300 hover:shadow-md border border-gray-200">
+            <CardContent className="p-2.5 flex flex-col gap-1.5 justify-between h-full">
+              <h1 className={`text-[10px] font-medium ${isRTL ? 'text-right' : 'text-left'}`}>{stat.title}</h1>
+              <h1 className={`text-sm font-semibold flex items-center gap-1.5 ${isRTL ? 'flex-row-reverse justify-end' : 'flex-row justify-start'}`}>
                 <span>{stat.value}</span>
-                <stat.icon className={`h-4 w-4 ${index === 0 ? 'text-blue-600' : index === 1 ? 'text-green-600' : 'text-purple-600'}`} />
+                <stat.icon className={`h-3.5 w-3.5 ${index === 0 ? 'text-blue-600' : index === 1 ? 'text-green-600' : 'text-purple-600'}`} />
               </h1>
             </CardContent>
           </Card>
@@ -293,40 +293,39 @@ export function AdminContent() {
       </div>
       
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Monthly Growth Chart */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card className="border border-gray-200 rounded-md transition-all duration-300 hover:shadow-md">
-          <CardHeader className="py-4 px-6">
-            <div className={`flex flex-col gap-1 ${isRTL ? 'items-end' : 'items-start'}`}>
-              <h2 className={`text-lg font-medium ${isRTL ? 'text-right' : 'text-left'}`}>
+          <CardHeader className="py-2 px-3">
+            <div className={`flex flex-col gap-0.5 ${isRTL ? 'items-end' : 'items-start'}`}>
+              <h2 className={`text-sm font-medium ${isRTL ? 'text-right' : 'text-left'}`}>
                 {t("admin.dashboard.charts.monthlyGrowth")}
               </h2>
-              <h2 className={`text-sm font-medium ${isRTL ? 'text-right' : 'text-left'}`}>
+              <p className={`text-[10px] text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>
                 {t("admin.dashboard.charts.lastTenMonths")}
-              </h2>
+              </p>
             </div>
           </CardHeader>
-          <CardContent className="flex flex-col gap-4 px-6">
-            <div style={{ minHeight: "300px" }}>
-              <ResponsiveContainer width="100%" height={300}>
+          <CardContent className="px-3 pb-3">
+            <div style={{ height: "200px" }}>
+              <ResponsiveContainer width="100%" height={200}>
                 <LineChart data={monthlyGrowthData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis />
+                  <XAxis dataKey="month" tick={{fontSize: 10}} />
+                  <YAxis tick={{fontSize: 10}} />
                   <Tooltip />
                   <Line 
                     type="monotone" 
                     dataKey="stores" 
                     stroke="#3b82f6" 
-                    strokeWidth={2}
-                    dot={{ fill: "#3b82f6", strokeWidth: 2, r: 4 }}
+                    strokeWidth={1.5}
+                    dot={{ fill: "#3b82f6", strokeWidth: 1.5, r: 3 }}
                   />
                   <Line 
                     type="monotone" 
                     dataKey="revenue" 
                     stroke="#10b981" 
-                    strokeWidth={2}
-                    dot={{ fill: "#10b981", strokeWidth: 2, r: 4 }}
+                    strokeWidth={1.5}
+                    dot={{ fill: "#10b981", strokeWidth: 1.5, r: 3 }}
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -334,68 +333,68 @@ export function AdminContent() {
           </CardContent>
         </Card>
 
-        {/* Subscription Distribution */}
         <Card className="border border-gray-200 rounded-md transition-all duration-300 hover:shadow-md">
-          <CardHeader className="py-4 px-6">
-            <div className={`flex flex-col gap-1 ${isRTL ? 'items-end' : 'items-start'}`}>
-              <h2 className={`text-lg font-medium ${isRTL ? 'text-right' : 'text-left'}`}>
+          <CardHeader className="py-2 px-3">
+            <div className={`flex flex-col gap-0.5 ${isRTL ? 'items-end' : 'items-start'}`}>
+              <h2 className={`text-sm font-medium ${isRTL ? 'text-right' : 'text-left'}`}>
                 {t("admin.dashboard.charts.subscriptionDistribution")}
               </h2>
-              <p className={`text-sm text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>
+              <p className={`text-[10px] text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>
                 {t("admin.dashboard.charts.totalSubscriptions")}
               </p>
             </div>
           </CardHeader>
-          <CardContent className="flex flex-col gap-4 px-6 pb-6">
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={subscriptionDistribution}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {subscriptionDistribution.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+          <CardContent className="px-3 pb-3">
+            <div style={{ height: "200px" }}>
+              <ResponsiveContainer width="100%" height={200}>
+                <PieChart>
+                  <Pie
+                    data={subscriptionDistribution}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    outerRadius={60}
+                    fill="#8884d8"
+                    dataKey="value"
+                  >
+                    {subscriptionDistribution.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Recent Activity Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent Subscriptions */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card className="border border-gray-200 rounded-md transition-all duration-300 hover:shadow-md">
-          <CardHeader className="py-4 px-6">
+          <CardHeader className="py-2 px-3">
             <div className={`flex justify-between items-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-              <Button variant="outline" size="sm" className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
+              <Button variant="outline" size="sm" className={`h-7 text-[10px] px-2 flex items-center gap-1 ${isRTL ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
                 <span>{t("admin.dashboard.viewAll")}</span>
-                <Eye className="h-4 w-4" />
+                <Eye className="h-3 w-3" />
               </Button>
-              <h2 className={`text-lg font-medium ${isRTL ? 'text-right' : 'text-left'}`}>
+              <h2 className={`text-sm font-medium ${isRTL ? 'text-right' : 'text-left'}`}>
                 {t("admin.dashboard.recentSubscriptions")}
               </h2>
             </div>
           </CardHeader>
-          <CardContent className="px-6 pb-6">
-            <div className="space-y-4">
+          <CardContent className="px-3 pb-3">
+            <div className="space-y-2">
               {recentSubscriptions.map((subscription) => (
-                <div key={subscription.id} className={`flex items-center justify-between p-3 bg-gray-50 rounded-lg ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div key={subscription.id} className={`flex items-center justify-between p-2 bg-gray-50 rounded-lg ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                   <div className={isRTL ? 'text-right' : 'text-left'}>
-                    <h3 className="font-medium">{subscription.storeName}</h3>
-                    <p className="text-sm text-gray-600">{subscription.plan} - {subscription.amount}</p>
+                    <h3 className="text-xs font-medium">{subscription.storeName}</h3>
+                    <p className="text-[10px] text-gray-600">{subscription.plan} - {subscription.amount}</p>
                   </div>
                   <div className={`${isRTL ? 'text-right flex flex-col items-end' : 'text-left flex flex-col items-start'}`}>
-                    <p className="text-sm text-gray-600">{subscription.date}</p>
-                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                    <p className="text-[10px] text-gray-600">{subscription.date}</p>
+                    <span className="text-[9px] bg-green-100 text-green-800 px-1.5 py-0.5 rounded-full">
                       {subscription.status}
                     </span>
                   </div>
@@ -405,30 +404,29 @@ export function AdminContent() {
           </CardContent>
         </Card>
 
-        {/* Top Active Stores */}
         <Card className="border border-gray-200 rounded-md transition-all duration-300 hover:shadow-md">
-          <CardHeader className="py-4 px-6">
+          <CardHeader className="py-2 px-3">
             <div className={`flex justify-between items-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-              <Button variant="outline" size="sm" className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
+              <Button variant="outline" size="sm" className={`h-7 text-[10px] px-2 flex items-center gap-1 ${isRTL ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
                 <span>{t("admin.dashboard.viewAll")}</span>
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-3 w-3" />
               </Button>
-              <h2 className={`text-lg font-medium ${isRTL ? 'text-right' : 'text-left'}`}>
+              <h2 className={`text-sm font-medium ${isRTL ? 'text-right' : 'text-left'}`}>
                 {t("admin.dashboard.topActiveStores")}
               </h2>
             </div>
           </CardHeader>
-          <CardContent className="px-6 pb-6">
-            <div className="space-y-4">
+          <CardContent className="px-3 pb-3">
+            <div className="space-y-2">
               {topActiveStores.map((store) => (
-                <div key={store.id} className={`flex items-center justify-between p-3 bg-gray-50 rounded-lg ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div key={store.id} className={`flex items-center justify-between p-2 bg-gray-50 rounded-lg ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                   <div className={isRTL ? 'text-right' : 'text-left'}>
-                    <h3 className="font-medium">{store.name}</h3>
-                    <p className="text-sm text-gray-600">{store.customers} {t("admin.dashboard.customers")} • {store.cards} {t("admin.dashboard.cards")}</p>
+                    <h3 className="text-xs font-medium">{store.name}</h3>
+                    <p className="text-[10px] text-gray-600">{store.customers} {t("admin.dashboard.customers")} • {store.cards} {t("admin.dashboard.cards")}</p>
                   </div>
                   <div className={`${isRTL ? 'text-right flex flex-col items-end' : 'text-left flex flex-col items-start'}`}>
-                    <p className="font-medium text-green-600">{store.revenue}</p>
-                    <p className="text-xs text-gray-600">{t("admin.dashboard.monthlyRevenue")}</p>
+                    <p className="font-medium text-green-600 text-xs">{store.revenue}</p>
+                    <p className="text-[10px] text-gray-600">{t("admin.dashboard.monthlyRevenue")}</p>
                   </div>
                 </div>
               ))}

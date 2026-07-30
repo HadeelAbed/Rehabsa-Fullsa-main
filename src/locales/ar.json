@@ -1085,11 +1085,13 @@
   "admin": {
     "sidebar": {
       "dashboard": "لوحة التحكم",
-      "stores": "إدارة المتاجر",
-      "users": "إدارة المستخدمين",
-      "subscriptions": "إدارة الاشتراكات",
+      "management": "الإدارة",
+      "stores": "المتاجر",
+      "users": "المستخدمين",
+      "subscriptions": "الاشتراكات",
       "marketing": "إدارة التسويق والكوبونات",
       "plans": "إدارة الخطط",
+      "reportsAnalytics": "التقارير والتحليلات",
       "reports": "التقارير المالية",
       "analytics": "التحليلات",
       "systemLogs": "سجلات النظام",

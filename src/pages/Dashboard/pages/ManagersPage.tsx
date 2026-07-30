@@ -109,6 +109,16 @@ export function ManagersPage() {
       toast.error(isArabic ? "كلمة المرور غير متطابقة" : "Passwords do not match");
       return false;
     }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(f.email)) {
+      toast.error(isArabic ? "البريد الإلكتروني غير صحيح" : "Invalid email address");
+      return false;
+    }
+    const phoneDigits = f.phone.replace(/\D/g, '');
+    if (phoneDigits.length < 7 || phoneDigits.length > 15) {
+      toast.error(isArabic ? "رقم الجوال غير صحيح" : "Invalid phone number");
+      return false;
+    }
     return true;
   };
 

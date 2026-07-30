@@ -80,73 +80,52 @@ export function AdminSettingsPage() {
   };
 
   return (
-    <div className={`flex flex-col gap-4 p-4 h-full ${isRTL ? 'font-arabic' : 'font-sans'}`} dir={isRTL ? "rtl" : "ltr"}>
+    <div className={`flex flex-col gap-3 p-3 h-full ${isRTL ? 'font-arabic' : 'font-sans'}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
       <div className={`flex items-center justify-between ${isRTL ? 'flex-row' : 'flex-row'}`}>
-        <h1 className={`text-2xl font-semibold flex items-center gap-2 ${isRTL ? 'text-left' : 'text-right'}`}>
-          <Settings className="h-6 w-6" />
+        <h1 className={`text-base font-semibold flex items-center gap-1.5 ${isRTL ? 'text-left' : 'text-right'}`}>
+          <Settings className="h-4 w-4" />
           {t("admin.settings.title")}
         </h1>
-        <div className="flex items-center gap-2">
-          <Button onClick={handleSaveSettings} className={isRTL ? 'text-left' : 'text-right'}>
+        <div className="flex items-center gap-1.5">
+          <Button onClick={handleSaveSettings} className="h-7 text-xs px-2">
             <span>{t("admin.settings.save")}</span>
-            <Save className={`h-4 w-4 ${isRTL ? 'mr-2' : 'ml-2'}`} />
+            <Save className="h-3 w-3" />
           </Button>
-          <Button onClick={handleResetSettings} variant="outline" className={isRTL ? 'text-left' : 'text-right'}>
+          <Button onClick={handleResetSettings} variant="outline" className="h-7 text-xs px-2">
             {t("admin.settings.reset")}
           </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* General Settings */}
         <Card>
-          <CardHeader>
-            <CardTitle className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Globe className="h-5 w-5" />
+          <CardHeader className="py-2 px-3">
+            <CardTitle className={`flex items-center gap-1.5 text-xs ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <Globe className="h-4 w-4" />
               {t("admin.settings.generalSettings")}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="siteName">{t("admin.settings.siteName")}</Label>
-              <Input
-                id="siteName"
-                value={settings.siteName}
-                onChange={(e) => updateSetting("siteName", e.target.value)}
-                dir={isRTL ? "rtl" : "ltr"}
-              />
+          <CardContent className="px-3 pb-3 space-y-2">
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.siteName")}</Label>
+              <Input id="siteName" value={settings.siteName} onChange={(e) => updateSetting("siteName", e.target.value)} className="h-7 text-xs" dir={isRTL ? "rtl" : "ltr"} />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="siteDescription">{t("admin.settings.siteDescription")}</Label>
-              <Textarea
-                id="siteDescription"
-                value={settings.siteDescription}
-                onChange={(e) => updateSetting("siteDescription", e.target.value)}
-                rows={3}
-                dir={isRTL ? "rtl" : "ltr"}
-              />
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.siteDescription")}</Label>
+              <Textarea id="siteDescription" value={settings.siteDescription} onChange={(e) => updateSetting("siteDescription", e.target.value)} className="text-xs" rows={2} dir={isRTL ? "rtl" : "ltr"} />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="defaultLanguage">{t("admin.settings.defaultLanguage")}</Label>
-              <select
-                id="defaultLanguage"
-                value={settings.defaultLanguage}
-                onChange={(e) => updateSetting("defaultLanguage", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              >
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.defaultLanguage")}</Label>
+              <select id="defaultLanguage" value={settings.defaultLanguage} onChange={(e) => updateSetting("defaultLanguage", e.target.value)} className="w-full h-7 text-xs px-2 border border-gray-300 rounded-md">
                 <option value="ar">العربية</option>
                 <option value="en">English</option>
               </select>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="timezone">{t("admin.settings.timezone")}</Label>
-              <select
-                id="timezone"
-                value={settings.timezone}
-                onChange={(e) => updateSetting("timezone", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              >
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.timezone")}</Label>
+              <select id="timezone" value={settings.timezone} onChange={(e) => updateSetting("timezone", e.target.value)} className="w-full h-7 text-xs px-2 border border-gray-300 rounded-md">
                 <option value="Asia/Riyadh">الرياض (GMT+3)</option>
                 <option value="Asia/Dubai">دبي (GMT+4)</option>
                 <option value="UTC">UTC (GMT+0)</option>
@@ -157,166 +136,104 @@ export function AdminSettingsPage() {
 
         {/* Admin Settings */}
         <Card>
-          <CardHeader>
-            <CardTitle className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <User className="h-5 w-5" />
+          <CardHeader className="py-2 px-3">
+            <CardTitle className={`flex items-center gap-1.5 text-xs ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <User className="h-4 w-4" />
               {t("admin.settings.adminSettings")}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="adminName">{t("admin.settings.adminName")}</Label>
-              <Input
-                id="adminName"
-                value={settings.adminName}
-                onChange={(e) => updateSetting("adminName", e.target.value)}
-                dir={isRTL ? "rtl" : "ltr"}
-              />
+          <CardContent className="px-3 pb-3 space-y-2">
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.adminName")}</Label>
+              <Input id="adminName" value={settings.adminName} onChange={(e) => updateSetting("adminName", e.target.value)} className="h-7 text-xs" dir={isRTL ? "rtl" : "ltr"} />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="adminEmail">{t("admin.settings.adminEmail")}</Label>
-              <Input
-                id="adminEmail"
-                type="email"
-                value={settings.adminEmail}
-                onChange={(e) => updateSetting("adminEmail", e.target.value)}
-              />
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.adminEmail")}</Label>
+              <Input id="adminEmail" type="email" value={settings.adminEmail} onChange={(e) => updateSetting("adminEmail", e.target.value)} className="h-7 text-xs" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="adminPhone">{t("admin.settings.adminPhone")}</Label>
-              <Input
-                id="adminPhone"
-                value={settings.adminPhone}
-                onChange={(e) => updateSetting("adminPhone", e.target.value)}
-              />
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.adminPhone")}</Label>
+              <Input id="adminPhone" value={settings.adminPhone} onChange={(e) => updateSetting("adminPhone", e.target.value)} className="h-7 text-xs" />
             </div>
           </CardContent>
         </Card>
 
         {/* Security Settings */}
         <Card>
-          <CardHeader>
-            <CardTitle className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Shield className="h-5 w-5" />
+          <CardHeader className="py-2 px-3">
+            <CardTitle className={`flex items-center gap-1.5 text-xs ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <Shield className="h-4 w-4" />
               {t("admin.settings.securitySettings")}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="px-3 pb-3 space-y-2">
             <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Label htmlFor="enableTwoFactor">{t("admin.settings.enableTwoFactor")}</Label>
-              <Switch
-                id="enableTwoFactor"
-                checked={settings.enableTwoFactor}
-                onCheckedChange={(checked) => updateSetting("enableTwoFactor", checked)}
-              />
+              <Label className="text-[11px]">{t("admin.settings.enableTwoFactor")}</Label>
+              <Switch id="enableTwoFactor" checked={settings.enableTwoFactor} onCheckedChange={(checked) => updateSetting("enableTwoFactor", checked)} />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="sessionTimeout">{t("admin.settings.sessionTimeout")}</Label>
-              <Input
-                id="sessionTimeout"
-                type="number"
-                value={settings.sessionTimeout}
-                onChange={(e) => updateSetting("sessionTimeout", parseInt(e.target.value))}
-              />
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.sessionTimeout")}</Label>
+              <Input id="sessionTimeout" type="number" value={settings.sessionTimeout} onChange={(e) => updateSetting("sessionTimeout", parseInt(e.target.value))} className="h-7 text-xs" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="maxLoginAttempts">{t("admin.settings.maxLoginAttempts")}</Label>
-              <Input
-                id="maxLoginAttempts"
-                type="number"
-                value={settings.maxLoginAttempts}
-                onChange={(e) => updateSetting("maxLoginAttempts", parseInt(e.target.value))}
-              />
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.maxLoginAttempts")}</Label>
+              <Input id="maxLoginAttempts" type="number" value={settings.maxLoginAttempts} onChange={(e) => updateSetting("maxLoginAttempts", parseInt(e.target.value))} className="h-7 text-xs" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="passwordMinLength">{t("admin.settings.passwordMinLength")}</Label>
-              <Input
-                id="passwordMinLength"
-                type="number"
-                value={settings.passwordMinLength}
-                onChange={(e) => updateSetting("passwordMinLength", parseInt(e.target.value))}
-              />
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.passwordMinLength")}</Label>
+              <Input id="passwordMinLength" type="number" value={settings.passwordMinLength} onChange={(e) => updateSetting("passwordMinLength", parseInt(e.target.value))} className="h-7 text-xs" />
             </div>
           </CardContent>
         </Card>
 
         {/* Notification Settings */}
         <Card>
-          <CardHeader>
-            <CardTitle className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Bell className="h-5 w-5" />
+          <CardHeader className="py-2 px-3">
+            <CardTitle className={`flex items-center gap-1.5 text-xs ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <Bell className="h-4 w-4" />
               {t("admin.settings.notificationSettings")}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="px-3 pb-3 space-y-2">
             <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Label htmlFor="emailNotifications">{t("admin.settings.emailNotifications")}</Label>
-              <Switch
-                id="emailNotifications"
-                checked={settings.emailNotifications}
-                onCheckedChange={(checked) => updateSetting("emailNotifications", checked)}
-              />
+              <Label className="text-[11px]">{t("admin.settings.emailNotifications")}</Label>
+              <Switch id="emailNotifications" checked={settings.emailNotifications} onCheckedChange={(checked) => updateSetting("emailNotifications", checked)} />
             </div>
             <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Label htmlFor="smsNotifications">{t("admin.settings.smsNotifications")}</Label>
-              <Switch
-                id="smsNotifications"
-                checked={settings.smsNotifications}
-                onCheckedChange={(checked) => updateSetting("smsNotifications", checked)}
-              />
+              <Label className="text-[11px]">{t("admin.settings.smsNotifications")}</Label>
+              <Switch id="smsNotifications" checked={settings.smsNotifications} onCheckedChange={(checked) => updateSetting("smsNotifications", checked)} />
             </div>
             <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Label htmlFor="pushNotifications">{t("admin.settings.pushNotifications")}</Label>
-              <Switch
-                id="pushNotifications"
-                checked={settings.pushNotifications}
-                onCheckedChange={(checked) => updateSetting("pushNotifications", checked)}
-              />
+              <Label className="text-[11px]">{t("admin.settings.pushNotifications")}</Label>
+              <Switch id="pushNotifications" checked={settings.pushNotifications} onCheckedChange={(checked) => updateSetting("pushNotifications", checked)} />
             </div>
           </CardContent>
         </Card>
 
         {/* System Settings */}
         <Card>
-          <CardHeader>
-            <CardTitle className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Database className="h-5 w-5" />
+          <CardHeader className="py-2 px-3">
+            <CardTitle className={`flex items-center gap-1.5 text-xs ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <Database className="h-4 w-4" />
               {t("admin.settings.systemSettings")}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="px-3 pb-3 space-y-2">
             <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Label htmlFor="maintenanceMode">{t("admin.settings.maintenanceMode")}</Label>
-              <Switch
-                id="maintenanceMode"
-                checked={settings.maintenanceMode}
-                onCheckedChange={(checked) => updateSetting("maintenanceMode", checked)}
-              />
+              <Label className="text-[11px]">{t("admin.settings.maintenanceMode")}</Label>
+              <Switch id="maintenanceMode" checked={settings.maintenanceMode} onCheckedChange={(checked) => updateSetting("maintenanceMode", checked)} />
             </div>
             <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Label htmlFor="debugMode">{t("admin.settings.debugMode")}</Label>
-              <Switch
-                id="debugMode"
-                checked={settings.debugMode}
-                onCheckedChange={(checked) => updateSetting("debugMode", checked)}
-              />
+              <Label className="text-[11px]">{t("admin.settings.debugMode")}</Label>
+              <Switch id="debugMode" checked={settings.debugMode} onCheckedChange={(checked) => updateSetting("debugMode", checked)} />
             </div>
             <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Label htmlFor="autoBackup">{t("admin.settings.autoBackup")}</Label>
-              <Switch
-                id="autoBackup"
-                checked={settings.autoBackup}
-                onCheckedChange={(checked) => updateSetting("autoBackup", checked)}
-              />
+              <Label className="text-[11px]">{t("admin.settings.autoBackup")}</Label>
+              <Switch id="autoBackup" checked={settings.autoBackup} onCheckedChange={(checked) => updateSetting("autoBackup", checked)} />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="backupFrequency">{t("admin.settings.backupFrequency")}</Label>
-              <select
-                id="backupFrequency"
-                value={settings.backupFrequency}
-                onChange={(e) => updateSetting("backupFrequency", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              >
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.backupFrequency")}</Label>
+              <select id="backupFrequency" value={settings.backupFrequency} onChange={(e) => updateSetting("backupFrequency", e.target.value)} className="w-full h-7 text-xs px-2 border border-gray-300 rounded-md">
                 <option value="hourly">{t("admin.settings.hourly")}</option>
                 <option value="daily">{t("admin.settings.daily")}</option>
                 <option value="weekly">{t("admin.settings.weekly")}</option>
@@ -328,69 +245,37 @@ export function AdminSettingsPage() {
 
         {/* Email Settings */}
         <Card>
-          <CardHeader>
-            <CardTitle className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Mail className="h-5 w-5" />
+          <CardHeader className="py-2 px-3">
+            <CardTitle className={`flex items-center gap-1.5 text-xs ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <Mail className="h-4 w-4" />
               {t("admin.settings.emailSettings")}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="smtpHost">{t("admin.settings.smtpHost")}</Label>
-              <Input
-                id="smtpHost"
-                value={settings.smtpHost}
-                onChange={(e) => updateSetting("smtpHost", e.target.value)}
-              />
+          <CardContent className="px-3 pb-3 space-y-2">
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.smtpHost")}</Label>
+              <Input id="smtpHost" value={settings.smtpHost} onChange={(e) => updateSetting("smtpHost", e.target.value)} className="h-7 text-xs" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="smtpPort">{t("admin.settings.smtpPort")}</Label>
-              <Input
-                id="smtpPort"
-                type="number"
-                value={settings.smtpPort}
-                onChange={(e) => updateSetting("smtpPort", parseInt(e.target.value))}
-              />
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.smtpPort")}</Label>
+              <Input id="smtpPort" type="number" value={settings.smtpPort} onChange={(e) => updateSetting("smtpPort", parseInt(e.target.value))} className="h-7 text-xs" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="smtpUsername">{t("admin.settings.smtpUsername")}</Label>
-              <Input
-                id="smtpUsername"
-                value={settings.smtpUsername}
-                onChange={(e) => updateSetting("smtpUsername", e.target.value)}
-              />
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.smtpUsername")}</Label>
+              <Input id="smtpUsername" value={settings.smtpUsername} onChange={(e) => updateSetting("smtpUsername", e.target.value)} className="h-7 text-xs" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="smtpPassword">{t("admin.settings.smtpPassword")}</Label>
+            <div className="space-y-1">
+              <Label className="text-[11px]">{t("admin.settings.smtpPassword")}</Label>
               <div className="relative">
-                <Input
-                  id="smtpPassword"
-                  type={showPassword ? "text" : "password"}
-                  value={settings.smtpPassword}
-                  onChange={(e) => updateSetting("smtpPassword", e.target.value)}
-                />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  className={`absolute ${isRTL ? 'left-0' : 'right-0'} top-0 h-full px-3 py-2 hover:bg-transparent`}
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4" />
-                  ) : (
-                    <Eye className="h-4 w-4" />
-                  )}
+                <Input id="smtpPassword" type={showPassword ? "text" : "password"} value={settings.smtpPassword} onChange={(e) => updateSetting("smtpPassword", e.target.value)} className="h-7 text-xs pr-7" />
+                <Button type="button" variant="ghost" size="sm" className={`absolute ${isRTL ? 'left-0' : 'right-0'} top-0 h-full px-2 hover:bg-transparent`} onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
                 </Button>
               </div>
             </div>
             <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Label htmlFor="smtpSecure">{t("admin.settings.smtpSecure")}</Label>
-              <Switch
-                id="smtpSecure"
-                checked={settings.smtpSecure}
-                onCheckedChange={(checked) => updateSetting("smtpSecure", checked)}
-              />
+              <Label className="text-[11px]">{t("admin.settings.smtpSecure")}</Label>
+              <Switch id="smtpSecure" checked={settings.smtpSecure} onCheckedChange={(checked) => updateSetting("smtpSecure", checked)} />
             </div>
           </CardContent>
         </Card>

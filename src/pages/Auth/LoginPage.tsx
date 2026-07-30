@@ -21,9 +21,9 @@ export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
-  
+
   // Get redirect URL from query parameters
-  const redirectUrl = searchParams.get('redirect') || '/dashboard';
+  const redirectUrl = searchParams.get("redirect") || "/dashboard";
 
   const {
     register,
@@ -42,10 +42,10 @@ export const LoginPage = () => {
     setIsLoading(true);
     try {
       await login(data.email, data.password);
-      toast.success(t('auth.login.successMessage'));
+      toast.success(t("auth.login.successMessage"));
       navigate(redirectUrl);
     } catch {
-      toast.error(t('auth.login.errorMessage'));
+      toast.error(t("auth.login.errorMessage"));
     } finally {
       setIsLoading(false);
     }
@@ -53,21 +53,21 @@ export const LoginPage = () => {
 
   return (
     <AuthLayout
-      title={t('auth.login.title')}
-      subtitle={t('auth.login.subtitle')}
+      title={t("auth.login.title")}
+      subtitle={t("auth.login.subtitle")}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Email Field */}
         <div className="space-y-2">
           <Label htmlFor="email" className="text-sm font-medium">
-            {t('auth.login.email')}
+            {t("auth.login.email")}
           </Label>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               id="email"
               type="email"
-              placeholder={t('auth.login.emailPlaceholder')}
+              placeholder={t("auth.login.emailPlaceholder")}
               className="pl-10"
               {...register("email")}
             />
@@ -80,14 +80,14 @@ export const LoginPage = () => {
         {/* Password Field */}
         <div className="space-y-2">
           <Label htmlFor="password" className="text-sm font-medium">
-            {t('auth.login.password')}
+            {t("auth.login.password")}
           </Label>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               id="password"
               type={showPassword ? "text" : "password"}
-              placeholder={t('auth.login.passwordPlaceholder')}
+              placeholder={t("auth.login.passwordPlaceholder")}
               className="pl-10 pr-10"
               {...register("password")}
             />
@@ -96,11 +96,17 @@ export const LoginPage = () => {
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
             >
-              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              {showPassword ? (
+                <EyeOff className="h-4 w-4" />
+              ) : (
+                <Eye className="h-4 w-4" />
+              )}
             </button>
           </div>
           {errors.password && (
-            <p className="text-sm text-destructive">{errors.password.message}</p>
+            <p className="text-sm text-destructive">
+              {errors.password.message}
+            </p>
           )}
         </div>
 
@@ -111,19 +117,24 @@ export const LoginPage = () => {
               id="rememberMe"
               checked={watch("rememberMe") || false}
               onCheckedChange={(checked) => {
-                setValue("rememberMe", checked === true, { shouldValidate: true });
+                setValue("rememberMe", checked === true, {
+                  shouldValidate: true,
+                });
               }}
             />
             <input type="hidden" {...register("rememberMe")} />
-            <Label htmlFor="rememberMe" className="text-sm text-muted-foreground">
-              {t('auth.login.rememberMe')}
+            <Label
+              htmlFor="rememberMe"
+              className="text-sm text-muted-foreground"
+            >
+              {t("auth.login.rememberMe")}
             </Label>
           </div>
           <Link
             to="/forgot-password"
             className="text-sm text-primary hover:text-primary/80 transition-colors"
           >
-            {t('auth.login.forgotPassword')}
+            {t("auth.login.forgotPassword")}
           </Link>
         </div>
 
@@ -133,18 +144,18 @@ export const LoginPage = () => {
           className="w-full btn-primary"
           disabled={isLoading}
         >
-          {isLoading ? t('auth.login.submitting') : t('auth.login.submit')}
+          {isLoading ? t("auth.login.submitting") : t("auth.login.submit")}
         </Button>
 
         {/* Register Link */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            {t('auth.login.noAccount')}{" "}
+            {t("auth.login.noAccount")}{" "}
             <Link
               to="/register"
               className="text-primary hover:text-primary/80 font-medium transition-colors"
             >
-              {t('auth.login.registerNow')}
+              {t("auth.login.registerNow")}
             </Link>
           </p>
         </div>
